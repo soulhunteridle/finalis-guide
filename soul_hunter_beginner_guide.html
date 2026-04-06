@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soul Hunter Idle AFK RPG — Beginner Guide</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Exo+2:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0c12;
+      --surface: #12151f;
+      --surface2: #1a1e2e;
+      --border: #2a2f45;
+      --accent: #e8a830;
+      --accent2: #c45c2a;
+      --text: #d4d8e8;
+      --text-dim: #7a80a0;
+      --mythic: #c084fc;
+      --legend: #f59e0b;
+      --ancient: #34d399;
+      --special: #60a5fa;
+      --tldr-bg: #0f1a0f;
+      --tldr-border: #2a5a2a;
+      --tldr-accent: #4ade80;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* Background atmosphere */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(232, 168, 48, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 30% at 80% 90%, rgba(196, 92, 42, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .guide-header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .guide-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .game-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(22px, 5vw, 36px);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(232, 168, 48, 0.3);
+    }
+
+    .guide-subtitle {
+      color: var(--text-dim);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 48px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 20px 28px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #000;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 15px;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .section-body {
+      padding: 28px;
+    }
+
+    /* Content blocks */
+    .block {
+      margin-bottom: 24px;
+    }
+
+    .block:last-child {
+      margin-bottom: 0;
+    }
+
+    .block-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Formula box */
+    .formula-box {
+      background: #0d1020;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 15px;
+      color: var(--accent);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* Calculation steps */
+    .calc-steps {
+      background: #0d1020;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 12px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+
+    .calc-steps .step-result {
+      color: var(--ancient);
+      font-weight: 700;
+    }
+
+    .calc-steps .step-final {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+
+    /* Key insight */
+    .insight {
+      background: rgba(232, 168, 48, 0.06);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    .insight strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Warning */
+    .warning {
+      background: rgba(196, 92, 42, 0.08);
+      border-left: 3px solid var(--accent2);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+      color: #e8a070;
+    }
+
+    /* Lists */
+    ul,
+    ol {
+      padding-left: 0;
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    li {
+      font-size: 14px;
+      padding: 4px 0 4px 20px;
+      position: relative;
+      color: var(--text);
+    }
+
+    ul li::before {
+      content: '›';
+      position: absolute;
+      left: 4px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    ol {
+      counter-reset: item;
+    }
+
+    ol li {
+      counter-increment: item;
+    }
+
+    ol li::before {
+      content: counter(item) '.';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    /* Rarity badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 2px;
+    }
+
+    .badge-mythic {
+      background: rgba(192, 132, 252, 0.15);
+      color: var(--mythic);
+      border: 1px solid rgba(192, 132, 252, 0.3);
+    }
+
+    .badge-legend {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--legend);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-ancient {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--ancient);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .badge-special {
+      background: rgba(96, 165, 250, 0.15);
+      color: var(--special);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+
+    /* Job cards */
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .job-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .job-name {
+      font-weight: 700;
+      font-size: 13px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .job-focus {
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .passive-slots {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    .passive-slots span {
+      color: var(--text);
+    }
+
+    /* Currency / cost table */
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    .cost-table th {
+      text-align: left;
+      padding: 8px 12px;
+      background: var(--surface2);
+      color: var(--text-dim);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cost-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(42, 47, 69, 0.5);
+      color: var(--text);
+    }
+
+    .cost-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cost-table .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Category list for costume */
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 12px 0;
+    }
+
+    .category-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: var(--surface2);
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .category-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Ability priority */
+    .priority-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin: 12px 0;
+    }
+
+    .priority-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      background: var(--surface2);
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .priority-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* TLDR */
+    .tldr {
+      background: var(--tldr-bg);
+      border: 1px solid var(--tldr-border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-top: 24px;
+    }
+
+    .tldr-header {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--tldr-accent);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tldr-header::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 2px;
+      background: var(--tldr-accent);
+    }
+
+    .tldr ol {
+      counter-reset: tldr;
+    }
+
+    .tldr ol li {
+      counter-increment: tldr;
+      color: #b0e8b0;
+      padding-left: 22px;
+    }
+
+    .tldr ol li::before {
+      content: counter(tldr) '.';
+      color: var(--tldr-accent);
+    }
+
+    /* Sentence section table */
+    .sentence-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    .sentence-table th {
+      text-align: left;
+      padding: 8px 12px;
+      background: var(--surface2);
+      color: var(--text-dim);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sentence-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(42, 47, 69, 0.5);
+    }
+
+    .sentence-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Note */
+    .note {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 8px;
+    }
+
+    /* pension loop visual */
+    .loop-visual {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    .loop-step {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    .loop-step .ls-label {
+      font-size: 10px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .loop-step .ls-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .loop-arrow {
+      color: var(--accent2);
+      font-size: 18px;
+    }
+
+    @media (max-width: 600px) {
+      .section-body {
+        padding: 20px 16px;
+      }
+
+      .job-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .loop-visual {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="guide-header">
+      <div class="game-label">Beginner Guide</div>
+      <h1>Soul Hunter Idle AFK RPG</h1>
+      <div class="guide-subtitle">Math-backed · Low spender friendly · No fluff</div>
+    </div>
+
+    <!-- SECTION 1: DAMAGE FORMULA -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <div class="section-title">The Damage Math Formula</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <div class="block-label">The Question</div>
+          <p>I know you'll be asking or complaining, <strong>"WHY THE HELL A GUIDE FOR IDLE RPG GAME STARTS WITH
+              MATH?"</strong>, before you rage hear me out. Almost every single fuckin decision you gonna make on your
+            build will be rooted back to this math concept. So if you can understand this I can assure you won't need to
+            ask other 99% of the time. You can just think for yourself. So you have 2 option:</p>
+          <ol>
+            <li>SCROLL THIS SECTION ALL THE WAY TO THE TLDR PART AND <strong>BECOME A PUSSY!</strong></li>
+            <li>STAY HERE AND <strong>LEARN SOME BASIC MATH CONCEPT</strong>, MAYBE YOU CAN DO YOUR HOMEWORK BETTER
+              AFTER THIS!</li>
+          </ol>
+        </div>
+
+
+        <div class="block">
+          <div class="block-label">The Formula</div>
+          <p>Everything in this game multiplies. Not adds. Here's the formula that covers all damage stats:</p>
+          <div class="formula-box">Final Damage = [(1 + a) × (1 + b) × (1 + c) × ...] − 1</div>
+          <p>Convert each stat from % to decimal first. So 500% becomes 5, and 1,625% becomes 16.25.</p>
+          <div class="warning">⚠ Convertion Rules: To convert percentage to multiplier, just do the percentage/100</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Simple Example — Final Fire Damage (2 stats)</div>
+          <ul>
+            <li>Final Fire Fire Damage: 20,898.77%</li>
+            <li>Fire Damage Increase: 1,117.32% → 11.1732</li>
+            <li>Flame Damage Amplification: 1,625% → 16.25</li>
+          </ul>
+          <div class="calc-steps">
+            (1 + 11.1732) × (1 + 16.25) − 1<br>
+            = 12.1732 × 17.25 − 1<br>
+            <span class="step-final">= 208.9877 = 20,898.77% ✓</span>
+          </div>
+          <p class="note">Stat names don't matter. "Fire Increase" and "Flame Amplification" are both just (1+x) in the
+            formula.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Full Example — Hero Skill Damage (6 stats)</div>
+          <ul>
+            <li>Final Hero Skill Damage: 3,214,070,698.4%</li>
+            <li>Hero Skill Damage Increase: 15,237% → 152.37</li>
+            <li>Hero Skill Damage Amplification: 500% → 5</li>
+            <li>Rune Hero Skill Damage Increase: 500% → 5</li>
+            <li>Rune Hero Skill Damage Amplification: 2,000% → 20</li>
+            <li>Increased Hero Skill Damage: 1,700% → 17</li>
+            <li>Symbol Hero Skill Damage Increase: 1,440% → 14.40</li>
+          </ul>
+          <div class="calc-steps">
+            153.37 × 6 × 6 × 21 × 18 × 15.40 − 1<br>
+            = 153.37 × 6<br>
+            = 920.22 × 6<br>
+            = 5,521.32 × 21<br>
+            = 115,947.72× 18<br>
+            = 2,087,058.96× 15.40<br>
+            = 32,140,707.98 − 1<br>
+            <span class="step-final">= 3,214,070,698.4% ✓</span>
+          </div>
+        </div>
+
+        <div class="insight">
+          <strong>Key Rule:</strong> Always invest in your <strong>lowest stats</strong> first. Going from ×1 to ×2
+          doubles your damage. Going from ×100 to ×101 barely moves it. Fill the small ones first.
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-header">TLDR</div>
+          <ol>
+            <li>All damage stats multiply each other — not add</li>
+            <li>Stat category names don't matter — they're all just (1+x)</li>
+            <li>Always upgrade your smallest multiplier first for the biggest gain</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 2: FIRST PURCHASE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <div class="section-title">First Purchase (Low Spender)</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <div class="block-label">Why Buy Anything?</div>
+          <p>Any real money purchase unlocks <strong>free ads</strong>. In idle games this saves a massive amount of
+            time.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Buy the 900+900 Plus Set</div>
+          <p>This gives you <strong>1,800 Red Diamonds</strong>. Here's why this specific pack matters:</p>
+          <p>Buy the Monthly Pension with 1,500 RD. It pays back 2,200 RD over 14 days. Renew it every 14 days with the
+            RD you
+            earned. You <strong>never need to spend real money again</strong> for premium currency.</p>
+          <div class="loop-visual">
+            <div class="loop-step">
+              <div class="ls-label">You spend</div>
+              <div class="ls-val">1,500 RD</div>
+            </div>
+            <div class="loop-arrow">→</div>
+            <div class="loop-step">
+              <div class="ls-label">Pension returns</div>
+              <div class="ls-val">2,200 RD</div>
+            </div>
+            <div class="loop-arrow">→</div>
+            <div class="loop-step">
+              <div class="ls-label">Renew every</div>
+              <div class="ls-val">14 days</div>
+            </div>
+            <div class="loop-arrow">→</div>
+            <div class="loop-step">
+              <div class="ls-label">Net gain</div>
+              <div class="ls-val">+700 RD</div>
+            </div>
+          </div>
+
+          <p class="note">Why not the 500+500 pack? Only 1000 RD — not enough to buy the Pension. You unlock ads but
+            lose the loop.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Optional Permanent Passes</div>
+          <p>These are one-time purchases with permanent benefits. Pay once, earn forever.</p>
+          <table class="cost-table">
+            <thead>
+              <tr>
+                <th>Pass</th>
+                <th>Cost</th>
+                <th>Days to save up (via Pension loop)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Arena Pass</td>
+                <td class="highlight">799 RD</td>
+                <td>~16 days</td>
+              </tr>
+              <tr>
+                <td>Territory Pass</td>
+                <td class="highlight">2,299 RD</td>
+                <td>~46 days</td>
+              </tr>
+              <tr>
+                <td>Otherworld Pass</td>
+                <td class="highlight">2,999 RD</td>
+                <td>~60 days</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note">The Pension loop naturally funds these over time. Just be patient.</p>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-header">TLDR</div>
+          <ol>
+            <li>Buy 900+900 Plus Set — unlocks ads AND funds the Pension loop</li>
+            <li>Buy Monthly Pension (1,500 RD) immediately — self-sustaining forever</li>
+            <li>Save Pension gains for permanent passes when ready</li>
+            <li>You don't need to spend again after this</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 3: BEGINNER GOALS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <div class="section-title">Beginner Goals</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <div class="block-label">Step 1 — Equipment to Mythic 1</div>
+          <p>Get these three equipment pieces to <span class="badge badge-mythic">Mythic 1</span> first:</p>
+          <ul>
+            <li>Scythe</li>
+            <li>Orb</li>
+            <li>Deco</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Step 2 — Pull These 4 Mythic Passives</div>
+          <p>These are your staple passives regardless of build. Pull all 4 before deciding anything else.</p>
+          <ol>
+            <li>Power of Flames — Fire Amp</li>
+            <li>Thunder's Fury — Thunder Amp</li>
+            <li>Shadow Corrosion — Dark Amp</li>
+            <li>Elemental Fusion — All Ele Amp</li>
+          </ol>
+          <p class="note">There's a 5th mythic passive (ignore def) in the same pool. It's not worth using — just ignore
+            it if you
+            pull it.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Step 3 — Consider Ancient 4 Scythe</div>
+          <p>Before spending diamonds on hero or skill pickup summons, consider pushing your Scythe to <span
+              class="badge badge-ancient">Ancient 4</span> first. Good boost-to-cost ratio at this stage.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Step 4 — Pick Your Build Identity</div>
+          <p>Your build = 1 element + 1 job. Pick one of each and focus everything there. For example like below:</p>
+          <div class="job-grid">
+            <div class="job-card">
+              <div class="job-name">⚔ Fire - Reaper</div>
+              <div class="job-focus">Smash / Crit Damage</div>
+              <div class="passive-slots">
+                Slot 1: <span>Smash Expert</span><br>
+                Slot 2: <span>Elemental Fusion</span><br>
+                Slot 3: <span>Fire amp</span>
+              </div>
+            </div>
+            <div class="job-card">
+              <div class="job-name">🔮 Thunder - Archmage</div>
+              <div class="job-focus">Skill Damage</div>
+              <div class="passive-slots">
+                Slot 1: <span>Magic Power Surge</span><br>
+                Slot 2: <span>Elemental Fusion</span><br>
+                Slot 3: <span>Thunder amp</span>
+              </div>
+            </div>
+            <div class="job-card">
+              <div class="job-name">💀 Dark - Dark Lord</div>
+              <div class="job-focus">Hero Skill Damage</div>
+              <div class="passive-slots">
+                Slot 1: <span>Battle Command</span><br>
+                Slot 2: <span>Elemental Fusion</span><br>
+                Slot 3: <span>Dark amp</span>
+              </div>
+            </div>
+          </div>
+          <p class="note">Smash Expert, Magic Power Surge, and Battle Command are lower rarity — you'll get them
+            naturally while pulling for the staple mythics.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Which Build Should You Pick?</div>
+          <p>Personally I would suggest not to pick your build but let the game give you the build. How? By Following
+            the available banner. There are 4 banners rotating every 2 weeks: New Skill, Existing Skill, New Hero,
+            Existing Hero. Read all 4 together — they usually point toward one strong build combination.</p>
+          <div class="insight">
+            <strong>Why the banner?</strong> Skills and heroes need 6★ or 9★ to be worth building around. The banner
+            dramatically increases your pull rate for specific units — it's the only realistic way to hit those stars as
+            a low spender. You need <strong>18 dupes of mythic/hero skill</strong> to get to 6★ and <strong>50 dupes of
+              mythic/hero skill</strong> to get to 9★. Prepare at least <strong>7 million diamond </strong> for skill
+            and <strong>17.5 million diamond </strong> for hero, if you wanna get them to 9★ so you don't have this
+            unwanted condition where you stuck on them with 7 or 8 star that sometimes makes them practically useless or
+            not optimized.
+          </div>
+          <p>For your first 2 weeks: just follow the banner, no overthinking. After that you'll have enough context to
+            decide for yourself whether the next banner is worth committing to.</p>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-header">TLDR</div>
+          <ol>
+            <li>Equipment to Mythic 1 first (Scythe, Orb, Deco)</li>
+            <li>Pull the 4 staple mythic passives — ignore the 5th</li>
+            <li>Consider Ancient 4 Scythe before pickup summons</li>
+            <li>Check all 4 banners — build toward what they support</li>
+            <li>First 2 weeks: follow the banner. After that: your call</li>
+            <li>Slot 1 = job passive, Slot 2 = Elemental Fusion, Slot 3 = your element amp</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 4: EVENT CURRENCY -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <div class="section-title">Event Currency — What to Buy</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <p>There are always 2 events running with 2 different currencies. "What's the best buy?" — honestly, it
+            depends. Here are your 3 options:</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Option A — Equipment Summon Tickets</div>
+          <p>Great early value. Scales well and helps you hit Mythic 1 on equipment faster. Also lets you save your
+            Diamonds for pickup summons later.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Option B — Costume Tickets</div>
+          <p>Back to the formula — costume attack power is only earned through costumes. If you have zero costumes
+            you're missing entire multiplier categories. Here are all 5 costume categories:</p>
+
+          <div class="category-list">
+            <div class="category-item">
+              <div class="category-dot" style="background:#a78bfa"></div>
+              Regular Costume Atk — any costume
+            </div>
+            <div class="category-item">
+              <div class="category-dot" style="background:#38bdf8"></div>
+              Wing Costume Atk — wing costumes only
+            </div>
+            <div class="category-item">
+              <div class="category-dot" style="background:#34d399"></div>
+              Ancient Costume Atk — ancient pieces only
+            </div>
+            <div class="category-item">
+              <div class="category-dot" style="background:#f59e0b"></div>
+              Ancient Wing Costume Atk — ancient wing only
+            </div>
+            <div class="category-item">
+              <div class="category-dot" style="background:#f472b6"></div>
+              Costume Catalogue / Set Bonus — complete a set
+            </div>
+          </div>
+
+          <p>Recommended priority to cover all 5 categories:</p>
+          <ol>
+            <li><strong>1-2× Mythic Wing Set</strong> (1 set consist of 1 wing + 3 others costumes, ~250 tickets) —
+              covers Regular, Wing, and
+              Catalogue in one set</li>
+            <li><strong>1× Ancient Scythe</strong> — best boost-to-cost ratio for Ancient category</li>
+            <li><strong>1× Ancient Wing</strong> — fills Ancient Wing category</li>
+          </ol>
+          <p>Stop here. All 5 categories are now filled. Further costume purchases only stack into existing multipliers
+            — diminishing returns.</p>
+          <p class="note">Ancient set exists but shares catalogue with regular set — no new multiplier unlocked, not
+            worth it.</p>
+          <div class="warning">⚠ Going beyond this is only for chasing titles, which costs a lot. Not recommended unless
+            you really want to.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Option C — Treasure Dungeon Keys</div>
+          <p>Hoard these from the start. In late game they raise your job level — milestones at level 40 and 60 give
+            huge boosts. Just accumulate, you will be able to use it once you unlock treasure dungeon and
+            <strong>ALWAYS</strong> pick the <strong>Essence of Trial</strong> for Job level up.
+          </p>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-header">TLDR</div>
+          <ol>
+            <li>Option A: Equipment tickets = best early value, saves diamonds for pickup</li>
+            <li>Option B: Costume priority — Mythic Wing Set → Ancient Scythe → Ancient Wing → stop</li>
+            <li>Option C: Dungeon keys — just hoard them, pay off big at level 40 and 60 job level</li>
+            <li>The choice is yours based on where you are in progression</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 5: ABILITY ROLLS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <div class="section-title">Ability Rolls</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <div class="block-label">Always Roll Option Atk Power</div>
+          <p>Equipment, attribute enhancement, soul enhancement — everything with an ability slot. Always pick
+            <strong>Option Atk Power</strong>.
+          </p>
+          <div class="insight">
+            <strong>Why?</strong> Option Atk Power can only be earned through this system. Every other stat has multiple
+            sources and is already stacked up. Option Atk Power starts at zero — going from (1+0) to (1+x) is the
+            biggest possible jump per the formula.
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Priority Order</div>
+          <p>Get everything to <span class="badge badge-special">Special</span> first, then go back and push to <span
+              class="badge badge-legend">Legend</span>. Do NOT push to Mythic.</p>
+          <div class="priority-list">
+            <div class="priority-item">
+              <div class="priority-num">1</div> Attribute Enhancement → <span class="badge badge-special">Special</span>
+              Opt Atk Power
+            </div>
+            <div class="priority-item">
+              <div class="priority-num">2</div> All Equipment → <span class="badge badge-special">Special</span> Opt Atk
+              Power
+            </div>
+            <div class="priority-item">
+              <div class="priority-num">3</div> Soul Enhancement → <span class="badge badge-special">Special</span> Opt
+              Atk Power
+            </div>
+            <div class="priority-item">
+              <div class="priority-num">4</div> Attribute Enhancement → <span class="badge badge-legend">Legend</span>
+              Opt Atk Power
+            </div>
+            <div class="priority-item">
+              <div class="priority-num">5</div> All Equipment → <span class="badge badge-legend">Legend</span> Opt Atk
+              Power
+            </div>
+            <div class="priority-item">
+              <div class="priority-num">6</div> Soul Enhancement → <span class="badge badge-legend">Legend</span> Opt
+              Atk Power
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Sentence Abilities (Unlocks at Stage 45-1)</div>
+          <p>Once you unlock Sentence, this becomes your dice priority. Sentence uses <span
+              class="badge badge-ancient">Ancient</span> tier ability rolls and is the <strong>only source</strong> of
+            Opt Atk Amp — another empty multiplier category.</p>
+
+          <table class="sentence-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>What to Roll</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge badge-special">Special</span></td>
+                <td>3× Opt Atk Amp or 2x Opt Atk amp + 1x Opt Atk Increase → Whichever works best based on the math</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-legend">Legend</span></td>
+                <td>3× Opt Atk Amp + 1× Opt Atk Increase</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-mythic">Mythic</span></td>
+                <td>3× Opt Atk Amp + 2× Opt Atk Increase</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="warning">⚠ This is exactly why you stop at Legend everywhere else. If you push non-sentence
+            sources to Mythic you'll burn through dice and won't have enough for Sentence rolls — unless you get very
+            lucky.</div>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-header">TLDR</div>
+          <ol>
+            <li>Always roll Option Atk Power — exclusive to this system, starts at zero</li>
+            <li>Get everything to Special first, then Legend</li>
+            <li>Stop at Legend for non-sentence sources — save dice</li>
+            <li>At stage 45-1: Sentence is your priority — Opt Atk Amp exists nowhere else</li>
+            <li>Sentence order: Special (3 amp) → Legend (3 amp + 1 inc) → Mythic (3 amp + 2 inc)</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

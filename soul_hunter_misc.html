@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soul Hunter Idle AFK RPG — Misc Guide</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Exo+2:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0c12;
+      --surface: #12151f;
+      --surface2: #1a1e2e;
+      --border: #2a2f45;
+      --accent: #e8a830;
+      --accent2: #c45c2a;
+      --text: #d4d8e8;
+      --text-dim: #7a80a0;
+      --mythic: #c084fc;
+      --legend: #f59e0b;
+      --ancient: #34d399;
+      --special: #60a5fa;
+      --tldr-bg: #0f1a0f;
+      --tldr-border: #2a5a2a;
+      --tldr-accent: #4ade80;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(196, 92, 42, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 30% at 20% 90%, rgba(52, 211, 153, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .guide-header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .guide-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .game-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(22px, 5vw, 36px);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(232, 168, 48, 0.3);
+    }
+
+    .guide-subtitle {
+      color: var(--text-dim);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 18px 28px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .section-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 13px;
+      color: #fff;
+      letter-spacing: 0.5px;
+      flex: 1;
+    }
+
+    .section-body {
+      padding: 24px 28px;
+    }
+
+    .block {
+      margin-bottom: 20px;
+    }
+
+    .block:last-child {
+      margin-bottom: 0;
+    }
+
+    .block-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    .insight {
+      background: rgba(232, 168, 48, 0.06);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    .insight strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .warning {
+      background: rgba(196, 92, 42, 0.08);
+      border-left: 3px solid var(--accent2);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      margin: 10px 0;
+      font-size: 14px;
+      color: #e8a070;
+    }
+
+    ul,
+    ol {
+      padding-left: 0;
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    li {
+      font-size: 14px;
+      padding: 3px 0 3px 20px;
+      position: relative;
+      color: var(--text);
+    }
+
+    ul li::before {
+      content: '›';
+      position: absolute;
+      left: 4px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    ol {
+      counter-reset: item;
+    }
+
+    ol li {
+      counter-increment: item;
+    }
+
+    ol li::before {
+      content: counter(item) '.';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 2px;
+    }
+
+    .badge-mythic {
+      background: rgba(192, 132, 252, 0.15);
+      color: var(--mythic);
+      border: 1px solid rgba(192, 132, 252, 0.3);
+    }
+
+    .badge-legend {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--legend);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-ancient {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--ancient);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .badge-special {
+      background: rgba(96, 165, 250, 0.15);
+      color: var(--special);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 18px 0;
+    }
+
+    /* Title table */
+    .title-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+
+    .title-table th {
+      text-align: left;
+      padding: 7px 12px;
+      background: var(--surface2);
+      color: var(--text-dim);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .title-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid rgba(42, 47, 69, 0.4);
+      color: var(--text);
+    }
+
+    .title-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .title-table .val {
+      color: var(--accent);
+      font-weight: 600;
+      font-family: 'Courier New', monospace;
+    }
+
+    .title-table .best {
+      background: rgba(232, 168, 48, 0.05);
+    }
+
+    /* Dungeon list */
+    .dungeon-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .dungeon-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+
+    .dungeon-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .dungeon-tip {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* Abyss order */
+    .abyss-order {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .abyss-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--surface2);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .abyss-rank {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .rank-1 {
+      background: rgba(232, 168, 48, 0.2);
+      color: var(--accent);
+      border: 1px solid rgba(232, 168, 48, 0.4);
+    }
+
+    .rank-2 {
+      background: rgba(96, 165, 250, 0.15);
+      color: var(--special);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+
+    .rank-3 {
+      background: rgba(52, 211, 153, 0.1);
+      color: var(--ancient);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+    }
+
+    .rank-4 {
+      background: rgba(122, 128, 160, 0.1);
+      color: var(--text-dim);
+      border: 1px solid rgba(122, 128, 160, 0.2);
+    }
+
+    .abyss-detail {
+      flex: 1;
+    }
+
+    .abyss-piece {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .abyss-reason {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* Otherworld targets */
+    .ow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .ow-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .ow-rank {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .ow-target {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .ow-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* Steps for boss battle */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin: 10px 0;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      background: var(--surface2);
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .step-arrow {
+      color: var(--accent2);
+      font-weight: 700;
+    }
+
+    /* TLDR */
+    .tldr {
+      background: var(--tldr-bg);
+      border: 1px solid var(--tldr-border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-top: 20px;
+    }
+
+    .tldr-header {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--tldr-accent);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tldr-header::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 2px;
+      background: var(--tldr-accent);
+    }
+
+    .tldr ol {
+      counter-reset: tldr;
+    }
+
+    .tldr ol li {
+      counter-increment: tldr;
+      color: #b0e8b0;
+      padding-left: 22px;
+    }
+
+    .tldr ol li::before {
+      content: counter(tldr) '.';
+      color: var(--tldr-accent);
+    }
+
+    /* Pass badge */
+    .pass-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(232, 168, 48, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(232, 168, 48, 0.3);
+      margin-left: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .section-body {
+        padding: 18px 16px;
+      }
+
+      .ow-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="guide-header">
+      <div class="game-label">Misc Guide</div>
+      <h1>Soul Hunter Idle AFK RPG</h1>
+      <div class="guide-subtitle">General mechanics · Universal tips · No build-specific stuff</div>
+    </div>
+
+    <!-- TITLES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">👑</div>
+        <div class="section-title">Titles</div>
+      </div>
+      <div class="section-body">
+        <p>Always equip the title with the highest <strong>Title Atk Amp</strong>. Title Atk Amp is exclusive to titles
+          — it exists nowhere else, so even a small amount is a new multiplier category.</p>
+        <div class="insight"><strong>Math reminder:</strong> Going from 0% to any % on an exclusive stat is always the
+          biggest possible gain. Pick the highest number you have.</div>
+
+        <table class="title-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Title Atk Amp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Shining</td>
+              <td class="val">100%</td>
+            </tr>
+            <tr>
+              <td>Master (purple)</td>
+              <td class="val">300%</td>
+            </tr>
+            <tr>
+              <td>Talented</td>
+              <td class="val">300%</td>
+            </tr>
+            <tr>
+              <td>Master (yellow)</td>
+              <td class="val">500%</td>
+            </tr>
+            <tr>
+              <td>Apex</td>
+              <td class="val">1,000%</td>
+            </tr>
+            <tr>
+              <td>Overwhelming</td>
+              <td class="val">1,000%</td>
+            </tr>
+            <tr>
+              <td>Celebrity</td>
+              <td class="val">3,000%</td>
+            </tr>
+            <tr>
+              <td>Twin God</td>
+              <td class="val">3,000%</td>
+            </tr>
+            <tr>
+              <td>Reaching Divine Heights</td>
+              <td class="val">5,000%</td>
+            </tr>
+            <tr>
+              <td>Trendsetter</td>
+              <td class="val">10,000%</td>
+            </tr>
+            <tr class="best">
+              <td><strong>World Class</strong></td>
+              <td class="val"><strong>30,000%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">Some rune-type titles (e.g. Rune Appraiser) can situationally outperform these — but if you
+          already understand the formula, you can figure that out yourself.</p>
+      </div>
+    </div>
+
+    <!-- SHOP -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🛒</div>
+        <div class="section-title">Shop</div>
+      </div>
+      <div class="section-body">
+        <div class="block">
+          <div class="block-label">Exchange Tab</div>
+          <p>Always grab the <strong>30,000 Select Summon Ticket</strong>. Use it when you need a specific skill or hero
+            to reach 9★ or 10★.</p>
+        </div>
+        <div class="divider"></div>
+        <div class="block">
+          <div class="block-label">Red Diamonds</div>
+          <p>Don't spend RD here except on the <strong>Pension pack</strong> as covered in the beginner guide. Big
+            spenders can do as they like.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMON LEVELS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">✨</div>
+        <div class="section-title">Summon Levels</div>
+      </div>
+      <div class="section-body">
+        <p>Each summon type (equipment, skill, passive, hero) has 10 levels. Higher level = better rates and rarity.
+          Every player reaches level 10 naturally over time.</p>
+        <p>If you followed the beginner guide, your equipment and passive summons are likely already level 10. For the
+          rest:</p>
+        <ul>
+          <li><strong>Archmage build</strong> → push Skill summon to level 10 first</li>
+          <li><strong>Dark Lord build</strong> → push Hero summon to level 10 first</li>
+        </ul>
+        <div class="insight"><strong>Why level 10 and not 8?</strong> Level 8 unlocks the pickup banner, but level 10
+          gives the highest pull rate on it. Always go to 10 before pulling on pickup.</div>
+      </div>
+    </div>
+
+    <!-- DUNGEONS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">⚔️</div>
+        <div class="section-title">Dungeons</div>
+      </div>
+      <div class="section-body">
+        <div class="dungeon-list">
+
+          <div class="dungeon-item">
+            <div class="dungeon-name">Growth · Enhancement · Abyssal Flame · Attribute · Skill Growth · Hero Growth
+            </div>
+            <div class="dungeon-tip">Use keys when you need to, but don't dump them all at once. Especially below stage
+              80 — growth is exponential there, so each key goes further if you're patient. Additional notes on growth
+              dungeon, once you reach level 15000 your exp growth will start to diminish and after you reach level 20000
+              it will get diminished pretty hard. So after reaching level 20000 this specific dungeon key don't really
+              do much for EXP and only do for gold.</div>
+          </div>
+
+          <div class="dungeon-item">
+            <div class="dungeon-name">Training Cave</div>
+            <div class="dungeon-tip">Use this to test your DPS when changing runes or builds. Run a few times to confirm
+              your damage is stable before committing.</div>
+          </div>
+
+          <div class="dungeon-item">
+            <div class="dungeon-name">Trial Tower + Treasure Dungeon</div>
+            <div class="dungeon-tip">Use keys when you can secure at least one job level increase. Don't waste them on
+              marginal progress.</div>
+          </div>
+
+          <div class="dungeon-item">
+            <div class="dungeon-name">Rune Dungeon</div>
+            <div class="dungeon-tip">Don't use keys until stage 16-1. Then ask on Discord or in-game for a carry to
+              stage 60. Use your keys there to get Legend/Mythic runes matching your build. At stage 80-1, ask for
+              another carry past stage 60.</div>
+          </div>
+
+          <div class="dungeon-item">
+            <div class="dungeon-name">Ancient Ruins</div>
+            <div class="dungeon-tip">Same logic as Trial Tower — use keys when you can upgrade at least 1 Ancient Symbol
+              level from the run.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- BOSS BATTLE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">💀</div>
+        <div class="section-title">Boss Battle</div>
+      </div>
+      <div class="section-body">
+        <p>There are 2 difficulties. Most people miss the hard one.</p>
+        <ul>
+          <li><strong>Normal</strong> — gives fire material, you'll use it intuitively</li>
+          <li><strong>Hard</strong> — gives sentence equipment, more important</li>
+        </ul>
+        <div class="block-label" style="margin-top:14px;">How to access Hard Mode</div>
+        <div class="steps">
+          <div class="step"><span class="step-arrow">›</span> Tap <strong>More</strong></div>
+          <div class="step"><span class="step-arrow">›</span> Tap <strong>Boss Battle</strong></div>
+          <div class="step"><span class="step-arrow">›</span> Look at <strong>top left</strong></div>
+          <div class="step"><span class="step-arrow">›</span> Click the <strong>right arrow</strong> next to the
+            "Normal" text</div>
+          <div class="step"><span class="step-arrow">›</span> You're in Hard Mode</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARENA -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🏟️</div>
+        <div class="section-title">Arena</div>
+      </div>
+      <div class="section-body">
+        <p>Just clear (don't match) until you hit <strong>20 consecutive wins</strong> — that's the final consecutive
+          win streak achievement. After that, the rest is up to you.</p>
+        <p>If you have RD, consider buying the Arena Pass <span class="pass-badge">PERMANENT</span> — one-time cost,
+          infinite return.</p>
+      </div>
+    </div>
+
+    <!-- JOB ADVANCEMENT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">⬆️</div>
+        <div class="section-title">Job Advancement</div>
+      </div>
+      <div class="section-body">
+        <p>Just upgrade it when you have nothing else to do. Job-specific trait details will be covered in separate
+          build guides. (If I ever make one)</p>
+      </div>
+    </div>
+
+    <!-- ANCIENT SYMBOL -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🔣</div>
+        <div class="section-title">Ancient Symbol</div>
+      </div>
+      <div class="section-body">
+        <p>Upgrade evenly across all traits. Also upgrade the amplifier.Keep it balanced — no specific priority order
+          here.</p>
+      </div>
+    </div>
+
+    <!-- TERRITORY -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🗺️</div>
+        <div class="section-title">Territory</div>
+      </div>
+      <div class="section-body">
+        <p>Just upgrade evenly across everything.</p>
+        <p>If you have RD, consider buying the Territory Pass <span class="pass-badge">PERMANENT</span> — one-time cost,
+          infinite return.</p>
+      </div>
+    </div>
+
+    <!-- OTHERWORLD -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🌐</div>
+        <div class="section-title">Otherworld</div>
+      </div>
+      <div class="section-body">
+        <div class="block">
+          <div class="block-label">Which Hexagon to Target Based on your rank</div>
+          <div class="ow-grid">
+            <div class="ow-card">
+              <div class="ow-rank">Top 20</div>
+              <div class="ow-target">15/min</div>
+              <div class="ow-label">hexagon</div>
+            </div>
+            <div class="ow-card">
+              <div class="ow-rank">Top 40</div>
+              <div class="ow-target">10/min</div>
+              <div class="ow-label">hexagon</div>
+            </div>
+            <div class="ow-card">
+              <div class="ow-rank">Below Top 40</div>
+              <div class="ow-target">5/min</div>
+              <div class="ow-label">hexagon</div>
+            </div>
+          </div>
+          <p>Goal: minimize chance of getting attacked by not overreaching. (could be updated since they plan to add
+            even more tile on the otherworlds)</p>
+        </div>
+        <div class="divider"></div>
+        <div class="block">
+          <div class="block-label">When Attacking Others</div>
+          <p>Always target the hexagon with the <strong>highest progress (10/11 hours)</strong> — you get half of what
+            they already accumulated. Max loot, minimum effort.</p>
+        </div>
+        <p>If you have RD, consider buying the Otherworld Pass <span class="pass-badge">PERMANENT</span> — one-time
+          cost, infinite return.</p>
+      </div>
+    </div>
+
+    <!-- CATALOG -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📖</div>
+        <div class="section-title">Catalog</div>
+      </div>
+      <div class="section-body">
+        <p>Don't forget to claim all collected catalog entries for the stat boost. Personally I don't really bother with
+          the upgrading equipment collection boost. It's too diminishing. Not worth it IMO.</p>
+      </div>
+    </div>
+
+    <!-- DEFEAT MONSTER MISSION -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <div class="section-title">Defeat Monster Mission</div>
+      </div>
+      <div class="section-body">
+        <p>Use dungeon tickets in this priority order:</p>
+        <ol>
+          <li>Treasure Dungeon ticket (hoard these first)</li>
+          <li>Trial Tower ticket (if Treasure sold out)</li>
+          <li>Abyss or Rune ticket (if Trial Tower sold out)</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- EQUIPMENT TRANSCEND -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📜</div>
+        <div class="section-title">Equipment — Transcend Scroll</div>
+      </div>
+      <div class="section-body">
+        <p>Only use Transcend Scrolls on <span class="badge badge-ancient">Ancient 4</span> equipment minimum. Don't
+          use
+          before that — wasteful.</p>
+        <p>If you're sticking with <span class="badge badge-mythic">Mythic 1</span> ornament for a long time, you can
+          use scrolls on that too.</p>
+      </div>
+    </div>
+
+    <!-- EQUIPMENT AMPLIFICATION -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📈</div>
+        <div class="section-title">Equipment Amplification</div>
+      </div>
+      <div class="section-body">
+        <p>Keep it balanced across all equipment. Growth is linear with big jumps every 10 levels — cost also
+          increases
+          every 10 levels. No specific priority, just keep everything even.</p>
+      </div>
+    </div>
+
+    <!-- ABYSS EQUIPMENT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🔱</div>
+        <div class="section-title">Abyss Equipment</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <div class="block-label">Enhancement</div>
+          <p>Balance all pieces to 15 first → then all to 18 → then push to 20 in this order:</p>
+          <div class="abyss-order">
+            <div class="abyss-item">
+              <div class="abyss-rank rank-1">1</div>
+              <div class="abyss-detail">
+                <div class="abyss-piece">Emblem</div>
+                <div class="abyss-reason">Gives Super Crit Amp + Crit Amp — exclusive to emblem, starts at 0</div>
+              </div>
+            </div>
+            <div class="abyss-item">
+              <div class="abyss-rank rank-2">2</div>
+              <div class="abyss-detail">
+                <div class="abyss-piece">Upper / Bottom / Shoes</div>
+                <div class="abyss-reason">Gives Crit Damage — currently scarce, small multiplier = high gain</div>
+              </div>
+            </div>
+            <div class="abyss-item">
+              <div class="abyss-rank rank-3">3</div>
+              <div class="abyss-detail">
+                <div class="abyss-piece">Ring</div>
+                <div class="abyss-reason">Gives All Dmg Increase — not scarce, already stacked elsewhere</div>
+              </div>
+            </div>
+            <div class="abyss-item">
+              <div class="abyss-rank rank-4">4</div>
+              <div class="abyss-detail">
+                <div class="abyss-piece">Necklace</div>
+                <div class="abyss-reason">Gives Super Crit Damage — inflated by a new feature, now lowest priority
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p>You can also jump
+            straight from 15 to 20 without balancing on 18 if you want and you feelin really lucky. Though I personally
+            still prefer
+            balancing on 18 first.</p>
+          <div class="insight"><strong>Same math principle:</strong> Emblem first because its stats are exclusive and
+            start at zero — biggest multiplier jump possible.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Awakening</div>
+          <ul>
+            <li><strong>Emblem</strong> — focus on top 2 stats. Use (1+top)×(1+bottom)−1 to verify if a new roll is
+              better than current</li>
+            <li><strong>Everything else</strong> — focus on top stat only</li>
+          </ul>
+          <p class="note">For Emblem: if you already understand the formula, you can usually tell in a glance whether
+            a
+            new roll beats your current one without calculating.</p>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-header">TLDR</div>
+          <ol>
+            <li>Balance all to 15 → all to 18 → push to 20: Emblem first, then Upper/Bottom/Shoes, Ring, Necklace last
+            </li>
+            <li>Emblem is priority because its stats are exclusive and start at zero</li>
+            <li>Awakening: Emblem → top 2 stats. Others → top stat only</li>
+            <li>Use the formula to verify Emblem awakening rolls if unsure</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
