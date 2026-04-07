@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Hunter Idle AFK RPG — Wiki</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c12;
+    --surface: #12151f;
+    --surface2: #1a1e2e;
+    --border: #2a2f45;
+    --accent: #e8a830;
+    --accent2: #c45c2a;
+    --text: #d4d8e8;
+    --text-dim: #7a80a0;
+    --mythic: #c084fc;
+    --legend: #f59e0b;
+    --ancient: #34d399;
+    --special: #60a5fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Atmospheric background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(232,168,48,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(196,92,42,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 40% at 90% 80%, rgba(52,211,153,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle star field */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.15) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.1) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.12) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 70%, rgba(255,255,255,0.08) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 85%, rgba(255,255,255,0.1) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.12) 0%, transparent 100%),
+      radial-gradient(1px 1px at 92% 45%, rgba(255,255,255,0.09) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.11) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hero header */
+  .hero {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .wiki-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding: 6px 16px;
+    border: 1px solid rgba(232,168,48,0.3);
+    border-radius: 20px;
+    background: rgba(232,168,48,0.06);
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(28px, 6vw, 52px);
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    text-shadow:
+      0 0 60px rgba(232,168,48,0.4),
+      0 0 120px rgba(232,168,48,0.15);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 0 auto;
+  }
+
+  /* Guide grid */
+  .guides-section {
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* Guide card */
+  .guide-card {
+    display: block;
+    text-decoration: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .guide-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(232,168,48,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .guide-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(232,168,48,0.4);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(232,168,48,0.1);
+  }
+
+  .guide-card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .card-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .card-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  .card-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .topic-pill {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+
+  .card-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    transition: gap 0.2s ease;
+  }
+
+  .guide-card:hover .card-cta { gap: 12px; }
+
+  .cta-arrow {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  /* Coming soon card */
+  .guide-card.coming-soon {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .guide-card.coming-soon .card-tag { color: var(--text-dim); }
+  .guide-card.coming-soon .card-cta { color: var(--text-dim); }
+
+  .coming-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+
+  /* Info strip */
+  .info-strip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .info-strip .info-icon { font-size: 16px; flex-shrink: 0; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: auto;
+    padding-top: 48px;
+    font-size: 12px;
+    color: var(--text-dim);
+    opacity: 0.5;
+  }
+
+  @media (max-width: 600px) {
+    .guides-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="wiki-label">Community Wiki</div>
+    <h1>Soul Hunter</h1>
+    <div class="hero-sub">Idle AFK RPG · Guide Collection</div>
+    <div class="hero-divider"></div>
+  </div>
+
+  <!-- Available Guides -->
+  <div class="guides-section">
+    <div class="section-label">Available Guides</div>
+    <div class="guides-grid">
+
+      <!-- Beginner Guide -->
+      <a href="soul_hunter_guide.html" class="guide-card">
+        <span class="card-icon">🌱</span>
+        <div class="card-tag">Start Here</div>
+        <div class="card-title">Beginner Guide</div>
+        <div class="card-desc">Everything you need from day one. Math explained simply, first purchase, build identity, and early progression goals.</div>
+        <div class="card-topics">
+          <span class="topic-pill">Damage Formula</span>
+          <span class="topic-pill">First Purchase</span>
+          <span class="topic-pill">Build Identity</span>
+          <span class="topic-pill">Passives</span>
+          <span class="topic-pill">Ability Rolls</span>
+          <span class="topic-pill">Event Currency</span>
+        </div>
+        <div class="card-cta">Read Guide <span class="cta-arrow">→</span></div>
+      </a>
+
+      <!-- Misc Guide -->
+      <a href="soul_hunter_misc.html" class="guide-card">
+        <span class="card-icon">⚙️</span>
+        <div class="card-tag">General</div>
+        <div class="card-title">Misc Guide</div>
+        <div class="card-desc">Universal tips that apply to all builds. Dungeons, systems, equipment, and everything in between.</div>
+        <div class="card-topics">
+          <span class="topic-pill">Titles</span>
+          <span class="topic-pill">Dungeons</span>
+          <span class="topic-pill">Abyss Equipment</span>
+          <span class="topic-pill">Otherworld</span>
+          <span class="topic-pill">Boss Battle</span>
+          <span class="topic-pill">Ancient Symbol</span>
+        </div>
+        <div class="card-cta">Read Guide <span class="cta-arrow">→</span></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Coming Soon -->
+  <div class="guides-section">
+    <div class="section-label">Coming Soon</div>
+    <div class="guides-grid">
+
+      <div class="guide-card coming-soon">
+        <div class="coming-badge">Coming Soon</div>
+        <span class="card-icon">⚔️</span>
+        <div class="card-tag">Job Build</div>
+        <div class="card-title">Reaper Build</div>
+        <div class="card-desc">Smash and crit damage focused build. Skills, passives, runes, and optimization.</div>
+        <div class="card-topics">
+          <span class="topic-pill">Smash Damage</span>
+          <span class="topic-pill">Crit Amp</span>
+          <span class="topic-pill">Runes</span>
+        </div>
+        <div class="card-cta">Coming Soon <span class="cta-arrow">→</span></div>
+      </div>
+
+      <div class="guide-card coming-soon">
+        <div class="coming-badge">Coming Soon</div>
+        <span class="card-icon">🔮</span>
+        <div class="card-tag">Job Build</div>
+        <div class="card-title">Archmage Build</div>
+        <div class="card-desc">Skill damage focused build. Skills, passives, runes, and optimization.</div>
+        <div class="card-topics">
+          <span class="topic-pill">Skill Damage</span>
+          <span class="topic-pill">Magic Power</span>
+          <span class="topic-pill">Runes</span>
+        </div>
+        <div class="card-cta">Coming Soon <span class="cta-arrow">→</span></div>
+      </div>
+
+      <div class="guide-card coming-soon">
+        <div class="coming-badge">Coming Soon</div>
+        <span class="card-icon">💀</span>
+        <div class="card-tag">Job Build</div>
+        <div class="card-title">Dark Lord Build</div>
+        <div class="card-desc">Hero skill damage focused build. Skills, passives, runes, and optimization.</div>
+        <div class="card-topics">
+          <span class="topic-pill">Hero Skill Dmg</span>
+          <span class="topic-pill">Battle Command</span>
+          <span class="topic-pill">Runes</span>
+        </div>
+        <div class="card-cta">Coming Soon <span class="cta-arrow">→</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- External Resources -->
+  <div class="guides-section">
+    <div class="section-label">External Resources</div>
+    <p style="font-size:13px; color:var(--text-dim); margin-bottom:16px;">If anyone ever wants to see the older guide made by Lucio, you can access it below.</p>
+    <a href="https://docs.google.com/document/d/17l469PC9YZm3D8UZ3JkjkI3-QSpNFQrrXZQmubvVgqc/edit?tab=t.0" target="_blank" class="guide-card" style="max-width:320px; display:block;">
+      <span class="card-icon">📄</span>
+      <div class="card-tag">External · Google Docs</div>
+      <div class="card-title">Lucio's Guide</div>
+      <div class="card-desc">The original community guide. Still contains useful info not yet covered here.</div>
+      <div class="card-cta">Open Guide <span class="cta-arrow">↗</span></div>
+    </a>
+  </div>
+
+  <!-- Info strip -->
+  <div class="info-strip">
+    <span class="info-icon">💡</span>
+    All guides are math-backed. If you understand the core damage formula in the Beginner Guide, every recommendation in every other guide will make sense.
+  </div>
+
+  <div class="footer">Soul Hunter Idle AFK RPG · Community Guide · Not affiliated with the developer</div>
+
+</div>
+</body>
+</html>
