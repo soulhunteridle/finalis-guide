@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soul Hunter Idle AFK RPG — Ignore Defense Guide</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Exo+2:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0c12;
+      --surface: #12151f;
+      --surface2: #1a1e2e;
+      --border: #2a2f45;
+      --accent: #e8a830;
+      --accent2: #c45c2a;
+      --text: #d4d8e8;
+      --text-dim: #7a80a0;
+      --mythic: #c084fc;
+      --legend: #f59e0b;
+      --ancient: #34d399;
+      --special: #60a5fa;
+      --tldr-bg: #0f1a0f;
+      --tldr-border: #2a5a2a;
+      --tldr-accent: #4ade80;
+      --danger: #f87171;
+      --danger-bg: rgba(248, 113, 113, 0.08);
+      --danger-border: rgba(248, 113, 113, 0.3);
+      --success: #4ade80;
+      --success-bg: rgba(74, 222, 128, 0.08);
+      --success-border: rgba(74, 222, 128, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(232, 168, 48, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 30% at 80% 90%, rgba(196, 92, 42, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .guide-header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .guide-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .game-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(22px, 5vw, 36px);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(232, 168, 48, 0.3);
+    }
+
+    .guide-subtitle {
+      color: var(--text-dim);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 20px 28px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 14px;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .section-body {
+      padding: 28px;
+    }
+
+    .block {
+      margin-bottom: 24px;
+    }
+
+    .block:last-child {
+      margin-bottom: 0;
+    }
+
+    .block-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    .insight {
+      background: rgba(232, 168, 48, 0.06);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    .insight strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .warning {
+      background: var(--danger-bg);
+      border-left: 3px solid var(--danger);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+      color: #fca5a5;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 22px 0;
+    }
+
+    ul,
+    ol {
+      padding-left: 0;
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    li {
+      font-size: 14px;
+      padding: 3px 0 3px 20px;
+      position: relative;
+      color: var(--text);
+    }
+
+    ul li::before {
+      content: '›';
+      position: absolute;
+      left: 4px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    ol {
+      counter-reset: item;
+    }
+
+    ol li {
+      counter-increment: item;
+    }
+
+    ol li::before {
+      content: counter(item) '.';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    /* Formula box */
+    .formula-box {
+      background: #0d1020;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      line-height: 1.8;
+    }
+
+    .formula-box .formula-line {
+      margin-bottom: 4px;
+    }
+
+    .formula-box .formula-line:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Calculation demo */
+    .calc-demo {
+      background: #0d1020;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 12px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+
+    .calc-demo .pair-label {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .calc-demo .calc-match {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .calc-demo .calc-off {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .calc-demo .calc-close {
+      color: var(--legend);
+      font-weight: 700;
+    }
+
+    .calc-spacer {
+      margin: 16px 0;
+      border-top: 1px dashed var(--border);
+      padding-top: 16px;
+    }
+
+    /* Data table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 12px;
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 8px 12px;
+      background: var(--surface2);
+      color: var(--text-dim);
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .data-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid rgba(42, 47, 69, 0.4);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .data-table .highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .data-table .used {
+      background: rgba(232, 168, 48, 0.04);
+    }
+
+    .table-note {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    /* Threshold stages */
+    .stage {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 10px 0;
+    }
+
+    .stage-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stage-consistent .stage-label {
+      color: var(--success);
+    }
+
+    .stage-inconsistent .stage-label {
+      color: var(--danger);
+    }
+
+    .stage-converging .stage-label {
+      color: var(--legend);
+    }
+
+    .ratio-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-family: 'Courier New', monospace;
+      padding: 4px 0;
+      flex-wrap: wrap;
+    }
+
+    .ratio-formula {
+      color: var(--text-dim);
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .ratio-actual {
+      color: var(--text);
+    }
+
+    .ratio-verdict {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .verdict-match {
+      color: var(--success);
+    }
+
+    .verdict-off {
+      color: var(--danger);
+    }
+
+    .verdict-close {
+      color: var(--legend);
+    }
+
+    /* Unanswered questions */
+    .question-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .question-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+    }
+
+    .question-item .q {
+      color: var(--text);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .question-item .a {
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+
+    /* TLDR */
+    .tldr {
+      background: var(--tldr-bg);
+      border: 1px solid var(--tldr-border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-top: 24px;
+    }
+
+    .tldr-header {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--tldr-accent);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tldr-header::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 2px;
+      background: var(--tldr-accent);
+    }
+
+    .tldr ol {
+      counter-reset: tldr;
+    }
+
+    .tldr ol li {
+      counter-increment: tldr;
+      color: #b0e8b0;
+      padding-left: 22px;
+    }
+
+    .tldr ol li::before {
+      content: counter(tldr) '.';
+      color: var(--tldr-accent);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 2px;
+    }
+
+    .badge-good {
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid var(--success-border);
+    }
+
+    .badge-bad {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border: 1px solid var(--danger-border);
+    }
+
+    .badge-warn {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--legend);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .overflow-x {
+      overflow-x: auto;
+    }
+
+    @media (max-width: 600px) {
+      .section-body {
+        padding: 18px 16px;
+      }
+
+      .ratio-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="guide-header">
+      <div class="game-label">Deep Dive · Math Section</div>
+      <h1>Ignore Defense</h1>
+      <div class="guide-subtitle">Soul Hunter Idle AFK RPG · Test-backed · All data included</div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🛡️</div>
+        <div class="section-title">What Are These Stats?</div>
+      </div>
+      <div class="section-body">
+        <p>There are 3 separate ignore defense related stats. They all do different things:</p>
+        <ul>
+          <li><strong>Ignore Defense</strong> — a flat number. This is subtracted from enemy defense before damage is
+            calculated.</li>
+          <li><strong>Ignore Defense DMG</strong> — a multiplier that scales how much your ignore defense actually does.
+            More on this below.</li>
+          <li><strong>Ignore Defense %</strong> — reduces enemy defense by a percentage first, before your Ignore
+            Defense number is applied.</li>
+        </ul>
+        <div class="insight"><strong>Why does this matter?</strong> Enemy defense directly reduces your damage. The more
+          you can bypass it, the more damage you deal. Understanding how these stats interact tells you exactly how much
+          a deco upgrade is actually worth.</div>
+      </div>
+    </div>
+
+    <!-- PART 1 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📉</div>
+        <div class="section-title">Part 1 — When Ignore Defense &lt; Enemy Defense</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <div class="block-label">The Formula</div>
+          <p>When your Ignore Defense hasn't fully overcome enemy defense yet, the damage ratio between two setups is:
+          </p>
+          <div class="formula-box">
+            <div class="formula-line">Dmg Ratio = (New Ignore Def / Old Ignore Def) × (New Ignore Def DMG / Old Ignore
+              Def DMG)</div>
+            <div class="formula-line" style="margin-top:8px; color: #b0c4e8;">New Damage = Old Damage × Dmg Ratio</div>
+          </div>
+          <p>If Ignore Def DMG doesn't change between the two setups, that factor = 1 and you can drop it.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Example Calculations</div>
+          <p>Test environment: Astarte hit damage, enemy defense = 1,823,127, Ignore Def DMG = 625 (unchanged).</p>
+
+          <div class="calc-demo">
+            <div class="pair-label">Pair 1 — Row 1 → Row 2</div>
+            Ignore Def: 1,648,696 → 1,687,326 | Dmg: 311 → 319<br><br>
+            Formula ratio = (1,687,326 / 1,648,696) × (625 / 625)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 1.02343 × 1<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span
+              class="calc-match">1.02343</span><br><br>
+            Actual ratio &nbsp;&nbsp;= 319 / 311 = <span class="calc-match">1.02572</span> ✓
+          </div>
+
+          <div class="calc-demo">
+            <div class="pair-label">Pair 2 — Row 2 → Row 3</div>
+            Ignore Def: 1,687,326 → 1,743,233 | Dmg: 319 → 329<br><br>
+            Formula ratio = (1,743,233 / 1,687,326) × (625 / 625)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 1.03313 × 1<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span
+              class="calc-match">1.03313</span><br><br>
+            Actual ratio &nbsp;&nbsp;= 329 / 319 = <span class="calc-match">1.03135</span> ✓
+          </div>
+          <p class="note">Small differences at the 3rd decimal point are just display rounding in-game. At the actual
+            damage scale these are negligible.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Full Test Data</div>
+          <p>All data points from both test environments.</p>
+
+          <p style="font-size:12px; color:var(--text-dim); margin: 10px 0 6px;">Astarte — Enemy Def: 1,823,127 | Ignore
+            Def DMG: 625</p>
+          <div class="overflow-x">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Ignore Defense</th>
+                  <th>Ignore Def DMG</th>
+                  <th>Damage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="used">
+                  <td>1</td>
+                  <td>1,648,696</td>
+                  <td>625</td>
+                  <td>311 (AD)</td>
+                </tr>
+                <tr class="used">
+                  <td>2</td>
+                  <td>1,687,326</td>
+                  <td>625</td>
+                  <td>319 (AD)</td>
+                </tr>
+                <tr class="used">
+                  <td>3</td>
+                  <td>1,743,233</td>
+                  <td>625</td>
+                  <td>329 (AD)</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>1,794,826</td>
+                  <td>625</td>
+                  <td>339 (AD)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="font-size:12px; color:var(--text-dim); margin: 16px 0 6px;">Smash — Enemy Def: 872 | Ignore Def DMG:
+            0</p>
+          <div class="overflow-x">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Ignore Defense</th>
+                  <th>Ignore Def DMG</th>
+                  <th>Damage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>870</td>
+                  <td>0</td>
+                  <td>11,791,550 (A)</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>871.51</td>
+                  <td>0</td>
+                  <td>11,812,023 (A)</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>872</td>
+                  <td>0</td>
+                  <td>11,818,659 (A)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">★ Highlighted rows were used in the example calculations above.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PART 2 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📊</div>
+        <div class="section-title">Part 2 — Ignore Defense % (and Why It's Weak)</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <div class="block-label">How It Works</div>
+          <p>Ignore Defense % applies as the <strong>first reduction</strong> to enemy defense — before your Ignore
+            Defense number even comes into the picture.</p>
+          <div class="formula-box">
+            Effective Enemy Def = Enemy Def × (1 − Ignore Def %)<br>
+            <span style="color:#b0c4e8; font-size:12px;">Example: Enemy Def 100, your Ignore Def % = 10% → Effective
+              Enemy Def = 90</span>
+          </div>
+          <ul>
+            <li>Using it on a 0 defense enemy (Training Cave) does nothing — 0 × anything = 0</li>
+            <li>Can exceed 100% via passives like Defense Ignore and Rune Beginner Mind — tested at 120%</li>
+            <li>Enemy defense likely cannot go negative even at 120%+ — it appears to floor at 0</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Why It's Not Worth Investing In</div>
+          <p>Back to math 101 — this stat reduces an already-small number. Our Ignore Defense values are already
+            enormous, especially factored with the Otherworld multiplier feature. Enemy defense is already being
+            obliterated by raw Ignore Def alone.</p>
+          <div class="warning">⚠ Ignore Defense % is not a recommended investment. The returns are minimal given how
+            much Ignore Defense we already have.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PART 3 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📈</div>
+        <div class="section-title">Part 3 — When Ignore Defense &gt; Enemy Defense</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <div class="block-label">The Formula Tweak</div>
+          <p>Once your Ignore Defense surpasses enemy defense, the raw Ignore Def values no longer matter — what matters
+            is the <strong>gap above enemy defense</strong>. The formula becomes:</p>
+          <div class="formula-box">
+            <div class="formula-line">Dmg Ratio = ((New Ignore Def − Enemy Def) / (Old Ignore Def − Enemy Def)) × (New
+              Ignore Def DMG / Old Ignore Def DMG)</div>
+            <div class="formula-line" style="margin-top:8px; color: #b0c4e8;">When enemy def = 0: formula is identical
+              to Part 1 (subtracting 0 changes nothing)</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Example Calculations</div>
+          <p>Test environment: Astarte hit damage on Training Cave (enemy def = 0). Since enemy def = 0, the formula
+            simplifies to the same as Part 1.</p>
+
+          <div class="calc-demo">
+            <div class="pair-label">Pair 1 — Row 1 → Row 2 (enemy def = 0)</div>
+            Ignore Def: 1,648,696 → 1,743,233 | Ignore Def DMG: 625 → 625 | Dmg: 35 → 37<br><br>
+            Formula ratio = (1,743,233 / 1,648,696) × (625 / 625)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 1.05733 × 1<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span
+              class="calc-match">1.05733</span><br><br>
+            Actual ratio &nbsp;&nbsp;= 37 / 35 = <span class="calc-match">1.05714</span> ✓
+          </div>
+
+          <div class="calc-demo">
+            <div class="pair-label">Pair 2 — Row 8 → Row 9 (enemy def = 0)</div>
+            Ignore Def: 109,400,000 → 119,280,000 | Ignore Def DMG: 200,670 → 273,625 | Dmg: 780,000 → 1,120,000
+            (AF)<br><br>
+            Formula ratio = (119,280,000 / 109,400,000) × (273,625 / 200,670)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 1.09030 ×
+            1.36359<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span
+              class="calc-close">1.48672</span><br><br>
+            Actual ratio &nbsp;&nbsp;= 1,120,000 / 780,000 = <span class="calc-close">1.43590</span> ≈ ✓
+          </div>
+          <p class="note">Pair 2 is slightly wider (~3.5% off) due to display rounding when numbers jump between unit
+            scales. The principle still holds.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Practical Use — Predicting Your New Damage</div>
+          <p>Before committing to a deco upgrade, you can use the formula below to predict how much additional damage
+            you will get. Check the change by using:
+            the number in your character level up ignore defense as base + deco stats x otherworld multiplier:
+          <ol>
+            <li>The number in your character level up ignore defense as base</li>
+            <li>The change between your current deco and your targetted deco</li>
+            <li>The multipler on your otherworld stats</li>
+            <li>Use data from 1 to 3 to estimate your current ignore def and ignore def dmg, and your next ignore def
+              and ignore def dmg</li>
+            <li>Run the formula and see the ratio</li>
+          </ol>
+          </p>
+
+          <div class="formula-box">
+            New Damage = Old Damage × (New Ignore Def / Old Ignore Def) × (New Ignore Def DMG / Old Ignore Def DMG)
+          </div>
+          <p>Works for both upgrades and downgrades. Just swap old/new values accordingly.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Full Test Data</div>
+
+          <p style="font-size:12px; color:var(--text-dim); margin: 10px 0 6px;">Astarte — Enemy Def: 1,823,127</p>
+          <div class="overflow-x">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Ignore Defense</th>
+                  <th>Ignore Def DMG</th>
+                  <th>Damage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>1,823,265</td>
+                  <td>625</td>
+                  <td>29 (AE)</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>1,850,733</td>
+                  <td>625</td>
+                  <td>5,950 (AE)</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>1,997,500</td>
+                  <td>734</td>
+                  <td>42,500 (AE)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="font-size:12px; color:var(--text-dim); margin: 16px 0 6px;">Astarte — Training Cave (Enemy Def: 0)
+          </p>
+          <div class="overflow-x">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Ignore Defense</th>
+                  <th>Ignore Def DMG</th>
+                  <th>Damage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="used">
+                  <td>1</td>
+                  <td>1,648,696</td>
+                  <td>625</td>
+                  <td>35 (AF)</td>
+                </tr>
+                <tr class="used">
+                  <td>2</td>
+                  <td>1,743,233</td>
+                  <td>625</td>
+                  <td>37 (AF)</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>1,850,733</td>
+                  <td>625</td>
+                  <td>40 (AF)</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>1,997,500</td>
+                  <td>734</td>
+                  <td>50 (AF)</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>2,108,827</td>
+                  <td>1,007</td>
+                  <td>73 (AF)</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>2,285,943</td>
+                  <td>1,444</td>
+                  <td>113 (AF)</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>2,701,118</td>
+                  <td>2,570</td>
+                  <td>241 (AF)</td>
+                </tr>
+                <tr class="used">
+                  <td>8</td>
+                  <td>109,400,000</td>
+                  <td>200,670</td>
+                  <td>780,000 (AF)</td>
+                </tr>
+                <tr class="used">
+                  <td>9</td>
+                  <td>119,280,000</td>
+                  <td>273,625</td>
+                  <td>1,120,000 (AF)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">★ Highlighted rows were used in the example calculations above.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PART 4 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">⚠️</div>
+        <div class="section-title">Part 4 — The Threshold Problem</div>
+      </div>
+      <div class="section-body">
+
+        <div class="block">
+          <p>Right at the moment your Ignore Defense crosses enemy defense, the formula becomes unreliable. Here's
+            exactly what happens — tested with Smash damage, enemy def = 872.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Stage 1 — Below Threshold (Consistent) ✓</div>
+          <div class="stage stage-consistent">
+            <div class="stage-label">Ignore Def &lt; 872 — Formula works perfectly</div>
+            <div class="ratio-row">
+              <span class="ratio-formula">Row 1→2: (871.51 / 870) × 1</span>
+              <span class="ratio-actual">= Formula: 1.00174</span>
+              <span class="ratio-actual">| Actual: 1.00174</span>
+              <span class="ratio-verdict verdict-match">✓ Perfect</span>
+            </div>
+            <div class="ratio-row">
+              <span class="ratio-formula">Row 2→3: (872 / 871.51) × 1</span>
+              <span class="ratio-actual">= Formula: 1.00056</span>
+              <span class="ratio-actual">| Actual: 1.00056</span>
+              <span class="ratio-verdict verdict-match">✓ Perfect</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Stage 2 — Just Crossed Threshold (Inconsistent) ✗</div>
+          <p>Once Ignore Def just barely exceeds 872, the formula switches to using the gap — but the gap is so tiny
+            that small rounding differences create enormous ratio errors.</p>
+          <div class="stage stage-inconsistent">
+            <div class="stage-label">Ignore Def just above 872 — Formula breaks down</div>
+            <div class="ratio-row">
+              <span class="ratio-formula">Row 4→5: ((873.99−872)/(873−872)) × 1</span>
+              <span class="ratio-actual">= Formula: 1.990</span>
+              <span class="ratio-actual">| Actual: 1.010</span>
+              <span class="ratio-verdict verdict-off">✗ Way off</span>
+            </div>
+            <div class="ratio-row">
+              <span class="ratio-formula">Row 5→6: ((874.99−872)/(873.99−872)) × 1</span>
+              <span class="ratio-actual">= Formula: 1.503</span>
+              <span class="ratio-actual">| Actual: 1.010</span>
+              <span class="ratio-verdict verdict-off">✗ Still off</span>
+            </div>
+          </div>
+          <p class="note">The gap (e.g. 1.99, 2.99) is so small that another variable seems to take over the
+            calculation. This is an unresolved behaviour — see Part 5.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Stage 3 — Gap Widens, Formula Recovers ≈</div>
+          <p>As Ignore Def grows far beyond enemy def, the gap becomes large enough that the formula converges back
+            toward accuracy.</p>
+          <div class="stage stage-converging">
+            <div class="stage-label">Ignore Def far above 872 — Converging back</div>
+            <div class="ratio-row">
+              <span class="ratio-formula">Row 10→11: ((10577−872)/(7333−872)) × (15/7)</span>
+              <span class="ratio-actual">= Formula: 3.219</span>
+              <span class="ratio-actual">| Actual: 3.000</span>
+              <span class="ratio-verdict verdict-close">≈ Getting closer</span>
+            </div>
+            <div class="ratio-row">
+              <span class="ratio-formula">Row 11→12: ((15443−872)/(10577−872)) × (30/15)</span>
+              <span class="ratio-actual">= Formula: 3.003</span>
+              <span class="ratio-actual">| Actual: 2.905</span>
+              <span class="ratio-verdict verdict-close">≈ Very close (~3.3% off)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="insight">
+          <strong>Why this doesn't matter in practice:</strong> Our Ignore Defense already surpasses enemy defense by an
+          enormous margin — especially with deco upgrades and Otherworld multipliers. We are never sitting at the
+          threshold. The formula is accurate where it counts.
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <div class="block-label">Full Test Data</div>
+
+          <p style="font-size:12px; color:var(--text-dim); margin: 10px 0 6px;">Smash — Enemy Def: 872</p>
+          <div class="overflow-x">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Ignore Defense</th>
+                  <th>Ignore Def DMG</th>
+                  <th>Damage</th>
+                  <th>Zone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="used">
+                  <td>1</td>
+                  <td>870</td>
+                  <td>0</td>
+                  <td>11,791,550 (A)</td>
+                  <td style="color:var(--success); font-size:11px;">Below</td>
+                </tr>
+                <tr class="used">
+                  <td>2</td>
+                  <td>871.51</td>
+                  <td>0</td>
+                  <td>11,812,023 (A)</td>
+                  <td style="color:var(--success); font-size:11px;">Below</td>
+                </tr>
+                <tr class="used">
+                  <td>3</td>
+                  <td>872</td>
+                  <td>0</td>
+                  <td>11,818,659 (A)</td>
+                  <td style="color:var(--success); font-size:11px;">At threshold</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>873</td>
+                  <td>0</td>
+                  <td>11,832,762 (A)</td>
+                  <td style="color:var(--danger); font-size:11px;">Threshold</td>
+                </tr>
+                <tr class="used">
+                  <td>5</td>
+                  <td>873.99</td>
+                  <td>0</td>
+                  <td>11,949,826 (A)</td>
+                  <td style="color:var(--danger); font-size:11px;">Threshold</td>
+                </tr>
+                <tr class="used">
+                  <td>6</td>
+                  <td>874.99</td>
+                  <td>0</td>
+                  <td>12,067,748 (A)</td>
+                  <td style="color:var(--danger); font-size:11px;">Threshold</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>877</td>
+                  <td>0</td>
+                  <td>12,329,212 (A)</td>
+                  <td style="color:var(--legend); font-size:11px;">Converging</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>2,287</td>
+                  <td>0</td>
+                  <td>179,220,000 (A)</td>
+                  <td style="color:var(--legend); font-size:11px;">Converging</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>5,171</td>
+                  <td>2</td>
+                  <td>1,537,540,000 (A)</td>
+                  <td style="color:var(--legend); font-size:11px;">Converging</td>
+                </tr>
+                <tr class="used">
+                  <td>10</td>
+                  <td>7,333</td>
+                  <td>7</td>
+                  <td>6,127,460,000 (A)</td>
+                  <td style="color:var(--legend); font-size:11px;">Converging</td>
+                </tr>
+                <tr class="used">
+                  <td>11</td>
+                  <td>10,577</td>
+                  <td>15</td>
+                  <td>18,384,260,000 (A)</td>
+                  <td style="color:var(--ancient); font-size:11px;">Consistent</td>
+                </tr>
+                <tr class="used">
+                  <td>12</td>
+                  <td>15,443</td>
+                  <td>30</td>
+                  <td>53,400,000,000 (A)</td>
+                  <td style="color:var(--ancient); font-size:11px;">Consistent</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="font-size:12px; color:var(--text-dim); margin: 16px 0 6px;">Smash — Training Cave (Enemy Def: 0)</p>
+          <div class="overflow-x">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Ignore Defense</th>
+                  <th>Ignore Def DMG</th>
+                  <th>Damage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>874.99</td>
+                  <td>0</td>
+                  <td>6,402 (AB)</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>877</td>
+                  <td>0</td>
+                  <td>6,417 (AB)</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>1,587</td>
+                  <td>0</td>
+                  <td>11,047 (AB)</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>2,287</td>
+                  <td>0</td>
+                  <td>15,689 (AB)</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>5,171</td>
+                  <td>2</td>
+                  <td>102,615 (AB)</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>7,333</td>
+                  <td>7</td>
+                  <td>386,271 (AB)</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>10,577</td>
+                  <td>15</td>
+                  <td>1,113,061 (AB)</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>15,443</td>
+                  <td>30</td>
+                  <td>3,147,485 (AB)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">★ Highlighted rows were used in the stage demonstrations above.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PART 5 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">❓</div>
+        <div class="section-title">Part 5 — Unanswered Questions</div>
+      </div>
+      <div class="section-body">
+        <p>These are open questions from testing. They haven't been pursued further because the formula is already
+          proven accurate in practical scenarios and the errors only occur in negligible edge cases.</p>
+
+        <div class="question-list">
+          <div class="question-item">
+            <div class="q">What happens when Ignore Def DMG increases while Ignore Def &lt; Enemy Def?</div>
+            <div class="a">Very unlikely to encounter in practice — our Ignore Defense is already enormous even with low
+              deco.</div>
+          </div>
+          <div class="question-item">
+            <div class="q">What really happens at the exact moment enemy defense is crossed?</div>
+            <div class="a">Another variable or calculation seems to kick in temporarily, but becomes irrelevant as the
+              gap widens.</div>
+          </div>
+          <div class="question-item">
+            <div class="q">Can enemy defense reach negative numbers with Ignore Def % &gt; 100%?</div>
+            <div class="a">Likely floors at 0 but unconfirmed. Doesn't matter either way given our Ignore Def gap.</div>
+          </div>
+          <div class="question-item">
+            <div class="q">How does the formula handle Ignore Def DMG changing from 0 to 2 as the initial value?</div>
+            <div class="a">Assumed to be ×2 using 0 as base 1, since the first deco gives 2 Ignore Def DMG not 1. Only
+              relevant at Special rarity — near zero practical impact.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TLDR -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">⚡</div>
+        <div class="section-title">TLDR</div>
+      </div>
+      <div class="section-body">
+        <div class="tldr" style="margin-top:0;">
+          <div class="tldr-header">Summary</div>
+          <ol>
+            <li>When Ignore Def &lt; Enemy Def: Dmg Ratio = (New / Old Ignore Def) × (New / Old Ignore Def DMG)</li>
+            <li>When Ignore Def &gt; Enemy Def: same formula but use the gap above enemy def, not raw values</li>
+            <li>When enemy def = 0 (Training Cave): both formulas are identical — subtract 0, nothing changes</li>
+            <li>Formula breaks down right at the threshold — unpredictable zone, but irrelevant in practice</li>
+            <li>Ignore Defense %: not worth investing — reduces an already obliterated number</li>
+            <li>Use the formula to predict damage before committing to any deco upgrade</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
