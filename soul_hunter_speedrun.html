@@ -604,6 +604,15 @@
       margin-bottom: 6px;
     }
 
+    .guide-img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin: 10px 0;
+      display: block;
+    }
+
     /* Costume list */
     .costume-list {
       display: flex;
@@ -1136,6 +1145,7 @@
 
         <div class="block">
           <div class="block-label">Main Tasks</div>
+          <img src="images/settings.jpg" alt="Settings" class="guide-img">
           <ol>
             <li>Go to <strong>More → Settings → Account → Go To Discord</strong>. Join the community — if you're reading
               this guide you're probably already there.</li>
@@ -1152,6 +1162,7 @@
 
         <div class="block">
           <div class="block-label">Optional — If You Want to Spend a Little</div>
+          <img src="images/red_diamond" alt="Buy the Second Package the Red Diamond Plus Set" class="guide-img">
           <p>This guide is intentionally written from a fully F2P perspective. However if you're open to a one-time
             small spend, the <strong>Red Diamond Plus Set</strong> is the only purchase worth considering at the start:
           </p>
@@ -1234,6 +1245,7 @@
 
         <div class="block">
           <div class="block-label">Ability Roll</div>
+          <img src="images/ability_roll.jpg" alt="Exaple of Special Roll" class="guide-img">
           <p>Once unlocked for Equipment and Element, use auto roll and aim for <span
               class="badge badge-special">Special</span> All Dmg Dealt and <span
               class="badge badge-special">Special</span> Opt Atk Power — split between both (Ignore the atk speed on the image). At this early stage, both
@@ -1265,6 +1277,7 @@
 
         <div class="block">
           <div class="block-label">Abyssal Equipment</div>
+          <img src="images/slot_enhancement.jpg" alt="Slot Enhancement Feature" class="guide-img">
           <p>Just use the recommended equip button for now. Enhancement slots will unlock as you progress — don't worry
             about it yet. You'll be working toward +12/+13 balance in the next phase.</p>
         </div>
@@ -1275,10 +1288,7 @@
           <div class="block-label">Costume</div>
           <p>Once unlocked, buy the costumes shown below in order. These maximize your damage buff gain from the free
             costume tickets given at the start.</p>
-          <div class="img-placeholder" style="margin-top:10px;">
-            <div class="img-icon">📷</div>
-            Recommended starter costumes (screenshot)
-          </div>
+          <img src="images/29_costume.jpg" alt="Recommended Costume to Buy" class="guide-img">
           <div class="costume-list">
             <div class="costume-item">
               <div class="costume-num">1</div> <span>Base Hair - Free</span>
@@ -1547,6 +1557,7 @@
 
         <div class="block">
           <div class="block-label">Breaking the Stage 10-50 Wall</div>
+          <img src="images/stage_10_50.jpg" alt="Stage 10-50" class="guide-img">
           <p>Stage 10-50 is designed to be the first hard wall. Here's how to break through:</p>
           <ol>
             <li>Pull your Crit Damage passive to max breakthrough and highest level possible</li>
@@ -1707,9 +1718,41 @@
 
         <div class="block">
           <div class="block-label">Abyssal Equipment — Push to +15 and Start Awakening</div>
+          <img src="images/abyssal_15.jpg" alt="Abyssal Reach +15" class="guide-img">
           <p>Now that all pieces are at +12/+13, it's time to push toward +15. Start with <strong>Emblem first</strong>
             (rightmost piece), then the rest one by one. Jump directly from +12/+13 to +15 — don't stop at +14 on
             everything.</p>
+          <div class="block">
+          <div class="block-label">Abyssal Equipment — Push to +15 and Start Awakening</div>
+          <div class="gallery-group">
+            <div class="gallery-group-label">Abyssal Equipent Awakening</div>
+            <div class="gallery-grid">
+              <div class="gallery-thumb" onclick="openLightbox(30)">
+                <img src="images/abyssal_emblem.jpg" alt="Awakening — Emblem">
+                <div class="thumb-caption">Awakening — Emblem</div>
+              </div>
+              <div class="gallery-thumb" onclick="openLightbox(31)">
+                <img src="images/abyssal_upper.jpg" alt="Awakening — Upper">
+                <div class="thumb-caption">Awakening — Upper</div>
+              </div>
+              <div class="gallery-thumb" onclick="openLightbox(32)">
+                <img src="images/abyssal_bottom.jpg" alt="Awakening — Bottom">
+                <div class="thumb-caption">Awakening — Bottom</div>
+              </div>
+              <div class="gallery-thumb" onclick="openLightbox(33)">
+                <img src="images/abyssal_shoes.jpg" alt="Awakening — Shoes">
+                <div class="thumb-caption">Awakening — Shoes</div>
+              </div>
+              <div class="gallery-thumb" onclick="openLightbox(34)">
+                <img src="images/abyssal_ring.jpg" alt="Awakening — Ring">
+                <div class="thumb-caption">Awakening — Ring</div>
+              </div>
+              <div class="gallery-thumb" onclick="openLightbox(35)">
+                <img src="images/abyssal_necklace.jpg" alt="Awakening — Necklace">
+                <div class="thumb-caption">Awakening — Necklace</div>
+              </div>
+            </div>
+          </div>
           <p>Once Emblem hits +15, this is when you start <strong>Awakening</strong> — the system that uses Abyssal
             Flame from World Boss:</p>
           <ul>
@@ -1737,6 +1780,7 @@
           </p>
           <p>Rune sets per job, if there is "/" symbol then the left is more recommended than the right:</p>
           <p style="font-size:12px; color:var(--text-dim); margin: 8px 0 4px;">⚔ Reaper</p>
+          <img src="images/reaper_rune_60.jpg" alt="Reaper Rune" class="guide-img">
           <div class="overflow-x">
             <table class="rune-table">
               <thead>
@@ -1824,6 +1868,7 @@
             </table>
           </div>
           <p style="font-size:12px; color:var(--text-dim); margin: 12px 0 4px;">🔮 Archmage</p>
+          <img src="images/archmage_rune_60.jpg" alt="Archmage Rune" class="guide-img">
           <div class="overflow-x">
             <table class="rune-table">
               <thead>
@@ -1911,6 +1956,7 @@
             </table>
           </div>
           <p style="font-size:12px; color:var(--text-dim); margin: 12px 0 4px;">💀 Dark Lord</p>
+          <img src="images/darklord_rune_60.jpg" alt="Dark Lord Rune" class="guide-img">
           <div class="overflow-x">
             <table class="rune-table">
               <thead>
@@ -1966,7 +2012,7 @@
               <tbody>
                 <tr>
                   <td class="slot-num">1</td>
-                  <td>Proficiency/Intensification/Destroyer/Upward Current/Gravity</td>
+                  <td>Proficiency/Intensification/Gravity/Upward Current/Destroyer</td>
                   <td><span class="badge badge-mythic">Mythic</span></td>
                 </tr>
                 <tr>
@@ -2038,9 +2084,22 @@
             </div>
           </div>
 
-          <div class="img-placeholder">
-            <div class="img-icon">📷</div>
-            Job damage comparison screenshots (Reaper / Archmage / Dark Lord)
+          <div class="gallery-group">
+            <div class="gallery-group-label">Job Damage Comparison</div>
+            <div class="gallery-grid">
+              <div class="gallery-thumb" onclick="openLightbox(36)">
+                <img src="images/reaper_damage_60.jpg" alt="Reaper Damage">
+                <div class="thumb-caption">Reaper Damage</div>
+              </div>
+              <div class="gallery-thumb" onclick="openLightbox(37)">
+                <img src="images/archamge_damage_60.jpg" alt="Archmage Damage">
+                <div class="thumb-caption">Archmage Damage</div>
+              </div>
+              <div class="gallery-thumb" onclick="openLightbox(38)">
+                <img src="images/darklord_damage_60.jpg" alt="Dark Lord Damage">
+                <div class="thumb-caption">Dark Lord Damage</div>
+              </div>              
+            </div>
           </div>
 
           <p>Dark Lord with only b0 Mukyong won by a large margin at very low investment. This is also why I stopped
@@ -2256,9 +2315,11 @@
             hit level 5000. This is the switching point.</p>
           <p><strong>Before level 5000:</strong> Split between All Dmg Dealt + Opt Atk Power — both were
             ability-exclusive early on.</p>
+          <img src="images/ability_roll.jpg" alt="Previous split roll" class="guide-img">
           <p><strong>At level 5000+:</strong> Switch to <strong>pure Opt Atk Power only</strong> on all ability sources.
             All Dmg Dealt now has enough other sources that it's no longer exclusive. Only Opt Atk Power remains the
             exclusive stat — fill the empty multiplier.</p>
+          <img src="images/option_roll.jpg" alt="Switch to full Opt Atk" class="guide-img">
           <p>Still fine to stay at <span class="badge badge-special">Special</span> rarity for now — no need to chase
             <span class="badge badge-legend">Legend</span> or <span class="badge badge-mythic">Mythic</span> yet.
           </p>
@@ -2278,17 +2339,11 @@
               Archmage's attack speed threshold (exact number TBD, will be updated)</li>
             <li>Slot 3: unused for now</li>
           </ul>
-          <p>For Sentence equipment specifically:</p>
-          <ul>
-            <li><strong>Reaper & Dark Lord — Slot 1:</strong> 1× <span class="badge badge-ancient">Ancient</span> Opt
-              Atk Power + 1× <span class="badge badge-ancient">Ancient</span> Opt Atk Amp (rest
-              Opt Atk Power)</li>
-            <li><strong>Archmage — Slot 1:</strong> Same as above. <strong>Slot 2:</strong> Full Atk Speed (at least
-              <span class="badge badge-special">Special</span>)
-            </li>
-          </ul>
+          
           <p>For Sentence ability rolls, still aim for <span class="badge badge-special">Special</span> Opt Atk Power
-            for now.</p>
+            for now.  On the image I just got lucky and roll ancient while aiming for <span class="badge badge-special">Special</span>
+          </p>
+          <img src="images/sentence_roll.jpg" alt="Exaple of Sentence Special Roll" class="guide-img">
           <div class="insight">
             <strong>Archmage</strong> benefits from Attack Speed differently than other jobs. At a certain Opt Atk Power
             threshold, the
@@ -2312,6 +2367,8 @@
               class="badge badge-legend">Legend 4 or
               3</span>. My personal start was <span class="badge badge-legend">Legend 2</span> (Luparug Crest from Hard
             Boss Battle).</p>
+
+          <img src="images/sentence_ancient_roll.jpg" alt="Exaple of Sentence Ancient Roll" class="guide-img">
 
           <div class="roll-steps">
             <div class="roll-step">
@@ -2430,6 +2487,9 @@
             1 by 1. Keep the same order.</p>
           <div class="insight"><strong>My mistake:</strong> I pushed my Deco to level 4 while everything else was still
             level 0. It's fine early but getting all to level 1 first is better.</div>
+
+          <img src="images/amp_mistake.jpg" alt="Small mistake on my amp progression" class="guide-img">
+          
           <p>Otherworld Pass is optional — still has some value but suffers from the same diminishing return problem as
             other permanent passes.</p>
         </div>
@@ -2438,6 +2498,9 @@
 
         <div class="block">
           <div class="block-label">Around Stage 60 — Abyssal Push</div>
+
+          <img src="images/abyssal_full_15.jpg" alt="Full +15 Abyssal Slot" class="guide-img">
+          
           <p>You might start struggling to push again around here. Use your Abyssal Flame idle ticket from inventory
             (not all — just enough) to reach <strong>+15 on all Abyssal equipment enhancement</strong>. The purpose of
             reaching +15 is to unlock <strong>Awakening</strong> — which is the real damage boost from this system. Do
@@ -2448,6 +2511,7 @@
 
         <div class="block">
           <div class="block-label">Spirit — I Highly Recommend Delaying This</div>
+          <img src="images/spirit.jpg" alt="Spirit Feature" class="guide-img">
           <div class="warning">⚠ Spirit is very P2W content — you can't use Diamonds to summon, making pivoting
             extremely painful. <strong>I strongly recommend NOT getting Spirit immediately.</strong> Wait until Stage
             80-1 where you can finalize your build first. Getting the wrong spirit early and then changing your build is
@@ -2500,6 +2564,7 @@
 
         <div class="block">
           <div class="block-label">Stage 80-1 — The Final Rune Unlock</div>
+          <img src="images/rune_spam.jpg" alt="Time to use all Rune Key" class="guide-img">
           <p>This is a major milestone. The final rune dungeon wall unlocks here (currently Stage 84 max on US server at
             time of writing — check Discord for your server's current highest carry stage). But in this guide I use all the key at stage 82 because I don't wanna delay further since it's close to top after all.</p>
           <ol>
@@ -2509,6 +2574,7 @@
             <li>Finalize your build based on what you got — ask in general/info/discussion channels</li>
             <li>After finalizing, look for the hero or skill DPS that matches on the current banner and aim for b10</li>
           </ol>
+          <img src="images/post_rune_clear.jpg" alt="My Rune Setup After Using All Rune Key" class="guide-img">
         </div>
 
         <div class="divider"></div>
@@ -2523,12 +2589,14 @@
                 class="badge badge-ancient">Ancient</span> = guaranteed 1 random <span
                 class="badge badge-ancient">Ancient</span>)</li>
           </ol>
+          <img src="images/ancient_pity.jpg" alt="Ancient Rune Synth Pity" class="guide-img">
           <p>When using Catalyst, prioritize synths in this order:</p>
           <ol>
             <li><strong>Emblem Rune</strong> — only 10% drop from clearing (rarest)</li>
             <li><strong>Necklace / Ring Rune</strong> — 25% each drop from clearing</li>
             <li><strong>Upper / Lower / Shoes Rune</strong> — mixed 40% drop (most common, use catalyst here last)</li>
           </ol>
+          <img src="images/mythic_catalyst.jpg" alt="Mythic Catalyst Usage" class="guide-img">
           <p>Save catalyst for Emblem first. Once you have a viable Emblem rune locked in, stop using catalyst for it
             and move to Necklace/Ring.</p>
           <div class="warning">⚠ Do NOT synth <span class="badge badge-mythic">Mythic</span> rune without catalyst or
