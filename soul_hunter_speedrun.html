@@ -1081,10 +1081,6 @@
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-
-      .lightbox-nav {
-        display: none;
-      }
     }
   </style>
 </head>
@@ -2921,6 +2917,21 @@
       if (e.key === 'ArrowLeft') navLightbox(-1);
       if (e.key === 'ArrowRight') navLightbox(1);
       if (e.key === 'Escape') closeLightbox();
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    document.getElementById('lightbox').addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        navLightbox(diff > 0 ? 1 : -1);
+      }
     });
   </script>
 
