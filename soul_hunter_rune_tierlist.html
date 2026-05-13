@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soul Hunter Idle AFK RPG — Ancient Rune Tier List</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Exo+2:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0c12;
+      --surface: #12151f;
+      --surface2: #1a1e2e;
+      --border: #2a2f45;
+      --accent: #e8a830;
+      --accent2: #c45c2a;
+      --text: #d4d8e8;
+      --text-dim: #7a80a0;
+      --tier-s: #ff4500;
+      --tier-a: #e8a830;
+      --tier-b: #60a5fa;
+      --tier-c: #7a80a0;
+      --tier-d: #3a3f55;
+      --tier-s-bg: rgba(255, 69, 0, 0.08);
+      --tier-a-bg: rgba(232, 168, 48, 0.08);
+      --tier-b-bg: rgba(96, 165, 250, 0.08);
+      --tier-c-bg: rgba(122, 128, 160, 0.06);
+      --tier-d-bg: rgba(58, 63, 85, 0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(232, 168, 48, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 30% at 80% 90%, rgba(196, 92, 42, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .guide-header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .guide-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .game-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(22px, 5vw, 36px);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(232, 168, 48, 0.3);
+    }
+
+    .guide-subtitle {
+      color: var(--text-dim);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 40px;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .disclaimer strong {
+      color: var(--accent);
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 48px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 20px 28px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-dim);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(42, 47, 69, 0.4);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover td {
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    /* Tier separator rows */
+    .tier-row td {
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-bottom: none !important;
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-row:first-child td {
+      border-top: none;
+    }
+
+    .tier-s td {
+      background: var(--tier-s-bg);
+      color: var(--tier-s);
+    }
+
+    .tier-a td {
+      background: var(--tier-a-bg);
+      color: var(--tier-a);
+    }
+
+    .tier-b td {
+      background: var(--tier-b-bg);
+      color: var(--tier-b);
+    }
+
+    .tier-c td {
+      background: var(--tier-c-bg);
+      color: var(--tier-c);
+    }
+
+    .tier-d td {
+      background: var(--tier-d-bg);
+      color: var(--text-dim);
+    }
+
+    /* Data rows by tier */
+    .row-s td {
+      background: rgba(255, 69, 0, 0.03);
+    }
+
+    .row-a td {
+      background: rgba(232, 168, 48, 0.03);
+    }
+
+    .row-b td {
+      background: rgba(96, 165, 250, 0.03);
+    }
+
+    .row-c td {
+      background: transparent;
+    }
+
+    .row-d td {
+      background: transparent;
+      opacity: 0.6;
+    }
+
+    .rune-name {
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .rune-name.job-fire {
+      color: #ff6b35;
+    }
+
+    .rune-name.job-reaper {
+      color: #f87171;
+    }
+
+    .rune-name.job-mage {
+      color: #818cf8;
+    }
+
+    .rune-name.job-darklord {
+      color: #c084fc;
+    }
+
+    .rune-name.job-set {
+      color: var(--accent);
+    }
+
+    .mult {
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+      white-space: nowrap;
+      color: var(--accent);
+    }
+
+    .mult-s {
+      color: var(--tier-s);
+    }
+
+    .mult-a {
+      color: var(--tier-a);
+    }
+
+    .mult-b {
+      color: var(--tier-b);
+    }
+
+    .mult-c {
+      color: var(--tier-c);
+    }
+
+    .note-tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-right: 4px;
+      margin-bottom: 2px;
+    }
+
+    .tag-universal {
+      background: rgba(74, 222, 128, 0.15);
+      color: #4ade80;
+    }
+
+    .tag-reaper {
+      background: rgba(248, 113, 113, 0.15);
+      color: #f87171;
+    }
+
+    .tag-mage {
+      background: rgba(129, 140, 248, 0.15);
+      color: #818cf8;
+    }
+
+    .tag-darklord {
+      background: rgba(192, 132, 252, 0.15);
+      color: #c084fc;
+    }
+
+    .tag-set {
+      background: rgba(232, 168, 48, 0.15);
+      color: var(--accent);
+    }
+
+    .tag-condition {
+      background: rgba(251, 191, 36, 0.15);
+      color: #fbbf24;
+    }
+
+    .tag-element {
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
+    }
+
+    .tag-weekend {
+      background: rgba(156, 163, 175, 0.15);
+      color: #9ca3af;
+    }
+
+    .tag-diminish {
+      background: rgba(248, 113, 113, 0.1);
+      color: #fca5a5;
+    }
+
+    .notes-cell {
+      color: var(--text-dim);
+      font-size: 12px;
+      min-width: 200px;
+    }
+
+    .effect-cell {
+      color: var(--text);
+      min-width: 180px;
+    }
+
+    @media (max-width: 700px) {
+      .section-header {
+        padding: 16px 16px;
+      }
+
+      thead th,
+      tbody td {
+        padding: 8px 10px;
+      }
+
+      .notes-cell {
+        min-width: 140px;
+      }
+
+      .effect-cell {
+        min-width: 140px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="guide-header">
+      <div class="game-label">Ancient Rune Tier List</div>
+      <h1>Ancient Rune Guide</h1>
+      <div class="guide-subtitle">Soul Hunter Idle AFK RPG · Individual value · High level perspective</div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <strong>Ranking criteria:</strong> Each rune is ranked based on
+      <ol>
+        <li>The boost given expressed as a multiplier and</li>
+        <li>its versatility across jobs and content.</li>
+        <li>A universal new multiplier category outranks a higher raw number that is job locked or diminishing.</li>
+        <li>Runes that form sets are ranked twice — once for solo value and once as a set.</li>
+        <li>Number-dependent runes are split by milestone.</li>
+      </ol>
+      All multipliers assume 0 base for the stat being added (<strong>×N = 1 + stat%</strong>). Legend and Mythic rune
+      combinations are covered in the 100 Days Guide.
+    </div>
+
+    <!-- UPPER / LOWER / SHOES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Upper / Lower / Shoes</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rune</th>
+              <th>Effect</th>
+              <th>Multiplier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- S TIER -->
+            <tr class="tier-row tier-s">
+              <td colspan="4">S Tier — Universal new multiplier or broken ceiling</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name">Intensification</span></td>
+              <td class="effect-cell">8,000% increased damage</td>
+              <td><span class="mult mult-s">×81</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> New multiplier category. No
+                condition, no job lock. Best standalone upper/lower/shoes rune.</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name">Double Edged Sword</span></td>
+              <td class="effect-cell">4,500% increased damage</td>
+              <td><span class="mult mult-s">×46</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Same category as
+                Intensification. No condition, no job lock.</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Hero Memory (Full Set)<br><small
+                    style="font-weight:300; font-size:11px;">One Strike + Sorcery + Dominance</small></span></td>
+              <td class="effect-cell">Individual: 1,000% job-specific rune dmg each<br>Set bonus: 1,500,000% ancient
+                rune atk amp per rune</td>
+              <td><span class="mult mult-s">Solo: ×11 each<br>Set: ×495,011 total</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Set bonus applies across all 3 slots. One Strike =
+                <span class="note-tag tag-reaper">Reaper</span>, Sorcery = <span
+                  class="note-tag tag-mage">Archmage</span>, Dominance = <span class="note-tag tag-darklord">Dark
+                  Lord</span>. Locks all 3 upper/lower/shoes slots.
+              </td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Complementary 2 + Antagonism 2 (Full Set)</span></td>
+              <td class="effect-cell">Individual: 1,000% rune atk power each<br>Set bonus: 30,000% ancient rune atk amp
+                per rune</td>
+              <td><span class="mult mult-s">Solo: ×11 each<br>Set: ×12,621 total</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Set bonus applies across both slots. Strong universal
+                option if not running Hero Memory set.</td>
+            </tr>
+
+            <!-- A TIER -->
+            <tr class="tier-row tier-a">
+              <td colspan="4">A Tier — Strong but conditional or diminishing category</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Gladiator</span></td>
+              <td class="effect-cell">9,000% rune atk power</td>
+              <td><span class="mult mult-a">×91</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-condition">Condition</span> Requires 100 consecutive
+                Arena win streak. Highest single number in this slot but condition is very demanding. Before 100 streak:
+                0.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Enemy</span></td>
+              <td class="effect-cell">9,000% rune atk power</td>
+              <td><span class="mult mult-a">×91</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-condition">Condition</span><span class="note-tag tag-weekend">Weekend Only</span>
+                Same number as Gladiator but only activates on
+                weekends. Strong when active, useless otherwise.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Ki Attack</span></td>
+              <td class="effect-cell">6,000% rune atk power</td>
+              <td><span class="mult mult-a">×61</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> No condition, no job lock.
+                Clean rune atk power pick.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Endless</span></td>
+              <td class="effect-cell">6,000% rune atk power</td>
+              <td><span class="mult mult-a">×61</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Same as Ki Attack. Makes you
+                blind — manageable in idle content.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-reaper">Reaper Scythe<br><span class="rune-name job-mage">Book of
+                    Magic</span><br><span class="rune-name job-darklord">Soul of the Ruler</span></span></td>
+              <td class="effect-cell">Job 60: 8,000% job-specific rune dmg</td>
+              <td><span class="mult mult-a">Job 60: ×81</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span><span
+                  class="note-tag tag-mage">Archmage</span><span class="note-tag tag-darklord">Dark Lord</span> Match
+                respective job only. Milestone gated at job 60. See C tier for job 30 value.</td>
+            </tr>
+
+            <!-- B TIER -->
+            <tr class="tier-row tier-b">
+              <td colspan="4">B Tier — Moderate value, universal or niche</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Gravity</span></td>
+              <td class="effect-cell">4,500% rune atk power</td>
+              <td><span class="mult mult-b">×46</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Same raw number as Double
+                Edged Sword but rune atk power is a diminishing category when stacked.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Trinity</span></td>
+              <td class="effect-cell">3,000% for smash/skill/hero skill dmg</td>
+              <td><span class="mult mult-b">×31</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> All-rounder. Weak ceiling but
+                covers all jobs with no condition.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name job-reaper">Condensation</span></td>
+              <td class="effect-cell">300% smash charge efficiency</td>
+              <td><span class="mult mult-b">Mechanic</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> 1 basic attack fills 4 smash gauge
+                instead of 1. Gauge only needs 3 to activate — enables near-infinite smash activation. Especially
+                powerful for mark proc at job 60.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Opportunity</span></td>
+              <td class="effect-cell">+70% skill/hero skill proc chance</td>
+              <td><span class="mult mult-b">×8 at 10% base<br>×3.8 at 25% base</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span><span
+                  class="note-tag tag-darklord">Dark Lord</span> Proc dependent. Effective multiplier varies by base
+                proc rate. B tier due to dramatically accelerating mark stacks for 2nd job advancement builds — can
+                outclass flat damage runes in that context.</td>
+            </tr>
+
+            <!-- C TIER -->
+            <tr class="tier-row tier-c">
+              <td colspan="4">C Tier — Low value, heavily conditional, or built for set</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Vanguard</span></td>
+              <td class="effect-cell">3,000% rune atk power when enemy HP above 50%</td>
+              <td><span class="mult mult-c">×31</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-condition">Condition</span> Useful only for boss one-shot builds. Activates from
+                the start of the fight.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Upward Current</span></td>
+              <td class="effect-cell">300% rune atk power, up to 3,000%</td>
+              <td><span class="mult mult-c">×31 max</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-condition">Condition</span> <span class="note-tag tag-condition">Scaling</span>
+                Weak ceiling, scaling condition.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Pursuit</span></td>
+              <td class="effect-cell">3,000% rune atk power when enemy HP below 50%</td>
+              <td><span class="mult mult-c">×31</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-condition">Condition</span> Harder condition than
+                Vanguard — requires dealing half damage to boss first before activating.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-mage">The Price</span></td>
+              <td class="effect-cell">1,500% rune skill dmg</td>
+              <td><span class="mult mult-c">×16</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> Job locked and low number.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-reaper">Reaper Scythe </span><br><span class="rune-name job-mage">Book of
+                  Magic</span><br><span class="rune-name job-darklord">Soul of the Ruler</span></td>
+              <td class="effect-cell">Job 30: 1,500% job-specific rune dmg</td>
+              <td><span class="mult mult-c">Job 30: ×16</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span><span
+                  class="note-tag tag-mage">Archmage</span><span class="note-tag tag-darklord">Dark Lord</span> Low
+                value at job 30. See A tier for job 60 value.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Hero Memory (Solo)</span></td>
+              <td class="effect-cell">1,000% job-specific rune dmg</td>
+              <td><span class="mult mult-c">×11</span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Job Matched</span> Job locked and diminishing
+                when paired with same type. Solo value is weak — built for the set.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Complementary 2 / Antagonism 2 (Solo)</span></td>
+              <td class="effect-cell">1,000% rune atk power each</td>
+              <td><span class="mult mult-c">×11</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Clearly built for the set.
+                Solo value is weak.</td>
+            </tr>
+
+            <!-- D TIER -->
+            <tr class="tier-row tier-d">
+              <td colspan="4">D Tier — Utility only, no damage value</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Backflow</span></td>
+              <td class="effect-cell">Lifesteal</td>
+              <td><span class="mult mult-c">—</span></td>
+              <td class="notes-cell">Survival utility. No damage contribution.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Charge</span></td>
+              <td class="effect-cell">100% move speed increase</td>
+              <td><span class="mult mult-c">—</span></td>
+              <td class="notes-cell">Move speed is irrelevant in idle content.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RING -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Ring</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rune</th>
+              <th>Effect</th>
+              <th>Multiplier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- S TIER -->
+            <tr class="tier-row tier-s">
+              <td colspan="4">S Tier</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name">Laceration / Overload / Fear</span></td>
+              <td class="effect-cell">30,000% fire / lightning / dark damage increase</td>
+              <td><span class="mult mult-s">×301</span></td>
+              <td class="notes-cell"><span class="note-tag tag-element">Element Matched</span> Universal new multiplier
+                for matching element. Zero value for wrong element. Combine with matching element build only.</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name">Consumption</span></td>
+              <td class="effect-cell">24,000% rune atk amp. Takes 30% HP per second</td>
+              <td><span class="mult mult-s">×241</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Highest clean rune atk amp.
+                HP drain mitigatable with lifesteal and high proc heroes like Natchal Aurora and Bathory.</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Burst + Annihilation (Set)</span></td>
+              <td class="effect-cell">Burst (Ring): inflict burst status. Annihilation (Necklace): 1,500,000% dmg
+                increase with Burst</td>
+              <td><span class="mult mult-s">×15,001</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Burst is the Ring rune. Annihilation is the Necklace
+                rune. See Necklace section. Zero value without the pair.</td>
+            </tr>
+
+            <!-- A TIER -->
+            <tr class="tier-row tier-a">
+              <td colspan="4">A Tier</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-mage">Rapid Fire</span></td>
+              <td class="effect-cell">When critical hit activates, randomly trigger equipped skill 50 times</td>
+              <td><span class="mult mult-a">~50,000x activation (1 skill)<br>~8,333x activation (6 skills)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> <span
+                  class="note-tag tag-condition">Proc Dependent</span> Breakeven vs ×151 runes is ~55 procs in 20
+                seconds. Attack speed and proc rate dependent. High ceiling but not unconditionally broken.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Silver Flash</span></td>
+              <td class="effect-cell">18,000% rune atk power</td>
+              <td><span class="mult mult-a">×181</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> No condition, no job lock.
+                Clean high value rune atk power.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Preparation</span></td>
+              <td class="effect-cell">Enhancement 15: 15,000% rune atk amp</td>
+              <td><span class="mult mult-a">Enhancement 15: ×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Realistic condition for high level players. See B tier
+                for enhancement 10 value.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-mage">Magic Pole</span></td>
+              <td class="effect-cell">10 breakthrough: 15,000% skill dmg</td>
+              <td><span class="mult mult-a">10 BT: ×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> <span
+                  class="note-tag tag-condition">Condition</span> Archmage best in slot at max breakthrough. See C tier
+                for 5 breakthrough value.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Overgrowth</span></td>
+              <td class="effect-cell">Replace first hero slot level with total of other hero levels × 40</td>
+              <td><span class="mult mult-a">~×121</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span> Growth rate is universal at
+                2.5% base regardless of hero. Max currently ~480 levels × 40 = ×121 effective.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Hit</span></td>
+              <td class="effect-cell">1,200% rune atk amp per skill use, up to 10 stacks (12,000%)</td>
+              <td><span class="mult mult-a">×121 max</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Easy to stack via skill use.
+                Reaches max quickly in active content.</td>
+            </tr>
+
+            <!-- B TIER -->
+            <tr class="tier-row tier-b">
+              <td colspan="4">B Tier</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Preparation</span></td>
+              <td class="effect-cell">Enhancement 10: 3,000% rune atk amp</td>
+              <td><span class="mult mult-b">Enhancement 10: ×31</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Below max value. See A tier
+                for enhancement 15 value.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name job-reaper">Single Strike</span></td>
+              <td class="effect-cell">3,000% rune smash dmg vs single enemy</td>
+              <td><span class="mult mult-b">×31</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> <span
+                  class="note-tag tag-condition">Single Enemy</span> Job locked and enemy count dependent. Only useful
+                in single target boss content.</td>
+            </tr>
+
+            <!-- C TIER -->
+            <tr class="tier-row tier-c">
+              <td colspan="4">C Tier — Below baseline or utility only</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-mage">Magic Pole</span></td>
+              <td class="effect-cell">5 breakthrough: 1,000% skill dmg</td>
+              <td><span class="mult mult-c">5 BT: ×11</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> Low value at 5 breakthrough. See A
+                tier for 10 breakthrough value.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Momentum of Encirclement</span></td>
+              <td class="effect-cell">1,200% rune atk amp per nearby enemy, up to 10 stacks (12,000%)</td>
+              <td><span class="mult mult-c">×121 max</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-condition">Condition</span> Main content and main
+                features are mostly single enemy — low boost in practice despite high ceiling.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Mage</span></td>
+              <td class="effect-cell">After every 1 basic attack, guaranteed skill activation</td>
+              <td><span class="mult mult-c">~×166 activation<br>in 20 seconds</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Weaker and less reliable than
+                Rapid Fire. 50% chance to proc 1 of 6 skills per basic attack.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Burst (Solo)</span></td>
+              <td class="effect-cell">1,500% increased damage + inflict burst status</td>
+              <td><span class="mult mult-c">×16</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-set">Set Rune</span> Solo damage value is negligible.
+                Purely a setup rune for Annihilation necklace. See S tier set rating.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NECKLACE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Necklace</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rune</th>
+              <th>Effect</th>
+              <th>Multiplier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- S TIER -->
+            <tr class="tier-row tier-s">
+              <td colspan="4">S Tier</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name">Giant / Dwarf</span></td>
+              <td class="effect-cell">25,000% rune atk amp</td>
+              <td><span class="mult mult-s">×251</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Highest clean no-condition
+                necklace rune. Character size changes (big/small). Combine as one entry — same value.</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Burst + Annihilation (Set)</span></td>
+              <td class="effect-cell">1,500,000% dmg increase when Burst ring is equipped</td>
+              <td><span class="mult mult-s">×15,001</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Annihilation is the Necklace rune. Burst is the Ring
+                rune. See Ring section. Zero value without the pair.</td>
+            </tr>
+
+            <!-- A TIER -->
+            <tr class="tier-row tier-a">
+              <td colspan="4">A Tier</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Overwhelming Power</span></td>
+              <td class="effect-cell">At 500% rune atk power: 15,000% rune atk amp</td>
+              <td><span class="mult mult-a">500% rune atk: ×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Scales with rune atk investment. See C tier for 100%
+                rune atk value.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Power of Emptiness</span></td>
+              <td class="effect-cell">1,500% rune smash dmg per empty skill slot, up to 6 slots (9,000%)</td>
+              <td><span class="mult mult-a">×91 max</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> <span
+                  class="note-tag tag-darklord">Dark Lord</span>Reaper and Dark Lord doesn't rely on skill slots
+                for DPS, so empty slots cause no DPS loss. Impractical for Archmage.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-reaper">Transcendent</span></td>
+              <td class="effect-cell">120 transcendent scythe: 18,000% rune smash dmg</td>
+              <td><span class="mult mult-a">120 transcend: ×181</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> <span
+                  class="note-tag tag-condition">High Investment</span> Reaper best in slot at max. Long journey to 120.
+                See B and C tier for lower thresholds.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-mage">Elemental Theory</span></td>
+              <td class="effect-cell">4 element skills: 18,000% rune skill dmg</td>
+              <td><span class="mult mult-a">4 skills: ×181</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> <span
+                  class="note-tag tag-condition">Condition</span> Archmage best in slot at 4 element skills. See B and C
+                tier for lower values.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-darklord">Breaking Through Limits</span></td>
+              <td class="effect-cell">10 breakthrough hero: 15,000% rune hero skill dmg</td>
+              <td><span class="mult mult-a">10 BT: ×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span> <span
+                  class="note-tag tag-condition">Condition</span> Dark Lord best in slot at max breakthrough. See C tier
+                for 5 breakthrough value.</td>
+            </tr>
+
+            <!-- B TIER -->
+            <tr class="tier-row tier-b">
+              <td colspan="4">B Tier</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name job-reaper">Transcendent</span></td>
+              <td class="effect-cell">80 transcendent scythe: 3,000% rune smash dmg</td>
+              <td><span class="mult mult-b">80 transcend: ×31</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> Mid-investment value. See A tier
+                for 120 and C tier for 40 transcendent.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name job-mage">Elemental Theory</span></td>
+              <td class="effect-cell">2 element skills: 3,000% rune skill dmg</td>
+              <td><span class="mult mult-b">2 skills: ×31</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> Mid-investment value. See A tier
+                for 4 skills and C tier for 1 skill.</td>
+            </tr>
+
+            <!-- C TIER -->
+            <tr class="tier-row tier-c">
+              <td colspan="4">C Tier — Below baseline or low value</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-reaper">Transcendent</span></td>
+              <td class="effect-cell">40 transcendent scythe: 500% rune smash dmg</td>
+              <td><span class="mult mult-c">40 transcend: ×6</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> Low value at early investment. See
+                B and A tier for higher thresholds.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-mage">Elemental Theory</span></td>
+              <td class="effect-cell">1 element skill: 500% rune skill dmg</td>
+              <td><span class="mult mult-c">1 skill: ×6</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> Very low value at 1 skill. See B
+                and A tier for higher values.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-darklord">Breaking Through Limits</span></td>
+              <td class="effect-cell">5 breakthrough hero: 1,000% rune hero skill dmg</td>
+              <td><span class="mult mult-c">5 BT: ×11</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span> Low value at 5 breakthrough.
+                See A tier for 10 breakthrough value.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Overwhelming Power</span></td>
+              <td class="effect-cell">At 100% rune atk power: 1,500% rune atk amp</td>
+              <td><span class="mult mult-c">100% rune atk: ×16</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Very low value at low rune
+                atk. See A tier for 500% rune atk value.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Elemental Explosion</span></td>
+              <td class="effect-cell">6,000% element dmg per 5 element skills used, up to 4 stacks</td>
+              <td><span class="mult mult-c">~×7 effective</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-diminish">Diminishing</span> Adds to existing elemental
+                damage stats which are already heavily stacked. Effective value roughly ×7 or less depending on current
+                elemental damage base.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-mage">Reversal</span></td>
+              <td class="effect-cell">Each time probability skill fails, next activation chance becomes 100%</td>
+              <td><span class="mult mult-c">Situational</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> Proc guarantee utility. Below
+                necklace damage baseline.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Retribution / Divine Punishment / Purgatory</span></td>
+              <td class="effect-cell">8,000% flat fire/lightning/dark dmg. Reduces other 2 elements by 70%</td>
+              <td><span class="mult mult-c">~×8 effective</span></td>
+              <td class="notes-cell"><span class="note-tag tag-element">Element Matched</span> <span
+                  class="note-tag tag-diminish">Diminishing</span> Adds to existing elemental stats — already heavily
+                stacked. Effective value far below raw number. Cuts other elements by 70%.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-mage">Heaven's Fortune</span></td>
+              <td class="effect-cell">When skill activates, 100% to activate for 5 seconds</td>
+              <td><span class="mult mult-c">Below baseline</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> Below the necklace damage
+                baseline of ×41. Utility value only.</td>
+            </tr>
+
+            <!-- D TIER -->
+            <tr class="tier-row tier-d">
+              <td colspan="4">D Tier — Zero or near-zero value</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Fairy Tale</span></td>
+              <td class="effect-cell">100% apply status effect for 5 seconds based on attack element</td>
+              <td><span class="mult mult-c">—</span></td>
+              <td class="notes-cell">Applying status effect is not difficult at all. This rune contributes nothing
+                meaningful to damage output.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Annihilation (Solo)</span></td>
+              <td class="effect-cell">1,500,000% dmg increase — requires Burst ring</td>
+              <td><span class="mult mult-c">0 without Burst</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set Rune</span> Completely useless without Burst
+                ring. See S tier set rating.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Assault Captain</span></td>
+              <td class="effect-cell">12,000% rune atk amp after death for 5 seconds</td>
+              <td><span class="mult mult-c">×121 (5s only)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Condition</span> Requires dying. Only lasts 5
+                seconds. Completely impractical in real content.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EMBLEM -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Emblem</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rune</th>
+              <th>Effect</th>
+              <th>Multiplier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- S TIER -->
+            <tr class="tier-row tier-s">
+              <td colspan="4">S Tier</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name">Beginner's Mind</span></td>
+              <td class="effect-cell">Increase passive effect by 1,500%</td>
+              <td><span class="mult mult-s">×361 at 100% base amp<br>×911+ at 500% base amp<br>Scales up to B10
+                  Passive</span>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Multiplies passive values by
+                ×16. 2 out of 3 passives (elemental amp + specific element amp) are exclusive categories — this is a
+                multiplier on top of exclusive multipliers. Third passive gives ~×5. The higher the base amp, the
+                stronger this gets.</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name">Archaeology</span></td>
+              <td class="effect-cell">12 ancient equipment: 60,000% ancient rune atk amp</td>
+              <td><span class="mult mult-s">12 ancient: ×601</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">High Investment</span> Realistic Whale condition. See B tier for 8
+                ancient and C tier for 4 ancient value.</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name">Divine Realm</span></td>
+              <td class="effect-cell">Job 60: 30,000% ancient rune atk amp</td>
+              <td><span class="mult mult-s">Job 60: ×301</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Clean milestone condition. See B tier for job 30
+                value.</td>
+            </tr>
+
+            <!-- A TIER -->
+            <tr class="tier-row tier-a">
+              <td colspan="4">A Tier</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Square Terror</span></td>
+              <td class="effect-cell">45,000% ancient rune atk amp, decreases 4,500% per nearby enemy</td>
+              <td><span class="mult mult-a">×451 max (solo)</span></td>
+              <td class="notes-cell">span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-condition">Content Dependent</span> Best in solo boss
+                content. Not recommended for stage push or crowd dungeons — value drops significantly with multiple
+                enemies.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Recklessness</span></td>
+              <td class="effect-cell">15,000% ancient rune atk amp. Disables heal</td>
+              <td><span class="mult mult-a">×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Heal disable is mitigatable.
+                Strong clean ancient rune atk amp.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Insight</span></td>
+              <td class="effect-cell">15,000% ancient rune atk amp. Disables boss invulnerability</td>
+              <td><span class="mult mult-a">×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Same as Recklessness but with
+                bonus utility — disabling boss invulnerability is a meaningful advantage in boss content.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-darklord">Expression</span><br><span
+                  class="rune-name job-mage">Eruption</span></td>
+              <td class="effect-cell">600% rune hero skill/skill dmg amp per 10 hero/skill breakthrough level</td>
+              <td><span class="mult mult-a">At 250 BT: 15,000% / ×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span><span
+                  class="note-tag tag-mage">Archmage</span> Combine as one entry — match respective job. Expression =
+                hero skill (Dark Lord), Eruption = skill (Archmage). 250 breakthrough is realistic for high level
+                players.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-darklord">Companion</span><br><span class="rune-name job-mage">Vision
+                  Book</span></td>
+              <td class="effect-cell">Companion: 3,750% rune hero skill dmg amp per mythic hero<br>Vision Book: 3,000%
+                rune skill dmg amp per mythic skill</td>
+              <td><span class="mult mult-a">Companion max: ×188.5 (DL job 60)<br>Vision Book max: ×181 (Mage job
+                  60)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span><span
+                  class="note-tag tag-mage">Archmage</span> Combine as one entry — match respective job. Ceiling is
+                comparable to Expression/Eruption. Scales with mythic hero/skill roster.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Trapped Destiny</span></td>
+              <td class="effect-cell">180,000% rune atk amp. Seals smash permanently</td>
+              <td><span class="mult mult-a">Raw ×1,801<br>Effective ×300 (mythic scythe 3-1)<br>Effective ×112.5
+                  (ancient scythe 3-1)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span><span
+                  class="note-tag tag-mage">Archmage</span><span class="note-tag tag-condition">Major Downside</span>
+                Sealing smash loses the
+                smash buff category (500% at mythic scythe, 1,500% at ancient scythe) which is exclusive to smash.
+                Effective
+                multiplier is heavily discounted. Ruins Reaper entirely. Discounts Archmage and Dark Lord significantly.
+              </td>
+            </tr>
+
+            <!-- B TIER -->
+            <tr class="tier-row tier-b">
+              <td colspan="4">B Tier</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Archaeology</span></td>
+              <td class="effect-cell">8 ancient equipment: 6,000% ancient rune atk amp</td>
+              <td><span class="mult mult-b">8 ancient: ×61</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-condition">High Investment</span> Mid-investment value. See S
+                tier for 12 ancient and C tier for 4 ancient value.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Divine Realm</span></td>
+              <td class="effect-cell">Job 30: 6,000% ancient rune atk amp</td>
+              <td><span class="mult mult-b">Job 30: ×61</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Low milestone value. See S
+                tier for job 60 value.</td>
+            </tr>
+
+            <!-- C TIER -->
+            <tr class="tier-row tier-c">
+              <td colspan="4">C Tier — Low value or negligible</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Archaeology</span></td>
+              <td class="effect-cell">4 ancient equipment: 1,500% ancient rune atk amp</td>
+              <td><span class="mult mult-c">4 ancient: ×16</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span><span
+                  class="note-tag tag-condition">High Investment</span> Low value at early
+                investment. See B and S tier for higher thresholds.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Crushing</span></td>
+              <td class="effect-cell">Ignore 2.5% defense per stack, max 20 stacks (100% ignore defense)</td>
+              <td><span class="mult mult-c">Negligible</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Ignore defense scaling is
+                negligible — our Ignore Defense values already obliterate enemy defense by an enormous margin. See
+                Ignore Defense guide.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Mana Flow</span></td>
+              <td class="effect-cell">Basic attack has 50% chance to activate one equipped skill once</td>
+              <td><span class="mult mult-c">~×166 activation<br>in 20 seconds</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Weaker Rapid Fire equivalent.
+                50% chance on basic attack, only procs 1 of 6 skills. Lower ceiling and less reliable than Rapid Fire.
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
