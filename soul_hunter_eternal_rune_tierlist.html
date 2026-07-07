@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soul Hunter Idle AFK RPG — Eternal Rune Tier List</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Exo+2:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0c12;
+      --surface: #12151f;
+      --surface2: #1a1e2e;
+      --border: #2a2f45;
+      --accent: #e8a830;
+      --accent2: #c45c2a;
+      --text: #d4d8e8;
+      --text-dim: #7a80a0;
+      --tier-s: #ff4500;
+      --tier-a: #e8a830;
+      --tier-b: #60a5fa;
+      --tier-c: #7a80a0;
+      --tier-d: #3a3f55;
+      --tier-s-bg: rgba(255, 69, 0, 0.08);
+      --tier-a-bg: rgba(232, 168, 48, 0.08);
+      --tier-b-bg: rgba(96, 165, 250, 0.08);
+      --tier-c-bg: rgba(122, 128, 160, 0.06);
+      --tier-d-bg: rgba(58, 63, 85, 0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(232, 168, 48, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 30% at 80% 90%, rgba(196, 92, 42, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .guide-header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .guide-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .game-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(22px, 5vw, 36px);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(232, 168, 48, 0.3);
+    }
+
+    .guide-subtitle {
+      color: var(--text-dim);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .disclaimer {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 40px;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .disclaimer strong {
+      color: var(--accent);
+    }
+
+    .section {
+      margin-bottom: 48px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 20px 28px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-dim);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(42, 47, 69, 0.4);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover td {
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .tier-row td {
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-bottom: none !important;
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-row:first-child td {
+      border-top: none;
+    }
+
+    .tier-s td {
+      background: var(--tier-s-bg);
+      color: var(--tier-s);
+    }
+
+    .tier-a td {
+      background: var(--tier-a-bg);
+      color: var(--tier-a);
+    }
+
+    .tier-b td {
+      background: var(--tier-b-bg);
+      color: var(--tier-b);
+    }
+
+    .tier-c td {
+      background: var(--tier-c-bg);
+      color: var(--tier-c);
+    }
+
+    .tier-d td {
+      background: var(--tier-d-bg);
+      color: var(--text-dim);
+    }
+
+    .row-s td {
+      background: rgba(255, 69, 0, 0.03);
+    }
+
+    .row-a td {
+      background: rgba(232, 168, 48, 0.03);
+    }
+
+    .row-b td {
+      background: rgba(96, 165, 250, 0.03);
+    }
+
+    .row-c td {
+      background: transparent;
+    }
+
+    .row-d td {
+      background: transparent;
+      opacity: 0.6;
+    }
+
+    .rune-name {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .rune-name.job-set {
+      color: var(--accent);
+    }
+
+    .mult {
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .mult-s {
+      color: var(--tier-s);
+    }
+
+    .mult-a {
+      color: var(--tier-a);
+    }
+
+    .mult-b {
+      color: var(--tier-b);
+    }
+
+    .mult-c {
+      color: var(--tier-c);
+    }
+
+    .mult-d {
+      color: var(--text-dim);
+    }
+
+    .note-tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-right: 4px;
+      margin-bottom: 2px;
+    }
+
+    .tag-universal {
+      background: rgba(74, 222, 128, 0.15);
+      color: #4ade80;
+    }
+
+    .tag-set {
+      background: rgba(232, 168, 48, 0.15);
+      color: var(--accent);
+    }
+
+    .tag-condition {
+      background: rgba(251, 191, 36, 0.15);
+      color: #fbbf24;
+    }
+
+    .tag-element {
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
+    }
+
+    .tag-reaper {
+      background: rgba(248, 113, 113, 0.15);
+      color: #f87171;
+    }
+
+    .tag-mage {
+      background: rgba(129, 140, 248, 0.15);
+      color: #818cf8;
+    }
+
+    .tag-darklord {
+      background: rgba(192, 132, 252, 0.15);
+      color: #c084fc;
+    }
+
+    .tag-weekend {
+      background: rgba(156, 163, 175, 0.15);
+      color: #9ca3af;
+    }
+
+    .tag-diminish {
+      background: rgba(248, 113, 113, 0.1);
+      color: #fca5a5;
+    }
+
+    .tag-warning {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+
+    .notes-cell {
+      color: var(--text-dim);
+      font-size: 12px;
+      min-width: 220px;
+    }
+
+    .effect-cell {
+      color: var(--text);
+      min-width: 200px;
+    }
+
+    .mult-cell {
+      min-width: 120px;
+    }
+
+    .range-note {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 3px;
+    }
+
+    @media (max-width: 700px) {
+      .section-header {
+        padding: 16px;
+      }
+
+      thead th,
+      tbody td {
+        padding: 8px 10px;
+      }
+
+      .notes-cell {
+        min-width: 150px;
+      }
+
+      .effect-cell {
+        min-width: 150px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="guide-header">
+      <div class="game-label">Eternal Rune Tier List</div>
+      <h1>Eternal Rune Guide</h1>
+      <div class="guide-subtitle">Soul Hunter Idle AFK RPG · Individual value · High level perspective</div>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Ranking criteria:</strong> Each rune is ranked based on the boost given expressed as a multiplier and its
+      versatility. Set runes are ranked twice — solo and as a set. Number-dependent runes are split by milestone.
+      Multipliers shown as Total Multiplier from the data. Min/Max potential range shown in notes where available. For
+      Ancient Rune rankings see the Ancient Rune Tier List.
+    </div>
+
+    <!-- ARMOR -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🛡️</div>
+        <div class="section-title">Armor (Upper / Lower / Shoes)</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rune</th>
+              <th>Effect</th>
+              <th>Multiplier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="tier-row tier-s">
+              <td colspan="4">S Tier</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Resonance + Vibration (Full Set)</span></td>
+              <td class="effect-cell">Rune atk 15,000% each. Additional 30,000% when paired. Eternal Rune atk 1,000,000%
+                if all slots are eternal</td>
+              <td class="mult-cell"><span class="mult mult-s">×18,020,090,000<br><small>total set</small></span>
+                <div class="range-note">Min: ×1,820,111,000<br>Max: ×18,038,920,000</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Requires all slots to be eternal for the 1,000,000%
+                bonus. Locks 2 armor slots.</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Cerberus 3-Set (Before Patch)</span></td>
+              <td class="effect-cell">1 — Rune atk 15,000%. 2 — Rune atk additional 100,000,000%. 3 — Additional
+                1,300,000% eternal rune atk</td>
+              <td class="mult-cell"><span class="mult mult-s">×13,002,960,000<br><small>3-set</small></span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Pre-patch value. Significantly stronger than
+                post-patch. Locks all 3 armor slots.</td>
+            </tr>
+
+            <tr class="tier-row tier-a">
+              <td colspan="4">A Tier</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Rune Conqueror</span></td>
+              <td class="effect-cell">Rune atk 10,000%. Additional 40,000% if rune dungeon stage 50+. Additional
+                100,000% if stage 100+</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,501</span>
+                <div class="range-note">Min: ×22,891,750<br>Max: ×1,128,378,000</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Scales significantly with rune dungeon progression.
+                Strong for high level players.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Sniper</span></td>
+              <td class="effect-cell">Rune atk 150,000%</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,501</span>
+                <div class="range-note">Min: ×22,891,750<br>Max: ×1,128,378,000</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Clean no-condition rune atk.
+                Same base multiplier as Rune Conqueror.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Underworld King</span></td>
+              <td class="effect-cell">100,000% increase damage</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,001</span>
+                <div class="range-note">Min: ×4,145,141<br>Max: ×1,128,378,000</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> New multiplier category —
+                universal increased damage. Lower base but exclusive category.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Judgment / Arcana / Command</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Slot Enhancement 23</small></td>
+              <td class="effect-cell">Slot enhancement 20: Smash/Skill/Hero Skill damage 15,000%. Slot enhancement 23:
+                additional 60,000%</td>
+              <td class="mult-cell"><span class="mult mult-a">×751</span>
+                <div class="range-note">Min: ×3,109,891<br>Max: ×1,128,378,000</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Condition</span> Job specific per rune.
+                Requires slot enhancement 23 for full value. See C tier for enhancement 20 value.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Adaptation</span></td>
+              <td class="effect-cell">Rune smash/skill/hero skill 50,000% depending on the slot equipped</td>
+              <td class="mult-cell"><span class="mult mult-a">×501</span>
+                <div class="range-note">Min: ×2,074,641<br>Max: ×752,753,000</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Adapts to equipped slot type.
+                Flexible across all jobs.</td>
+            </tr>
+
+            <tr class="tier-row tier-b">
+              <td colspan="4">B Tier</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name job-set">Cerberus 3-Set (After Patch)</span></td>
+              <td class="effect-cell">1 — Rune atk 15,000%. 2 — Rune atk additional 10,000,000%. 3 — Additional 100,000%
+                eternal rune atk</td>
+              <td class="mult-cell"><span class="mult mult-b">×100,251,200</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> Post-patch nerfed value. Significantly
+                weaker than pre-patch. Still worth using as a set.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Adventurer</span></td>
+              <td class="effect-cell">Rune atk 15,000%. Additional 30,000% if all adventure mode easy missions completed
+              </td>
+              <td class="mult-cell"><span class="mult mult-b">×451</span>
+                <div class="range-note">Min: ×6,878,201<br>Max: ×339,039,700</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Condition</span> Requires completing all easy
+                adventure mode missions. Realistic for active players.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name job-set">Cerberus 2-Set (After Patch)</span></td>
+              <td class="effect-cell">Rune atk 15,000%. Rune atk additional 10,000,000%</td>
+              <td class="mult-cell"><span class="mult mult-b">×100,151</span>
+                <div class="range-note">Min: ×10,115,250<br>Max: ×100,251,200</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> 2-piece post-patch value. Below 3-set
+                ceiling but fewer slot requirements.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Mosaic / Weekday / Blitz</span></td>
+              <td class="effect-cell">Rune atk 30,000%. Weekday only gives 6,000% on weekends. Blitz reduces boss stage
+                by 10 seconds</td>
+              <td class="mult-cell"><span class="mult mult-b">×301</span>
+                <div class="range-note">Min: ×4,590,551<br>Max: ×226,277,100</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-weekend">Weekday</span> Weekday gives full value, weekend
+                drops to ×61. Blitz utility bonus for boss content.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Endless / Ki Attack / Gladiator<br>Cerberus 1-Set / Resonance / Vibration (No
+                  Set)</span></td>
+              <td class="effect-cell">Rune atk power 15,000%. Gladiator requires 100 arena win streak</td>
+              <td class="mult-cell"><span class="mult mult-b">×151</span>
+                <div class="range-note">Min: ×2,302,901<br>Max: ×113,514,400</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Grouped as same base value.
+                Gladiator condition noted. Resonance/Vibration solo give no set bonus.</td>
+            </tr>
+
+            <tr class="tier-row tier-c">
+              <td colspan="4">C Tier</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-set">Complementary III + Antagonism III (Set)</span></td>
+              <td class="effect-cell">Rune atk power 4,000% each. Eternal rune atk 60,000% when paired</td>
+              <td class="mult-cell"><span class="mult mult-c">×97,281</span>
+                <div class="range-note">Min: ×9,825,381<br>Max: ×97,378,280</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> Requires both Comp III and Anta III.
+                Locks 2 slots for the set bonus.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Double-Edged Sword</span></td>
+              <td class="effect-cell">15,000% increase damage dealt</td>
+              <td class="mult-cell"><span class="mult mult-c">×151</span>
+                <div class="range-note">Min: ×625,291<br>Max: ×226,877,700</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> New multiplier category
+                universal damage increase — but lower raw number compared to ancient rune version.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Trinity</span></td>
+              <td class="effect-cell">Smash, Skill, Hero Skill 15,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×151</span>
+                <div class="range-note">Min: ×625,291<br>Max: ×226,877,700</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> All-rounder. Same multiplier
+                as Double-Edged Sword but job-specific stat category.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Judgment / Arcana / Command</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Slot Enhancement 20</small></td>
+              <td class="effect-cell">Slot enhancement 20: Smash/Skill/Hero Skill damage 15,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×151</span>
+                <div class="range-note">Min: ×625,291<br>Max: ×226,877,700</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Condition</span> Below max enhancement value.
+                See A tier for enhancement 23.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Reaper's Scythe / Book of Magic / Soul of the Ruler</span></td>
+              <td class="effect-cell">Class 30: 7,500% smash/skill/hero skill dmg. Class 60: 15,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×151 (Class 60)<br>×76 (Class 30)</span>
+                <div class="range-note">Min: ×625,291<br>Max: ×226,877,700</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Job Matched</span> Milestone gated. Match
+                respective job only.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Intensification</span></td>
+              <td class="effect-cell">1 status: 1,000%. 2 status: 4,000%. 3 status: 10,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×101 (3 status)</span>
+                <div class="range-note">Min: ×625,291<br>Max: ×151,752,600</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Scaling</span> Scales with number of status effects active. Lower
+                ceiling than ancient version.</td>
+            </tr>
+
+            <tr class="tier-row tier-d">
+              <td colspan="4">D Tier</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Complementary III / Antagonism III (No Set)</span></td>
+              <td class="effect-cell">Rune atk power 4,000%</td>
+              <td class="mult-cell"><span class="mult mult-d">×41</span>
+                <div class="range-note">Min: ×625,291<br>Max: ×30,821,790</div>
+              </td>
+              <td class="notes-cell">No set bonus. Very weak solo value — purely built for the set.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Resonance / Vibration (Not All Eternal)</span></td>
+              <td class="effect-cell">Rune atk 15,000%. Additional 30,000% with pair. No eternal bonus</td>
+              <td class="mult-cell"><span class="mult mult-d">×901 (paired)<br>×151 (solo)</span>
+                <div class="range-note">Min: ×91,001<br>Max: ×901,901</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Condition</span> Without all slots being
+                eternal, loses the 1,000,000% bonus — value drops dramatically.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name job-set">Cerberus 2-Set (Before Patch)</span></td>
+              <td class="effect-cell">Rune atk 15,000%. Rune atk additional 100,000,000%</td>
+              <td class="mult-cell"><span class="mult mult-d">×1,000,151</span>
+                <div class="range-note">Min: ×101,015,300<br>Max: ×1,001,151,000</div>
+              </td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> Listed here as pre-patch 2-set is now
+                irrelevant — post-patch values apply. Reference only.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RING -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">💍</div>
+        <div class="section-title">Ring</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rune</th>
+              <th>Effect</th>
+              <th>Multiplier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="tier-row tier-s">
+              <td colspan="4">S Tier</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Blade of the Demonic Sword (Set with Hilt)</span></td>
+              <td class="effect-cell">Fix atk to 100. All damage increase 5,000,000%. Removes atk fix when equipped with
+                Hilt of the Demonic Sword</td>
+              <td class="mult-cell"><span class="mult mult-s">×250,055,001<br><small>full set</small></span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Requires Hilt (Necklace) to remove the atk fix
+                penalty. Broken ceiling as a set. See D tier for solo value.</td>
+            </tr>
+
+            <tr class="tier-row tier-a">
+              <td colspan="4">A Tier</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-darklord">Temperance</span></td>
+              <td class="effect-cell">Fix atk speed increase to 10%. Rune atk amp 500,000%</td>
+              <td class="mult-cell"><span class="mult mult-b">×501 (rune atk amp)<br>+ atk speed fix</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span> Fixes attack speed at 10% —
+                trade-off for
+                high rune atk amp. Dark Lord specific.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Blazing Flame / Superconductivity / Despair</span></td>
+              <td class="effect-cell">Fire/Lightning/Dark dmg increase 250,000% when enemy is under
+                Laceration/Overload/Fear status</td>
+              <td class="mult-cell"><span class="mult mult-a">×2,501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-element">Element Matched</span> <span
+                  class="note-tag tag-condition">Condition</span> Requires matching element AND status effect active.
+                Very high value when condition met. Zero for wrong element.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Insight / Command</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Awakening 3</small></td>
+              <td class="effect-cell">Aw1 skill: increase dmg dealt by that skill 20,000%. Aw3 skill: additional
+                130,000%</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Condition</span> Requires awakening 3 skill
+                for full value. See C tier for awakening 1 value.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Constellation</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Stage 30+</small></td>
+              <td class="effect-cell">Rune atk amp 20,000%. Additional 130,000% if star blessing stage 30 or more</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Full value requires star blessing stage 30. See C tier
+                for below stage 30.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-set">Burst II + Annihilation II (Set)</span></td>
+              <td class="effect-cell">Inflict Burst II status. Increase damage taken 12,500%. Annihilation II:
+                2,500,000% increase dmg with Burst II</td>
+              <td class="mult-cell"><span class="mult mult-a">×3,150,126<br><small>full set</small></span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Burst II is Ring rune. Annihilation II is Necklace
+                rune. See Necklace section. Zero value without the pair.</td>
+            </tr>
+
+            <tr class="tier-row tier-b">
+              <td colspan="4">B Tier</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Laceration / Overload / Fear</span></td>
+              <td class="effect-cell">Fire/Lightning/Dark dmg increase 75,000% when enemy has burn/shock/confusion</td>
+              <td class="mult-cell"><span class="mult mult-b">×751</span></td>
+              <td class="notes-cell"><span class="note-tag tag-element">Element Matched</span> <span
+                  class="note-tag tag-condition">Condition</span> Requires matching element and status. Lower tier than
+                ancient version due to condition dependency.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Single Strike</span></td>
+              <td class="effect-cell">Rune smash damage 50,000% when attacking a single target</td>
+              <td class="mult-cell"><span class="mult mult-b">×501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> <span
+                  class="note-tag tag-condition">Single Enemy</span> Job locked and single target only. Boss content
+                specific.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Silver Flash</span></td>
+              <td class="effect-cell">Rune atk power 50,000%</td>
+              <td class="mult-cell"><span class="mult mult-b">×501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Clean no-condition rune atk
+                power.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Consumption</span></td>
+              <td class="effect-cell">Rune atk amp 50,000%. Take 10% dmg per second</td>
+              <td class="mult-cell"><span class="mult mult-b">×501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> HP drain mitigatable. Note:
+                eternal version is weaker than ancient version (50,000% vs 24,000% but different scaling).</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Overgrowth</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Awakening 3</small></td>
+              <td class="effect-cell">Sum of levels of remaining equipped heroes × 100</td>
+              <td class="mult-cell"><span class="mult mult-b">×451</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Awakening 3 required for this
+                value. See C tier for b10 value.</td>
+            </tr>
+
+            <tr class="tier-row tier-c">
+              <td colspan="4">C Tier</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Overgrowth</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">b10</small></td>
+              <td class="effect-cell">Sum of levels of remaining equipped heroes × 100</td>
+              <td class="mult-cell"><span class="mult mult-c">×301</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> b10 breakthrough value. See B
+                tier for awakening 3 value.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Constellation</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Below Stage 30</small></td>
+              <td class="effect-cell">Rune atk amp 20,000%. No additional bonus below stage 30</td>
+              <td class="mult-cell"><span class="mult mult-c">×201</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Below milestone value. See A
+                tier for stage 30+ value.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Insight / Command</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Awakening 1</small></td>
+              <td class="effect-cell">Aw1 skill/hero: increase dmg dealt 20,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×201</span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Condition</span> Below max awakening value.
+                See A tier for awakening 3 value.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Burst II (No Set)</span></td>
+              <td class="effect-cell">Inflict Burst II status. Increase damage taken 12,500%</td>
+              <td class="mult-cell"><span class="mult mult-c">×126</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set Rune</span> Negligible solo value. Purely a
+                setup rune for Annihilation II. See A tier set rating.</td>
+            </tr>
+
+            <tr class="tier-row tier-d">
+              <td colspan="4">D Tier</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Blade of the Demonic Sword (No Set)</span></td>
+              <td class="effect-cell">Fix atk to 100. All damage increase 5,000,000%</td>
+              <td class="mult-cell"><span class="mult mult-d">Less than ×1</span></td>
+              <td class="notes-cell"><span class="note-tag tag-warning">Dangerous</span> Without Hilt, fixing atk to 100
+                while our base attack is already enormous gives less than ×1 effective multiplier. Do NOT equip solo.
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NECKLACE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📿</div>
+        <div class="section-title">Necklace</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rune</th>
+              <th>Effect</th>
+              <th>Multiplier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="tier-row tier-s">
+              <td colspan="4">S Tier</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Hilt of the Demonic Sword (Set with Blade)</span></td>
+              <td class="effect-cell">Crit rate -50%. All dmg 500,000% multiplicative. Removes crit reduction when
+                paired with Blade</td>
+              <td class="mult-cell"><span class="mult mult-s">×250,055,001<br><small>full set</small></span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Requires Blade (Ring) to remove -50% crit rate
+                penalty. Broken ceiling as set. No Set value is RNG dependent — see below.</td>
+            </tr>
+
+            <tr class="tier-row tier-a">
+              <td colspan="4">A Tier</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-mage">Might</span></td>
+              <td class="effect-cell">Hero atk speed -70%. Rune atk amp 500,000%</td>
+              <td class="mult-cell"><span class="mult mult-a">×5,001</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> Reduces hero attack speed by 70% —
+                trade-off for very high rune atk amp. Archmage specific.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Colossus</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Awakening 3</small></td>
+              <td class="effect-cell">Aw1 hero: increase hero size. Aw2 hero: increase 100% atk speed. Aw3 hero:
+                increase hero skill dmg 500,000% multiplicative</td>
+              <td class="mult-cell"><span class="mult mult-a">×5,001</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span> <span
+                  class="note-tag tag-condition">Condition</span> Requires awakening 3 hero. Hero skill dmg
+                multiplicative bonus is very strong for Dark Lord.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-reaper">Pummel</span></td>
+              <td class="effect-cell">Increase 5 hit required for smash. 50% atk speed increase. Rune smash damage
+                500,000%</td>
+              <td class="mult-cell"><span class="mult mult-a">×5,001<br><small>or ~×2,000 if 3-smash
+                    build</small></span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> Value may be diminished if 3-smash
+                build increases to 8 required hits. Full value depends on build configuration.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Hilt of the Demonic Sword (No Set)</span></td>
+              <td class="effect-cell">Crit rate -50%. All dmg 500,000% multiplicative</td>
+              <td class="mult-cell"><span class="mult mult-a">Between ×50 and ×5,001<br><small>RNG
+                    dependent</small></span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">RNG</span> 50% chance for ×5,001, 50% chance
+                for ~×50. Still a win either way — average expected value remains high. See S tier for set value.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Berserk</span></td>
+              <td class="effect-cell">Rune atk amp 20,000% per second, max 10 seconds (200,000%)</td>
+              <td class="mult-cell"><span class="mult mult-a">×2,551</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Scaling</span> Requires 10 seconds to reach max value. Strong when
+                fully stacked.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Moonlight</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Stage 30+</small></td>
+              <td class="effect-cell">Rune atk amp 50,000%. Additional 200,000% when moon stage is 30 or higher</td>
+              <td class="mult-cell"><span class="mult mult-a">×2,001</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Full value requires moon stage 30. See B tier for
+                below stage 30.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Support</span></td>
+              <td class="effect-cell">Rune atk amp 150,000% when making guild regular donation</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Requires regular guild donations to maintain. Active
+                players will keep this active easily.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name job-set">Annihilation II (Set with Burst II)</span></td>
+              <td class="effect-cell">2,500,000% increase dmg when Burst II (Ring) is equipped</td>
+              <td class="mult-cell"><span class="mult mult-a">×3,150,126<br><small>full set</small></span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Burst II is Ring rune. Annihilation II is this
+                necklace rune. See Ring section. Zero value without pair.</td>
+            </tr>
+
+            <tr class="tier-row tier-b">
+              <td colspan="4">B Tier</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Giant / Dwarf</span></td>
+              <td class="effect-cell">Rune atk amp 75,000%</td>
+              <td class="mult-cell"><span class="mult mult-b">×751</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> No condition. Character size
+                changes. Combine as one entry — same value.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name job-mage">Elemental Theory</span></td>
+              <td class="effect-cell">1 attribute: 10,000%. 2 attribute: 30,000%. 4 attribute: 60,000% rune skill dmg
+              </td>
+              <td class="mult-cell"><span class="mult mult-b">×601 (4 attribute)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> <span
+                  class="note-tag tag-condition">Scaling</span> Archmage best in slot at 4 attributes.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name job-reaper">Transcendent</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">120 scythe</small></td>
+              <td class="effect-cell">40 transcendence: 10,000%. 80: 30,000%. 120: 60,000% rune smash dmg</td>
+              <td class="mult-cell"><span class="mult mult-b">×601 (120 scythe)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> <span
+                  class="note-tag tag-condition">High Investment</span> Reaper best in slot at 120. See C tier for lower
+                thresholds.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Moonlight</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Below Stage 30</small></td>
+              <td class="effect-cell">Rune atk amp 50,000%</td>
+              <td class="mult-cell"><span class="mult mult-b">×501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Below milestone value. See A
+                tier for stage 30+ value.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Overwhelming Power</span></td>
+              <td class="effect-cell">Rune atk 100%: rune atk amp 15,000%. Rune atk 500%: rune atk amp 35,000%</td>
+              <td class="mult-cell"><span class="mult mult-b">×351 (500% rune atk)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Scaling</span> Scales with rune atk investment.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name job-reaper">Transcendent</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">80 scythe</small></td>
+              <td class="effect-cell">80 transcendence scythe: 30,000% rune smash dmg</td>
+              <td class="mult-cell"><span class="mult mult-b">×301</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> Mid-investment value. See B tier
+                for 120 and C tier for 40 scythe.</td>
+            </tr>
+
+            <tr class="tier-row tier-c">
+              <td colspan="4">C Tier</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-reaper">The Power of Emptiness</span></td>
+              <td class="effect-cell">Rune smash damage 20,000% per empty skill slot. Estimated 1 empty slot available
+              </td>
+              <td class="mult-cell"><span class="mult mult-c">×201 (1 slot)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> Since shadow roar, butterfly,
+                thunder orbit, and firebolt/dark collapse/thunder sword dance are needed, only ~1 empty slot is
+                realistic.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name job-reaper">Transcendent</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">40 scythe</small></td>
+              <td class="effect-cell">40 transcendence scythe: 10,000% rune smash dmg</td>
+              <td class="mult-cell"><span class="mult mult-c">×101</span></td>
+              <td class="notes-cell"><span class="note-tag tag-reaper">Reaper</span> Low investment value. See B tier
+                for higher thresholds.</td>
+            </tr>
+
+            <tr class="tier-row tier-d">
+              <td colspan="4">D Tier</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Elemental Explosion</span></td>
+              <td class="effect-cell">After using each elemental skill 5 times, increase damage of that element by
+                50,000% for 10 seconds</td>
+              <td class="mult-cell"><span class="mult mult-d">×50 (diminished)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-diminish">Diminishing</span> Adds to already heavily
+                stacked elemental damage stats. Effective value far below raw number.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Reversal</span></td>
+              <td class="effect-cell">Each time a probability skill fails, activation chance increases by 100%</td>
+              <td class="mult-cell"><span class="mult mult-d">×10</span></td>
+              <td class="notes-cell">Situational proc guarantee. Very low damage value.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Heaven's Fortune</span></td>
+              <td class="effect-cell">When skill activates, 100% to activate 7 times</td>
+              <td class="mult-cell"><span class="mult mult-d">×7</span></td>
+              <td class="notes-cell">Very low multiplier. Below any meaningful damage threshold.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Annihilation II (No Set)</span></td>
+              <td class="effect-cell">2,500,000% increase dmg — requires Burst II ring</td>
+              <td class="mult-cell"><span class="mult mult-d">×1</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set Rune</span> Zero value without Burst II ring.
+                See A tier set rating.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EMBLEM -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🔰</div>
+        <div class="section-title">Emblem</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rune</th>
+              <th>Effect</th>
+              <th>Multiplier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="tier-row tier-s">
+              <td colspan="4">S Tier</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Altar (Set with Sacrifice)</span></td>
+              <td class="effect-cell">50,000,000% eternal rune atk amp when equipped with Sacrifice (Abyss Deco)</td>
+              <td class="mult-cell"><span class="mult mult-s">×20,000,540,000<br><small>full set</small></span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Requires Sacrifice (Abyss Deco rune). Broken ceiling
+                as set. See D tier for solo value.</td>
+            </tr>
+
+            <tr class="tier-row tier-a">
+              <td colspan="4">A Tier</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Spirit's Might</span></td>
+              <td class="effect-cell">When breakthrough level of all equipped spirits is 25 or higher, eternal rune atk
+                amp 2,250,000%</td>
+              <td class="mult-cell"><span class="mult mult-a">×22,501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Requires all spirits at breakthrough 25. High
+                investment but very high reward.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Climax</span><br><small style="color:var(--text-dim); font-size:11px;">Level
+                  25,000</small></td>
+              <td class="effect-cell">Lv 22,000: 75,000%. Lv 23,000: +150,000%. Lv 24,000: +525,000%. Lv 25,000:
+                +1,500,000% eternal rune atk amp</td>
+              <td class="mult-cell"><span class="mult mult-a">×21,151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Milestone</span> Max value at level 25,000. See B/C/D tiers for lower
+                level values.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Golemization</span></td>
+              <td class="effect-cell">Fixes rune dungeon barrier stone HP to 1. Eternal rune atk amp 1,500,000%</td>
+              <td class="mult-cell"><span class="mult mult-a">×15,001</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Fixing barrier stone HP to 1
+                is a utility bonus for rune dungeon. Strong clean eternal rune atk amp.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Expression / Eruption</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">250 Breakthrough</small></td>
+              <td class="effect-cell">Increase rune hero skill/skill dmg amp 5,500% per 10 hero/skill breakthrough</td>
+              <td class="mult-cell"><span class="mult mult-a">×13,751</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span><span
+                  class="note-tag tag-mage">Archmage</span> Combine as one entry, match respective job. Expression =
+                hero skill (DL), Eruption = skill (Mage). 250 BT is realistic for high level.</td>
+            </tr>
+
+            <tr class="tier-row tier-b">
+              <td colspan="4">B Tier</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Authority</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Immortal Sentence/Crest</small></td>
+              <td class="effect-cell">Eternal rune atk amp 75,000%. +300,000% with eternal grade crest/sentence.
+                +750,000% with immortal grade</td>
+              <td class="mult-cell"><span class="mult mult-b">×8,251 (Immortal)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Full value requires immortal grade sentence/crest. See
+                C tier for eternal grade value.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Climax</span><br><small style="color:var(--text-dim); font-size:11px;">Level
+                  24,000</small></td>
+              <td class="effect-cell">Up to lv 24,000: 75,000% + 150,000% + 525,000% eternal rune atk amp</td>
+              <td class="mult-cell"><span class="mult mult-b">×7,501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Level 24,000 milestone value.
+                See A tier for lv 25,000 and C/D for lower levels.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Divine Realm</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Class Level 60</small></td>
+              <td class="effect-cell">Class lv 30: ancient rune atk amp 75,000%. Class lv 60: ancient rune atk amp
+                450,000%</td>
+              <td class="mult-cell"><span class="mult mult-b">×4,501 (Class 60)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Milestone</span> Ancient rune atk amp boost. See C tier for class 30
+                value.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Archaeology</span><br><small style="color:var(--text-dim); font-size:11px;">12
+                  Ancient Equipment</small></td>
+              <td class="effect-cell">4 ancient: 15,000%. 8 ancient: 60,000%. 12 ancient: 450,000% ancient rune atk amp
+              </td>
+              <td class="mult-cell"><span class="mult mult-b">×4,501 (12 ancient)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Ancient rune atk amp boost. See C/D tiers for lower
+                investment values.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Square Terror</span></td>
+              <td class="effect-cell">Ancient rune atk amp 450,000%, decreased by 45,000% per nearby enemy</td>
+              <td class="mult-cell"><span class="mult mult-b">×4,051 (solo enemy)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Content Dependent</span> Best in solo boss
+                content. Value drops significantly with multiple nearby enemies. Not recommended for stage push or crowd
+                dungeons.</td>
+            </tr>
+
+            <tr class="tier-row tier-c">
+              <td colspan="4">C Tier</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Authority</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Eternal Sentence/Crest</small></td>
+              <td class="effect-cell">Eternal rune atk amp 75,000% + 300,000% with eternal grade</td>
+              <td class="mult-cell"><span class="mult mult-c">×3,751</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Eternal grade value. See B
+                tier for immortal grade.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Insight</span></td>
+              <td class="effect-cell">Ignore rune boss invulnerability. Ancient rune atk amp 300,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×3,001</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Boss invulnerability disable
+                is bonus utility. Ancient rune atk amp value.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Companion</span></td>
+              <td class="effect-cell">Increase rune hero skill dmg amp 55,000% per equipped mythic hero</td>
+              <td class="mult-cell"><span class="mult mult-c">×2,751 (5 heroes)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-darklord">Dark Lord</span> Scales with mythic hero
+                roster. At 5 heroes: ×2,751, at 6 (job 60): ×3,301.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Vision Book</span></td>
+              <td class="effect-cell">Increase rune skill dmg amp 44,000% per equipped mythic skill</td>
+              <td class="mult-cell"><span class="mult mult-c">×2,641 (5 skills)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-mage">Archmage</span> Scales with mythic skill roster. At
+                5 skills: ×2,641, at 6 (job 60): ×3,081.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Climax</span><br><small style="color:var(--text-dim); font-size:11px;">Level
+                  23,000</small></td>
+              <td class="effect-cell">Up to lv 23,000: 75,000% + 150,000% eternal rune atk amp</td>
+              <td class="mult-cell"><span class="mult mult-c">×2,251</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Level 23,000 milestone value.
+                See B tier for lv 24,000 and A tier for lv 25,000.</td>
+            </tr>
+
+            <tr class="tier-row tier-d">
+              <td colspan="4">D Tier</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Climax</span><br><small style="color:var(--text-dim); font-size:11px;">Level
+                  22,000</small></td>
+              <td class="effect-cell">Lv 22,000: 75,000% eternal rune atk amp only</td>
+              <td class="mult-cell"><span class="mult mult-d">×751</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Lowest milestone value. See
+                C/B/A tiers for higher level values.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Archaeology</span><br><small style="color:var(--text-dim); font-size:11px;">8
+                  Ancient Equipment</small></td>
+              <td class="effect-cell">8 ancient equipment: 60,000% ancient rune atk amp</td>
+              <td class="mult-cell"><span class="mult mult-d">×601</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Mid-investment value. See B
+                tier for 12 ancient.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Archaeology</span><br><small style="color:var(--text-dim); font-size:11px;">4
+                  Ancient Equipment</small></td>
+              <td class="effect-cell">4 ancient equipment: 15,000% ancient rune atk amp</td>
+              <td class="mult-cell"><span class="mult mult-d">×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Low investment value. See B
+                tier for 12 ancient.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Altar (No Set)</span></td>
+              <td class="effect-cell">50,000,000% eternal rune atk amp — requires Sacrifice (Abyss Deco)</td>
+              <td class="mult-cell"><span class="mult mult-d">×1</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set Rune</span> Zero value without Sacrifice Abyss
+                Deco rune. See S tier set rating.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ABYSS DECO -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">💠</div>
+        <div class="section-title">Abyss Deco</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rune</th>
+              <th>Effect</th>
+              <th>Multiplier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="tier-row tier-s">
+              <td colspan="4">S Tier</td>
+            </tr>
+
+            <tr class="row-s">
+              <td><span class="rune-name job-set">Sacrifice (Set with Altar)</span></td>
+              <td class="effect-cell">4,000,000% abyssal ornament rune atk when equipped with Altar (Emblem)</td>
+              <td class="mult-cell"><span class="mult mult-s">×20,000,540,000<br><small>full set</small></span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set</span> <span
+                  class="note-tag tag-universal">Universal</span> Requires Altar (Emblem rune). Broken ceiling as set.
+                See D tier for solo value.</td>
+            </tr>
+
+            <tr class="tier-row tier-a">
+              <td colspan="4">A Tier</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Curse</span></td>
+              <td class="effect-cell">Inflict burn, shock, and chaos. Abyssal ornament rune atk 200,000%</td>
+              <td class="mult-cell"><span class="mult mult-a">×2,001</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Inflicting all 3 status
+                effects also benefits status-dependent runes. Strong clean value plus utility.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Conqueror</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Stage 400+</small></td>
+              <td class="effect-cell">Rune atk 20,000%. +30,000% at stage 100+. +50,000% at stage 200+. +100,000% at
+                stage 400+</td>
+              <td class="mult-cell"><span class="mult mult-a">×2,001 (stage 400)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Milestone</span> Max value at stage 400. See C tier for lower stage
+                values.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Abyssal Harmony</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Synergy 30+</small></td>
+              <td class="effect-cell">Synergy 10: 20,000%. Synergy 20: +30,000%. Synergy 30: +150,000% abyssal ornament
+                rune atk</td>
+              <td class="mult-cell"><span class="mult mult-a">×2,001 (synergy 30)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Milestone</span> Full value at synergy 30. See C tier for lower synergy
+                values.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Pioneer</span></td>
+              <td class="effect-cell">Rune atk 10,000%. +30,000% if 30+ otherworld tiles scouted. +60,000% if 15+
+                underworld tiles scouted</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,001</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Requires both otherworld and underworld scouting
+                milestones. Achievable for active players.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Divine Blessing</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">200 Potential Level</small></td>
+              <td class="effect-cell">Rune atk 15,000%. +35,000% if guardian is b10. +50,000% if all guardian potential
+                lv 200+</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,001 (all 200)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">High Investment</span> Requires all guardians at potential level 200.
+                See B and D tiers for lower investment.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Abyssal Conqueror</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Stage 40</small></td>
+              <td class="effect-cell">Rune atk 15,000%. +35,000% if primeval abyss stage 15. +50,000% if stage 40</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,001 (stage 40)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Full value at primeval abyss stage 40. See B and D
+                tiers for lower stages.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Spirit Harmony</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Synergy 300+</small></td>
+              <td class="effect-cell">If spirit synergy 200+: 30,000%. If 300+: additional 70,000% abyssal ornament rune
+                atk</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,001 (synergy 300)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">High Investment</span> Requires high spirit synergy. See C tier for
+                synergy 200.</td>
+            </tr>
+
+            <tr class="row-a">
+              <td><span class="rune-name">Conqueror</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Stage 200</small></td>
+              <td class="effect-cell">Rune atk 20,000%. +30,000% at stage 100+. +50,000% at stage 200+</td>
+              <td class="mult-cell"><span class="mult mult-a">×1,001 (stage 200)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Mid-milestone value. See A
+                tier for stage 400 and C for stage 100.</td>
+            </tr>
+
+            <tr class="tier-row tier-b">
+              <td colspan="4">B Tier</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Light Speed</span></td>
+              <td class="effect-cell">Rune atk increased by 2,500% per 10% move speed increase. Assuming all ability
+                roll is movement speed mythic: 315%</td>
+              <td class="mult-cell"><span class="mult mult-b">×776 (mythic rolls)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Condition</span> Value depends heavily on
+                ability roll setup. Shown at max mythic movement speed assumption.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Masterpiece</span><br><small style="color:var(--text-dim); font-size:11px;">4
+                  Legendary+</small></td>
+              <td class="effect-cell">Rune atk increase 12,500% per equipped legendary or higher abyssal ornament</td>
+              <td class="mult-cell"><span class="mult mult-b">×501 (4 pieces)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Requires 4 legendary+ abyssal ornaments. See C and D
+                tiers for fewer pieces.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Divine Blessing</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">b10 Guardian</small></td>
+              <td class="effect-cell">Rune atk 15,000% + 35,000% if guardian is b10</td>
+              <td class="mult-cell"><span class="mult mult-b">×501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> b10 guardian value. See A
+                tier for full potential level 200 value.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Abyssal Conqueror</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Stage 15</small></td>
+              <td class="effect-cell">Rune atk 15,000% + 35,000% if primeval abyss stage 15</td>
+              <td class="mult-cell"><span class="mult mult-b">×501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Stage 15 value. See A tier
+                for stage 40 value.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Gale</span></td>
+              <td class="effect-cell">Rune atk increased 2,500% per 10% atk speed increase. Assuming all ability roll is
+                atk speed mythic: 189%</td>
+              <td class="mult-cell"><span class="mult mult-b">×476 (mythic rolls)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Condition</span> Value depends on ability roll
+                setup. Shown at max mythic attack speed assumption.</td>
+            </tr>
+
+            <tr class="row-b">
+              <td><span class="rune-name">Masterpiece</span><br><small style="color:var(--text-dim); font-size:11px;">3
+                  Legendary+</small></td>
+              <td class="effect-cell">Rune atk increase 12,500% per equipped legendary or higher abyssal ornament</td>
+              <td class="mult-cell"><span class="mult mult-b">×376 (3 pieces)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> 3-piece value. See B tier for
+                4 pieces and C/D for fewer.</td>
+            </tr>
+
+            <tr class="tier-row tier-c">
+              <td colspan="4">C Tier</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Climber</span></td>
+              <td class="effect-cell">In stages: abyss ornament rune atk 30,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×301</span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Stage Only</span> Only active during stage
+                content. No value in dungeons.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Explorer</span></td>
+              <td class="effect-cell">In dungeons: abyss ornament rune atk 30,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×301</span></td>
+              <td class="notes-cell"><span class="note-tag tag-condition">Dungeon Only</span> Only active in dungeons.
+                No value in stages.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Spirit Harmony</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Synergy 200</small></td>
+              <td class="effect-cell">Spirit synergy 200+: 30,000% abyssal ornament rune atk</td>
+              <td class="mult-cell"><span class="mult mult-c">×301</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Below max synergy value. See
+                A tier for synergy 300.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Abyssal Harmony</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Synergy 20</small></td>
+              <td class="effect-cell">Synergy 10: 20,000%. Synergy 20: +30,000% abyssal ornament rune atk</td>
+              <td class="mult-cell"><span class="mult mult-c">×301</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Mid synergy value. See A tier
+                for synergy 30.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Masterpiece</span><br><small style="color:var(--text-dim); font-size:11px;">2
+                  Legendary+</small></td>
+              <td class="effect-cell">Rune atk increase 12,500% per equipped legendary or higher abyssal ornament</td>
+              <td class="mult-cell"><span class="mult mult-c">×251 (2 pieces)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> 2-piece value. See B tier for
+                3-4 pieces.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Discipline</span></td>
+              <td class="effect-cell">Abyss ornament rune atk 20,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×201</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Clean no-condition rune atk.
+                Low ceiling.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Elation</span></td>
+              <td class="effect-cell">When abyss ornament is lv 20 or higher: abyss ornament rune atk 20,000%</td>
+              <td class="mult-cell"><span class="mult mult-c">×201</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> <span
+                  class="note-tag tag-condition">Condition</span> Level 20 condition is reasonable for most active
+                players.</td>
+            </tr>
+
+            <tr class="row-c">
+              <td><span class="rune-name">Abyssal Harmony</span><br><small
+                  style="color:var(--text-dim); font-size:11px;">Synergy 10</small></td>
+              <td class="effect-cell">Synergy 10: 20,000% abyssal ornament rune atk</td>
+              <td class="mult-cell"><span class="mult mult-c">×201</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Lowest synergy milestone. See
+                A tier for synergy 30.</td>
+            </tr>
+
+            <tr class="tier-row tier-d">
+              <td colspan="4">D Tier</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Divine Blessing (No Condition)</span></td>
+              <td class="effect-cell">Abyss ornament rune atk 15,000% only</td>
+              <td class="mult-cell"><span class="mult mult-d">×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Base value without any
+                condition met. See A/B tier for higher investment values.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Abyssal Conqueror (No Condition)</span></td>
+              <td class="effect-cell">Abyss ornament rune atk 15,000% only</td>
+              <td class="mult-cell"><span class="mult mult-d">×151</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Base value without stage
+                conditions met. See A/B tier for higher stages.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Masterpiece</span><br><small style="color:var(--text-dim); font-size:11px;">1
+                  Legendary+</small></td>
+              <td class="effect-cell">Rune atk increase 12,500% per equipped legendary or higher abyssal ornament</td>
+              <td class="mult-cell"><span class="mult mult-d">×126 (1 piece)</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Lowest value. See C/B tiers
+                for more pieces.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Sacrifice (No Set)</span></td>
+              <td class="effect-cell">4,000,000% abyssal ornament rune atk — requires Altar (Emblem)</td>
+              <td class="mult-cell"><span class="mult mult-d">×1</span></td>
+              <td class="notes-cell"><span class="note-tag tag-set">Set Rune</span> Zero value without Altar Emblem
+                rune. See S tier set rating.</td>
+            </tr>
+
+            <tr class="row-d">
+              <td><span class="rune-name">Conqueror (Stage 100)</span></td>
+              <td class="effect-cell">Rune atk 20,000% + 30,000% at stage 100+</td>
+              <td class="mult-cell"><span class="mult mult-d">×501</span></td>
+              <td class="notes-cell"><span class="note-tag tag-universal">Universal</span> Stage 100 only value. Listed
+                here as lower than A tier max. See A tier for stage 200 and 400.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
