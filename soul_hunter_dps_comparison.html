@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Hunter — DPS Hero & Skill Comparison</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c12;
+    --surface: #12151f;
+    --surface2: #1a1e2e;
+    --border: #2a2f45;
+    --accent: #e8a830;
+    --text: #d4d8e8;
+    --text-dim: #7a80a0;
+    --gold: #fbbf24;
+    --silver: #9ca3af;
+    --bronze: #b45309;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(232,168,48,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 30% at 80% 90%, rgba(196,92,42,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .guide-header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .guide-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .game-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(20px, 4vw, 32px);
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    text-shadow: 0 0 40px rgba(232,168,48,0.3);
+  }
+
+  .guide-subtitle { color: var(--text-dim); font-size: 13px; letter-spacing: 1px; }
+
+  /* Assumption strip */
+  .assumption {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 36px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .assumption strong { color: var(--accent); }
+
+  /* Formula box */
+  .formula-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 36px;
+  }
+
+  .formula-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .formula-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .formula-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .step-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(232,168,48,0.15);
+    border: 1px solid rgba(232,168,48,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-text { color: var(--text); }
+  .step-text .formula { font-family: 'Courier New', monospace; color: var(--accent); font-size: 12px; }
+
+  /* Section header */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Comparison grid */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .comp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .comp-card.rank-1 { border-color: var(--gold); }
+  .comp-card.rank-2 { border-color: var(--silver); }
+  .comp-card.rank-3 { border-color: var(--bronze); }
+
+  .card-header {
+    padding: 14px 18px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 12px;
+    color: #fff;
+  }
+
+  .rank-badge {
+    font-size: 16px;
+  }
+
+  .card-body { padding: 16px 18px; }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(42,47,69,0.4);
+  }
+
+  .stat-row:last-child { border-bottom: none; }
+
+  .stat-label { color: var(--text-dim); }
+  .stat-val { font-family: 'Courier New', monospace; color: var(--text); font-weight: 600; }
+  .stat-val.highlight { color: var(--accent); }
+
+  .calc-section {
+    padding: 12px 18px;
+    background: rgba(0,0,0,0.2);
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    line-height: 2;
+  }
+
+  .calc-section .calc-line { display: block; }
+  .calc-section .calc-final { color: var(--accent); font-weight: 700; font-size: 12px; border-top: 1px solid var(--border); margin-top: 4px; padding-top: 4px; }
+
+  .rank-1 .calc-section .calc-final { color: var(--gold); }
+  .rank-2 .calc-section .calc-final { color: var(--silver); }
+  .rank-3 .calc-section .calc-final { color: #cd7c2f; }
+
+  /* Final comparison bar */
+  .final-comparison {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 36px;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .bar-row:last-child { margin-bottom: 0; }
+
+  .bar-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    width: 160px;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 20px;
+    background: var(--surface2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+    justify-content: flex-end;
+  }
+
+  .bar-fill span {
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.7);
+    white-space: nowrap;
+  }
+
+  .bar-val {
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-weight: 700;
+    width: 110px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* Color per unit */
+  .fill-thunder { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .fill-shadow { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+  .fill-inferno { background: linear-gradient(90deg, #ef4444, #f87171); }
+  .fill-mukyong { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .fill-reina { background: linear-gradient(90deg, #ec4899, #f472b6); }
+  .fill-elene { background: linear-gradient(90deg, #10b981, #34d399); }
+
+  @media (max-width: 640px) {
+    .comp-grid { grid-template-columns: 1fr; }
+    .bar-name { width: 120px; }
+    .bar-val { width: 90px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="guide-header">
+    <div class="game-label">DPS Comparison</div>
+    <h1>Hero & Skill DPS Breakdown</h1>
+    <div class="guide-subtitle">Soul Hunter Idle AFK RPG · Step-by-step calculation · b10 verified</div>
+  </div>
+
+  <div class="assumption">
+    <strong>Assumptions:</strong> All units at Level 120, b10 (10 breakthrough). Hero and skill stats reflect base values at these conditions. 10 Star Bonus Damage applies to heroes only.
+  </div>
+
+  <!-- Formula explanation -->
+  <div class="formula-section">
+    <div class="formula-title">How Damage is Calculated</div>
+    <div class="formula-steps">
+      <div class="formula-step">
+        <div class="step-num">1</div>
+        <div class="step-text">Calculate growth: <span class="formula">Growth × Level</span></div>
+      </div>
+      <div class="formula-step">
+        <div class="step-num">2</div>
+        <div class="step-text">Add base damage: <span class="formula">Base + (Growth × Level)</span></div>
+      </div>
+      <div class="formula-step">
+        <div class="step-num">3</div>
+        <div class="step-text">Total hits: <span class="formula">Hit + Hit Count Increase</span></div>
+      </div>
+      <div class="formula-step">
+        <div class="step-num">4</div>
+        <div class="step-text">Multiply: <span class="formula">Step 2 × Step 3</span></div>
+      </div>
+      <div class="formula-step">
+        <div class="step-num">5</div>
+        <div class="step-text">Apply multipliers using (1+x) formula: <span class="formula">× (1 + Status Dmg%) × (1 + Increase Dmg%) × (1 + 10★ Bonus%) × (1 + 2nd Job Boost%)</span></div>
+      </div>
+      <div class="formula-step">
+        <div class="step-num">6</div>
+        <div class="step-text">Result = <span class="formula">Final Damage</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section-label">Skills (Archmage)</div>
+  <div class="comp-grid">
+
+    <!-- Shadow Slash #1 -->
+    <div class="comp-card rank-1">
+      <div class="card-header">
+        <div class="card-name">Shadow Slash</div>
+        <div class="rank-badge">🥇</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Damage Base</span><span class="stat-val">4,000</span></div>
+        <div class="stat-row"><span class="stat-label">Growth</span><span class="stat-val">100</span></div>
+        <div class="stat-row"><span class="stat-label">Level</span><span class="stat-val">120</span></div>
+        <div class="stat-row"><span class="stat-label">Hit</span><span class="stat-val">3</span></div>
+        <div class="stat-row"><span class="stat-label">Hit Count Increase</span><span class="stat-val highlight">+6</span></div>
+        <div class="stat-row"><span class="stat-label">Status Damage</span><span class="stat-val">400%</span></div>
+        <div class="stat-row"><span class="stat-label">Increase Damage</span><span class="stat-val">1,500%</span></div>
+        <div class="stat-row"><span class="stat-label">2nd Job Boost</span><span class="stat-val">700%</span></div>
+      </div>
+      <div class="calc-section">
+        <span class="calc-line">Step 1: 100 × 120 = 12,000</span>
+        <span class="calc-line">Step 2: 4,000 + 12,000 = 16,000</span>
+        <span class="calc-line">Step 3: 3 + 6 = 9 hits</span>
+        <span class="calc-line">Step 4: 16,000 × 9 = 144,000</span>
+        <span class="calc-line">Step 5: × (1+4)(1+15)(1+7)</span>
+        <span class="calc-line">&nbsp;&nbsp;&nbsp;&nbsp;= × 5 × 16 × 8 = ×640</span>
+        <span class="calc-final">Final: 144,000 × 640 = 92,160,000</span>
+      </div>
+    </div>
+
+    <!-- Inferno Crown #2 -->
+    <div class="comp-card rank-2">
+      <div class="card-header">
+        <div class="card-name">Inferno Crown</div>
+        <div class="rank-badge">🥈</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Damage Base</span><span class="stat-val">4,000</span></div>
+        <div class="stat-row"><span class="stat-label">Growth</span><span class="stat-val">100</span></div>
+        <div class="stat-row"><span class="stat-label">Level</span><span class="stat-val">120</span></div>
+        <div class="stat-row"><span class="stat-label">Hit</span><span class="stat-val">3</span></div>
+        <div class="stat-row"><span class="stat-label">Hit Count Increase</span><span class="stat-val highlight">+6</span></div>
+        <div class="stat-row"><span class="stat-label">Status Damage</span><span class="stat-val">300%</span></div>
+        <div class="stat-row"><span class="stat-label">Increase Damage</span><span class="stat-val">1,500%</span></div>
+        <div class="stat-row"><span class="stat-label">2nd Job Boost</span><span class="stat-val">800%</span></div>
+      </div>
+      <div class="calc-section">
+        <span class="calc-line">Step 1: 100 × 120 = 12,000</span>
+        <span class="calc-line">Step 2: 4,000 + 12,000 = 16,000</span>
+        <span class="calc-line">Step 3: 3 + 6 = 9 hits</span>
+        <span class="calc-line">Step 4: 16,000 × 9 = 144,000</span>
+        <span class="calc-line">Step 5: × (1+3)(1+15)(1+8)</span>
+        <span class="calc-line">&nbsp;&nbsp;&nbsp;&nbsp;= × 4 × 16 × 9 = ×576</span>
+        <span class="calc-final">Final: 144,000 × 576 = 82,944,000</span>
+      </div>
+    </div>
+
+    <!-- Thunder Execution #3 -->
+    <div class="comp-card rank-3">
+      <div class="card-header">
+        <div class="card-name">Thunder Execution</div>
+        <div class="rank-badge">🥉</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Damage Base</span><span class="stat-val">4,000</span></div>
+        <div class="stat-row"><span class="stat-label">Growth</span><span class="stat-val">100</span></div>
+        <div class="stat-row"><span class="stat-label">Level</span><span class="stat-val">120</span></div>
+        <div class="stat-row"><span class="stat-label">Hit</span><span class="stat-val">3</span></div>
+        <div class="stat-row"><span class="stat-label">Hit Count Increase</span><span class="stat-val">+0</span></div>
+        <div class="stat-row"><span class="stat-label">Status Damage</span><span class="stat-val">600%</span></div>
+        <div class="stat-row"><span class="stat-label">Increase Damage</span><span class="stat-val">1,500%</span></div>
+        <div class="stat-row"><span class="stat-label">2nd Job Boost</span><span class="stat-val">800%</span></div>
+      </div>
+      <div class="calc-section">
+        <span class="calc-line">Step 1: 100 × 120 = 12,000</span>
+        <span class="calc-line">Step 2: 4,000 + 12,000 = 16,000</span>
+        <span class="calc-line">Step 3: 3 + 0 = 3 hits</span>
+        <span class="calc-line">Step 4: 16,000 × 3 = 48,000</span>
+        <span class="calc-line">Step 5: × (1+6)(1+15)(1+8)</span>
+        <span class="calc-line">&nbsp;&nbsp;&nbsp;&nbsp;= × 7 × 16 × 9 = ×1,008</span>
+        <span class="calc-final">Final: 48,000 × 1,008 = 48,384,000</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Skill bar chart -->
+  <div class="final-comparison" style="margin-bottom: 48px;">
+    <div class="formula-title">Skill Final Damage Comparison</div>
+    <div class="bar-row">
+      <div class="bar-name">Shadow Slash</div>
+      <div class="bar-track">
+        <div class="bar-fill fill-shadow" style="width: 100%"><span>92,160,000</span></div>
+      </div>
+      <div class="bar-val">92,160,000</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">Inferno Crown</div>
+      <div class="bar-track">
+        <div class="bar-fill fill-inferno" style="width: 90%"><span>82,944,000</span></div>
+      </div>
+      <div class="bar-val">82,944,000</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">Thunder Execution</div>
+      <div class="bar-track">
+        <div class="bar-fill fill-thunder" style="width: 52.5%"><span>48,384,000</span></div>
+      </div>
+      <div class="bar-val">48,384,000</div>
+    </div>
+  </div>
+
+  <!-- HEROES -->
+  <div class="section-label">Heroes (Dark Lord)</div>
+  <div class="comp-grid">
+
+    <!-- Elene #1 -->
+    <div class="comp-card rank-1">
+      <div class="card-header">
+        <div class="card-name">Elene</div>
+        <div class="rank-badge">🥇</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Damage Base</span><span class="stat-val">12,500</span></div>
+        <div class="stat-row"><span class="stat-label">Growth</span><span class="stat-val">312.5</span></div>
+        <div class="stat-row"><span class="stat-label">Level</span><span class="stat-val">120</span></div>
+        <div class="stat-row"><span class="stat-label">Hit</span><span class="stat-val">5</span></div>
+        <div class="stat-row"><span class="stat-label">Hit Count Increase</span><span class="stat-val highlight">+10</span></div>
+        <div class="stat-row"><span class="stat-label">Status Damage</span><span class="stat-val">300%</span></div>
+        <div class="stat-row"><span class="stat-label">Increase Damage</span><span class="stat-val">100%</span></div>
+        <div class="stat-row"><span class="stat-label">2nd Job Boost</span><span class="stat-val">1,500%</span></div>
+        <div class="stat-row"><span class="stat-label">10★ Bonus Damage</span><span class="stat-val">200%</span></div>
+      </div>
+      <div class="calc-section">
+        <span class="calc-line">Step 1: 312.5 × 120 = 37,500</span>
+        <span class="calc-line">Step 2: 12,500 + 37,500 = 50,000</span>
+        <span class="calc-line">Step 3: 5 + 10 = 15 hits</span>
+        <span class="calc-line">Step 4: 50,000 × 15 = 750,000</span>
+        <span class="calc-line">Step 5: × (1+3)(1+1)(1+15)(1+2)</span>
+        <span class="calc-line">&nbsp;&nbsp;&nbsp;&nbsp;= × 4 × 2 × 16 × 3 = ×384</span>
+        <span class="calc-final">Final: 750,000 × 384 = 288,000,000</span>
+      </div>
+    </div>
+
+    <!-- Reina #2 -->
+    <div class="comp-card rank-2">
+      <div class="card-header">
+        <div class="card-name">Reina</div>
+        <div class="rank-badge">🥈</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Damage Base</span><span class="stat-val">12,500</span></div>
+        <div class="stat-row"><span class="stat-label">Growth</span><span class="stat-val">312.5</span></div>
+        <div class="stat-row"><span class="stat-label">Level</span><span class="stat-val">120</span></div>
+        <div class="stat-row"><span class="stat-label">Hit</span><span class="stat-val">5</span></div>
+        <div class="stat-row"><span class="stat-label">Hit Count Increase</span><span class="stat-val highlight">+10</span></div>
+        <div class="stat-row"><span class="stat-label">Status Damage</span><span class="stat-val">400%</span></div>
+        <div class="stat-row"><span class="stat-label">Increase Damage</span><span class="stat-val">0%</span></div>
+        <div class="stat-row"><span class="stat-label">2nd Job Boost</span><span class="stat-val">1,500%</span></div>
+        <div class="stat-row"><span class="stat-label">10★ Bonus Damage</span><span class="stat-val">200%</span></div>
+      </div>
+      <div class="calc-section">
+        <span class="calc-line">Step 1: 312.5 × 120 = 37,500</span>
+        <span class="calc-line">Step 2: 12,500 + 37,500 = 50,000</span>
+        <span class="calc-line">Step 3: 5 + 10 = 15 hits</span>
+        <span class="calc-line">Step 4: 50,000 × 15 = 750,000</span>
+        <span class="calc-line">Step 5: × (1+4)(1+0)(1+15)(1+2)</span>
+        <span class="calc-line">&nbsp;&nbsp;&nbsp;&nbsp;= × 5 × 1 × 16 × 3 = ×240</span>
+        <span class="calc-final">Final: 750,000 × 240 = 180,000,000</span>
+      </div>
+    </div>
+
+    <!-- Mukyong #3 -->
+    <div class="comp-card rank-3">
+      <div class="card-header">
+        <div class="card-name">Mukyong</div>
+        <div class="rank-badge">🥉</div>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span class="stat-label">Damage Base</span><span class="stat-val">12,500</span></div>
+        <div class="stat-row"><span class="stat-label">Growth</span><span class="stat-val">312.5</span></div>
+        <div class="stat-row"><span class="stat-label">Level</span><span class="stat-val">120</span></div>
+        <div class="stat-row"><span class="stat-label">Hit</span><span class="stat-val">5</span></div>
+        <div class="stat-row"><span class="stat-label">Hit Count Increase</span><span class="stat-val">+0</span></div>
+        <div class="stat-row"><span class="stat-label">Status Damage</span><span class="stat-val">600%</span></div>
+        <div class="stat-row"><span class="stat-label">Increase Damage</span><span class="stat-val">100%</span></div>
+        <div class="stat-row"><span class="stat-label">2nd Job Boost</span><span class="stat-val">1,500%</span></div>
+        <div class="stat-row"><span class="stat-label">10★ Bonus Damage</span><span class="stat-val">200%</span></div>
+      </div>
+      <div class="calc-section">
+        <span class="calc-line">Step 1: 312.5 × 120 = 37,500</span>
+        <span class="calc-line">Step 2: 12,500 + 37,500 = 50,000</span>
+        <span class="calc-line">Step 3: 5 + 0 = 5 hits</span>
+        <span class="calc-line">Step 4: 50,000 × 5 = 250,000</span>
+        <span class="calc-line">Step 5: × (1+6)(1+1)(1+15)(1+2)</span>
+        <span class="calc-line">&nbsp;&nbsp;&nbsp;&nbsp;= × 7 × 2 × 16 × 3 = ×672</span>
+        <span class="calc-final">Final: 250,000 × 672 = 168,000,000</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Hero bar chart -->
+  <div class="final-comparison">
+    <div class="formula-title">Hero Final Damage Comparison</div>
+    <div class="bar-row">
+      <div class="bar-name">Elene</div>
+      <div class="bar-track">
+        <div class="bar-fill fill-elene" style="width: 100%"><span>288,000,000</span></div>
+      </div>
+      <div class="bar-val">288,000,000</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">Reina</div>
+      <div class="bar-track">
+        <div class="bar-fill fill-reina" style="width: 62.5%"><span>180,000,000</span></div>
+      </div>
+      <div class="bar-val">180,000,000</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">Mukyong</div>
+      <div class="bar-track">
+        <div class="bar-fill fill-mukyong" style="width: 58.3%"><span>168,000,000</span></div>
+      </div>
+      <div class="bar-val">168,000,000</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
