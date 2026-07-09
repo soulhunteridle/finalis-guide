@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Hunter — Job Level Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c12;
+    --surface: #12151f;
+    --surface2: #1a1e2e;
+    --border: #2a2f45;
+    --accent: #e8a830;
+    --text: #d4d8e8;
+    --text-dim: #7a80a0;
+    --success: #4ade80;
+    --success-bg: rgba(74,222,128,0.08);
+    --success-border: rgba(74,222,128,0.3);
+    --warning: #f59e0b;
+    --warning-bg: rgba(245,158,11,0.08);
+    --warning-border: rgba(245,158,11,0.3);
+    --danger: #f87171;
+    --danger-bg: rgba(248,113,113,0.08);
+    --danger-border: rgba(248,113,113,0.3);
+    --tab1: #60a5fa;
+    --tab2: #c084fc;
+    --tab3: #34d399;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(232,168,48,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 30% at 80% 90%, rgba(52,211,153,0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  .guide-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .guide-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .game-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(20px, 4vw, 30px);
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    text-shadow: 0 0 40px rgba(232,168,48,0.25);
+  }
+
+  .guide-subtitle { color: var(--text-dim); font-size: 13px; letter-spacing: 1px; }
+
+  /* Tabs */
+  .tab-nav {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .tab-btn:hover { color: var(--text); background: var(--surface2); }
+
+  .tab-btn.active[data-tab="1"] { background: rgba(96,165,250,0.15); color: var(--tab1); border: 1px solid rgba(96,165,250,0.3); }
+  .tab-btn.active[data-tab="2"] { background: rgba(192,132,252,0.15); color: var(--tab2); border: 1px solid rgba(192,132,252,0.3); }
+  .tab-btn.active[data-tab="3"] { background: rgba(52,211,153,0.15); color: var(--tab3); border: 1px solid rgba(52,211,153,0.3); }
+
+  /* Tab panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Calculator card */
+  .calc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .calc-header {
+    padding: 18px 24px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .calc-header-icon { font-size: 18px; }
+
+  .calc-header-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 13px;
+    color: #fff;
+  }
+
+  .calc-body { padding: 24px; }
+
+  /* Input groups */
+  .input-group { margin-bottom: 18px; }
+  .input-group:last-child { margin-bottom: 0; }
+
+  .input-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 7px;
+  }
+
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .input-row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    transition: border-color 0.2s;
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  input[type="number"]:focus { border-color: var(--accent); }
+
+  .input-sublabel {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  /* Key inputs with label */
+  .key-input-group {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+
+  .key-input-group:last-child { margin-bottom: 0; }
+
+  .key-input-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .key-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .key-input-sub {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Calculate button */
+  .calc-btn {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--accent), #c45c2a);
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+    margin-top: 20px;
+  }
+
+  .calc-btn:hover { opacity: 0.9; }
+
+  /* Result panel */
+  .result-panel {
+    display: none;
+    margin-top: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .result-panel.show { display: block; }
+
+  .result-header {
+    padding: 14px 20px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .result-body { padding: 20px; }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(42,47,69,0.5);
+    font-size: 13px;
+    gap: 16px;
+  }
+
+  .result-row:last-child { border-bottom: none; }
+
+  .result-label { color: var(--text-dim); flex-shrink: 0; }
+  .result-val { font-family: 'Courier New', monospace; font-weight: 700; text-align: right; }
+  .result-val.accent { color: var(--accent); }
+
+  .result-conclusion {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .result-conclusion.success { background: var(--success-bg); border: 1px solid var(--success-border); color: var(--success); }
+  .result-conclusion.warning { background: var(--warning-bg); border: 1px solid var(--warning-border); color: var(--warning); }
+  .result-conclusion.danger { background: var(--danger-bg); border: 1px solid var(--danger-border); color: var(--danger); }
+
+  .result-conclusion strong { font-weight: 700; }
+
+  /* Error message */
+  .error-msg {
+    display: none;
+    background: var(--danger-bg);
+    border: 1px solid var(--danger-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--danger);
+    margin-top: 12px;
+  }
+
+  .error-msg.show { display: block; }
+
+  /* Cost table */
+  .cost-table-wrap {
+    margin-top: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .cost-table-toggle {
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--surface2);
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+  }
+
+  .cost-table-toggle:hover { color: var(--accent); }
+  .cost-table-toggle .toggle-arrow { font-size: 14px; transition: transform 0.2s; }
+  .cost-table-toggle.open .toggle-arrow { transform: rotate(180deg); }
+
+  .cost-table-body { display: none; overflow-x: auto; }
+  .cost-table-body.open { display: block; }
+
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .cost-table thead th {
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.02);
+    color: var(--text-dim);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+
+  .cost-table tbody td {
+    padding: 7px 14px;
+    border-bottom: 1px solid rgba(42,47,69,0.35);
+    font-family: 'Courier New', monospace;
+  }
+
+  .cost-table tbody tr:last-child td { border-bottom: none; }
+  .cost-table tbody tr:hover td { background: rgba(255,255,255,0.015); }
+
+  .cost-table .td-level { color: var(--accent); font-weight: 700; width: 80px; }
+  .cost-table .td-cost { color: var(--text); }
+  .cost-table .td-cumulative { color: var(--text-dim); }
+
+  @media (max-width: 480px) {
+    .input-row, .key-input-row { grid-template-columns: 1fr; }
+    .input-row-3 { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="guide-header">
+    <div class="game-label">Tool</div>
+    <h1>Job Level Calculator</h1>
+    <div class="guide-subtitle">Soul Hunter Idle AFK RPG · Plan your upgrade path</div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="1" onclick="switchTab(1)">⚔ Job 1</button>
+    <button class="tab-btn" data-tab="2" onclick="switchTab(2)">🔮 Job 2</button>
+    <button class="tab-btn" data-tab="3" onclick="switchTab(3)">💀 Job 3</button>
+  </div>
+
+  <!-- JOB 1 -->
+  <div class="tab-panel active" id="tab-1">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-header-icon">⚔</div>
+        <div class="calc-header-title">Job 1 Calculator</div>
+      </div>
+      <div class="calc-body">
+
+        <div class="input-group">
+          <label class="input-label">Job Level</label>
+          <div class="input-row">
+            <div>
+              <input type="number" id="j1-current" placeholder="Current level" min="1" max="90">
+              <div class="input-sublabel">Current (1–90)</div>
+            </div>
+            <div>
+              <input type="number" id="j1-target" placeholder="Target level" min="1" max="90">
+              <div class="input-sublabel">Target (1–90)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">Reserved Material</label>
+          <input type="number" id="j1-material" placeholder="e.g. 1000000" min="0">
+          <div class="input-sublabel">Current Job 1 upgrade material you already have</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="input-group">
+          <label class="input-label">Keys</label>
+
+          <div class="key-input-group">
+            <div class="key-input-name">Job 1 Dungeon Key</div>
+            <div class="key-input-row">
+              <div>
+                <input type="number" id="j1-key1-count" placeholder="Keys owned" min="0">
+                <div class="key-input-sub">How many keys you have</div>
+              </div>
+              <div>
+                <input type="number" id="j1-key1-yield" placeholder="Material per key" min="0">
+                <div class="key-input-sub">Material gained per key</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="key-input-group">
+            <div class="key-input-name">Treasure Dungeon Key</div>
+            <div class="key-input-row">
+              <div>
+                <input type="number" id="j1-key2-count" placeholder="Keys owned" min="0">
+                <div class="key-input-sub">How many keys you have</div>
+              </div>
+              <div>
+                <input type="number" id="j1-key2-yield" placeholder="Material per key" min="0">
+                <div class="key-input-sub">Material gained per key</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="calc-btn" onclick="calculate(1)">Calculate</button>
+        <div class="error-msg" id="j1-error"></div>
+      </div>
+    </div>
+
+    <div class="result-panel" id="j1-result">
+      <div class="result-header">Result</div>
+      <div class="result-body" id="j1-result-body"></div>
+    </div>
+
+    <div class="cost-table-wrap">
+      <button class="cost-table-toggle" onclick="toggleTable('j1-table', this)">
+        <span>Job 1 Level Cost Table</span>
+        <span class="toggle-arrow">▼</span>
+      </button>
+      <div class="cost-table-body" id="j1-table">
+        <table class="cost-table">
+          <thead><tr><th>Level</th><th>Cost to Reach</th><th>Cumulative Total</th></tr></thead>
+          <tbody id="j1-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOB 2 -->
+  <div class="tab-panel" id="tab-2">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-header-icon">🔮</div>
+        <div class="calc-header-title">Job 2 Calculator</div>
+      </div>
+      <div class="calc-body">
+
+        <div class="input-group">
+          <label class="input-label">Job Level</label>
+          <div class="input-row">
+            <div>
+              <input type="number" id="j2-current" placeholder="Current level" min="1" max="90">
+              <div class="input-sublabel">Current (1–90)</div>
+            </div>
+            <div>
+              <input type="number" id="j2-target" placeholder="Target level" min="1" max="90">
+              <div class="input-sublabel">Target (1–90)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">Reserved Material</label>
+          <input type="number" id="j2-material" placeholder="e.g. 500000" min="0">
+          <div class="input-sublabel">Current Job 2 upgrade material you already have</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="input-group">
+          <label class="input-label">Keys</label>
+          <div class="key-input-group">
+            <div class="key-input-name">Job 2 Dungeon Key</div>
+            <div class="key-input-row">
+              <div>
+                <input type="number" id="j2-key1-count" placeholder="Keys owned" min="0">
+                <div class="key-input-sub">How many keys you have</div>
+              </div>
+              <div>
+                <input type="number" id="j2-key1-yield" placeholder="Material per key" min="0">
+                <div class="key-input-sub">Material gained per key</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="calc-btn" onclick="calculate(2)">Calculate</button>
+        <div class="error-msg" id="j2-error"></div>
+      </div>
+    </div>
+
+    <div class="result-panel" id="j2-result">
+      <div class="result-header">Result</div>
+      <div class="result-body" id="j2-result-body"></div>
+    </div>
+
+    <div class="cost-table-wrap">
+      <button class="cost-table-toggle" onclick="toggleTable('j2-table', this)">
+        <span>Job 2 Level Cost Table</span>
+        <span class="toggle-arrow">▼</span>
+      </button>
+      <div class="cost-table-body" id="j2-table">
+        <table class="cost-table">
+          <thead><tr><th>Level</th><th>Cost to Reach</th><th>Cumulative Total</th></tr></thead>
+          <tbody id="j2-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOB 3 -->
+  <div class="tab-panel" id="tab-3">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-header-icon">💀</div>
+        <div class="calc-header-title">Job 3 Calculator</div>
+      </div>
+      <div class="calc-body">
+
+        <div class="input-group">
+          <label class="input-label">Job Level</label>
+          <div class="input-row">
+            <div>
+              <input type="number" id="j3-current" placeholder="Current level" min="1" max="26">
+              <div class="input-sublabel">Current (1–26)</div>
+            </div>
+            <div>
+              <input type="number" id="j3-target" placeholder="Target level" min="1" max="26">
+              <div class="input-sublabel">Target (1–26)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">Reserved Material</label>
+          <input type="number" id="j3-material" placeholder="e.g. 200000" min="0">
+          <div class="input-sublabel">Current Job 3 upgrade material you already have</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="input-group">
+          <label class="input-label">Keys</label>
+          <div class="key-input-group">
+            <div class="key-input-name">Job 3 Dungeon Key</div>
+            <div class="key-input-row">
+              <div>
+                <input type="number" id="j3-key1-count" placeholder="Keys owned" min="0">
+                <div class="key-input-sub">How many keys you have</div>
+              </div>
+              <div>
+                <input type="number" id="j3-key1-yield" placeholder="Material per key" min="0">
+                <div class="key-input-sub">Material gained per key</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="calc-btn" onclick="calculate(3)">Calculate</button>
+        <div class="error-msg" id="j3-error"></div>
+      </div>
+    </div>
+
+    <div class="result-panel" id="j3-result">
+      <div class="result-header">Result</div>
+      <div class="result-body" id="j3-result-body"></div>
+    </div>
+
+    <div class="cost-table-wrap">
+      <button class="cost-table-toggle" onclick="toggleTable('j3-table', this)">
+        <span>Job 3 Level Cost Table</span>
+        <span class="toggle-arrow">▼</span>
+      </button>
+      <div class="cost-table-body" id="j3-table">
+        <table class="cost-table">
+          <thead><tr><th>Level</th><th>Cost to Reach</th><th>Cumulative Total</th></tr></thead>
+          <tbody id="j3-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────────
+
+const JOB1_COST = [
+  0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,
+  5500,8000,10500,13000,15500,18000,20500,23000,25500,28000,
+  30500,35000,39500,44000,48500,53000,57500,62000,66500,71000,
+  75500,80000,90000,100000,110000,120000,130000,140000,150000,160000,
+  170000,190000,210000,230000,250000,270000,290000,310000,330000,350000,
+  370000,400000,450000,500000,550000,600000,650000,700000,750000,800000,
+  1000000,1250000,1500000,1750000,2000000,2250000,2500000,2750000,3000000,3250000,
+  3500000,4000000,4500000,5000000,5500000,6000000,6500000,7000000,7500000,8000000,
+  8500000,9000000,9500000,10000000,10500000,11000000,11500000,12000000,12500000,13000000
+];
+
+const JOB2_COST = [
+  0,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500,
+  6000,6500,7000,7500,8000,8500,9000,9500,10000,11000,
+  12000,13000,14000,15000,16000,17000,18000,19000,20000,25000,
+  30000,35000,40000,45000,50000,55000,60000,65000,70000,75000,
+  80000,85000,90000,95000,100000,105000,110000,115000,120000,125000,
+  130000,135000,140000,145000,150000,155000,160000,165000,170000,175000,
+  180000,185000,190000,195000,200000,210000,220000,230000,240000,250000,
+  260000,270000,280000,290000,300000,310000,320000,330000,340000,350000,
+  360000,370000,380000,390000,400000,410000,420000,430000,440000,450000
+];
+
+const JOB3_COST = [
+  0,1000,2000,3000,4000,7000,10000,12000,14000,16000,18000,
+  20000,22000,24000,26000,28000,30000,40000,42000,44000,46000,
+  48000,50000,60000,70000,80000,100000
+];
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function fmt(n) {
+  return Math.round(n).toLocaleString();
+}
+
+function totalCost(costArr, from, to) {
+  let total = 0;
+  for (let i = from + 1; i <= to; i++) {
+    total += costArr[i];
+  }
+  return total;
+}
+
+function switchTab(n) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.tab-btn[data-tab="${n}"]`).classList.add('active');
+  document.getElementById(`tab-${n}`).classList.add('active');
+}
+
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+function hideError(id) {
+  document.getElementById(id).classList.remove('show');
+}
+
+function getVal(id) {
+  const v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? 0 : v;
+}
+
+// ── Table toggle ──────────────────────────────────────────────────────────────
+
+function toggleTable(id, btn) {
+  const body = document.getElementById(id);
+  body.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+// ── Populate cost tables on load ──────────────────────────────────────────────
+
+function buildTable(costArr, tbodyId) {
+  const tbody = document.getElementById(tbodyId);
+  let cumulative = 0;
+  for (let i = 1; i < costArr.length; i++) {
+    cumulative += costArr[i];
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="td-level">Lv ${i}</td>
+      <td class="td-cost">${fmt(costArr[i])}</td>
+      <td class="td-cumulative">${fmt(cumulative)}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+}
+
+buildTable(JOB1_COST, 'j1-table-body');
+buildTable(JOB2_COST, 'j2-table-body');
+buildTable(JOB3_COST, 'j3-table-body');
+
+function calculate(job) {
+  const errId = `j${job}-error`;
+  const resultPanel = document.getElementById(`j${job}-result`);
+  const resultBody = document.getElementById(`j${job}-result-body`);
+  hideError(errId);
+  resultPanel.classList.remove('show');
+
+  const current  = Math.floor(getVal(`j${job}-current`));
+  const target   = Math.floor(getVal(`j${job}-target`));
+  const material = getVal(`j${job}-material`);
+
+  // Validate
+  const costArr = job === 1 ? JOB1_COST : job === 2 ? JOB2_COST : JOB3_COST;
+  const maxLv = costArr.length - 1;
+
+  if (!current || !target) { showError(errId, 'Please enter current and target level.'); return; }
+  if (current < 1 || current > maxLv) { showError(errId, `Current level must be between 1 and ${maxLv}.`); return; }
+  if (target < 1 || target > maxLv) { showError(errId, `Target level must be between 1 and ${maxLv}.`); return; }
+  if (target <= current) { showError(errId, 'Target level must be higher than current level.'); return; }
+
+  // Step 1: Material needed
+  const needed = totalCost(costArr, current, target);
+
+  // Step 2: After reserved material
+  const afterReserved = Math.max(0, needed - material);
+  const reservedUsed = Math.min(material, needed);
+
+  // Step 3: Material from keys
+  let keyGain = 0;
+  let key1Count = 0, key1Yield = 0, key2Count = 0, key2Yield = 0;
+
+  if (job === 1) {
+    key1Count = getVal('j1-key1-count');
+    key1Yield = getVal('j1-key1-yield');
+    key2Count = getVal('j1-key2-count');
+    key2Yield = getVal('j1-key2-yield');
+    keyGain = (key1Count * key1Yield) + (key2Count * key2Yield);
+  } else if (job === 2) {
+    key1Count = getVal('j2-key1-count');
+    key1Yield = getVal('j2-key1-yield');
+    keyGain = key1Count * key1Yield;
+  } else {
+    key1Count = getVal('j3-key1-count');
+    key1Yield = getVal('j3-key1-yield');
+    keyGain = key1Count * key1Yield;
+  }
+
+  // Step 4: Final result
+  const totalAvailable = material + keyGain;
+  const surplus = totalAvailable - needed;
+  const deficit = needed - totalAvailable;
+  const canUpgrade = totalAvailable >= needed;
+
+  // Build result HTML
+  let html = '';
+
+  html += `<div class="result-row"><span class="result-label">Material needed (lv ${current} → ${target})</span><span class="result-val accent">${fmt(needed)}</span></div>`;
+  html += `<div class="result-row"><span class="result-label">Reserved material used</span><span class="result-val">${fmt(reservedUsed)}</span></div>`;
+  html += `<div class="result-row"><span class="result-label">Still needed after reserved</span><span class="result-val">${fmt(afterReserved)}</span></div>`;
+
+  if (job === 1) {
+    html += `<div class="result-row"><span class="result-label">From Job 1 keys (${fmt(key1Count)} × ${fmt(key1Yield)})</span><span class="result-val">${fmt(key1Count * key1Yield)}</span></div>`;
+    html += `<div class="result-row"><span class="result-label">From Treasure keys (${fmt(key2Count)} × ${fmt(key2Yield)})</span><span class="result-val">${fmt(key2Count * key2Yield)}</span></div>`;
+  } else if (job === 2) {
+    html += `<div class="result-row"><span class="result-label">From Job 2 keys (${fmt(key1Count)} × ${fmt(key1Yield)})</span><span class="result-val">${fmt(key1Count * key1Yield)}</span></div>`;
+  } else {
+    html += `<div class="result-row"><span class="result-label">From Job 3 keys (${fmt(key1Count)} × ${fmt(key1Yield)})</span><span class="result-val">${fmt(key1Count * key1Yield)}</span></div>`;
+  }
+
+  html += `<div class="result-row"><span class="result-label">Total material available</span><span class="result-val accent">${fmt(totalAvailable)}</span></div>`;
+
+  if (canUpgrade) {
+    // Surplus — convert back to treasure dungeon keys for job 1, or just show surplus for others
+    if (job === 1 && key2Yield > 0) {
+      const remainingTreasureKeys = Math.floor(surplus / key2Yield);
+      const leftoverMat = surplus % key2Yield;
+      html += `<div class="result-row"><span class="result-label">Surplus material</span><span class="result-val">${fmt(surplus)}</span></div>`;
+      html += `<div class="result-row"><span class="result-label">Treasure keys remaining</span><span class="result-val accent">${fmt(remainingTreasureKeys)} keys</span></div>`;
+      if (leftoverMat > 0) {
+        html += `<div class="result-row"><span class="result-label">Leftover material</span><span class="result-val">${fmt(leftoverMat)}</span></div>`;
+      }
+      html += `<div class="result-conclusion success"><strong>✓ You can reach Job 1 level ${target}!</strong><br>After upgrading you'll have <strong>${fmt(remainingTreasureKeys)} Treasure Dungeon keys</strong> remaining (${fmt(surplus)} surplus material ÷ ${fmt(key2Yield)} per key).${leftoverMat > 0 ? ` Plus ${fmt(leftoverMat)} leftover material.` : ''}</div>`;
+    } else {
+      html += `<div class="result-row"><span class="result-label">Surplus material</span><span class="result-val">${fmt(surplus)}</span></div>`;
+      html += `<div class="result-conclusion success"><strong>✓ You can reach Job ${job} level ${target}!</strong><br>You'll have <strong>${fmt(surplus)} material</strong> left over after upgrading.</div>`;
+    }
+  } else {
+    // Deficit — how many more keys needed
+    const deficitMat = deficit;
+
+    if (job === 1) {
+      // Try to fill deficit from treasure keys (since job1 keys already all used)
+      let keysNeeded = key2Yield > 0 ? Math.ceil(deficitMat / key2Yield) : '—';
+      html += `<div class="result-row"><span class="result-label">Material still needed</span><span class="result-val">${fmt(deficitMat)}</span></div>`;
+      if (key2Yield > 0) {
+        html += `<div class="result-row"><span class="result-label">Extra Treasure keys needed</span><span class="result-val">${fmt(keysNeeded)} more keys</span></div>`;
+      }
+      html += `<div class="result-conclusion danger"><strong>✗ Not enough material.</strong><br>You're short by <strong>${fmt(deficitMat)}</strong>.${key2Yield > 0 ? ` You need <strong>${fmt(keysNeeded)} more Treasure Dungeon keys</strong> to cover the gap.` : ' Enter your Treasure key yield to see how many more you need.'}</div>`;
+    } else {
+      let keysNeeded = key1Yield > 0 ? Math.ceil(deficitMat / key1Yield) : '—';
+      html += `<div class="result-row"><span class="result-label">Material still needed</span><span class="result-val">${fmt(deficitMat)}</span></div>`;
+      if (key1Yield > 0) {
+        html += `<div class="result-row"><span class="result-label">Extra keys needed</span><span class="result-val">${fmt(keysNeeded)} more keys</span></div>`;
+      }
+      html += `<div class="result-conclusion danger"><strong>✗ Not enough material.</strong><br>You're short by <strong>${fmt(deficitMat)}</strong>.${key1Yield > 0 ? ` You need <strong>${fmt(keysNeeded)} more Job ${job} keys</strong> to cover the gap.` : ''}</div>`;
+    }
+  }
+
+  resultBody.innerHTML = html;
+  resultPanel.classList.add('show');
+}
+</script>
+
+</body>
+</html>
