@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Hunter — Guardian Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c12;
+    --surface: #12151f;
+    --surface2: #1a1e2e;
+    --border: #2a2f45;
+    --accent: #e8a830;
+    --text: #d4d8e8;
+    --text-dim: #7a80a0;
+    --success: #4ade80;
+    --success-bg: rgba(74,222,128,0.08);
+    --success-border: rgba(74,222,128,0.3);
+    --danger: #f87171;
+    --danger-bg: rgba(248,113,113,0.08);
+    --danger-border: rgba(248,113,113,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(232,168,48,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 30% at 80% 90%, rgba(196,92,42,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .guide-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .guide-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .game-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(20px, 4vw, 30px);
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    text-shadow: 0 0 40px rgba(232,168,48,0.25);
+  }
+
+  .guide-subtitle { color: var(--text-dim); font-size: 13px; letter-spacing: 1px; }
+
+  /* Card */
+  .calc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .calc-header {
+    padding: 18px 24px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .calc-header-icon { font-size: 18px; }
+
+  .calc-header-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 13px;
+    color: #fff;
+  }
+
+  .calc-body { padding: 24px; }
+
+  .input-group { margin-bottom: 18px; }
+  .input-group:last-child { margin-bottom: 0; }
+
+  .input-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 7px;
+  }
+
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  input[type="number"]:focus { border-color: var(--accent); }
+
+  .input-sublabel {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  .key-input-group {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .key-input-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .key-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .key-input-sub {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .calc-btn {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--accent), #c45c2a);
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+    margin-top: 20px;
+  }
+
+  .calc-btn:hover { opacity: 0.9; }
+
+  /* Result */
+  .result-panel {
+    display: none;
+    margin-top: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .result-panel.show { display: block; }
+
+  .result-header {
+    padding: 14px 20px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .result-body { padding: 20px; }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(42,47,69,0.5);
+    font-size: 13px;
+    gap: 16px;
+  }
+
+  .result-row:last-child { border-bottom: none; }
+  .result-label { color: var(--text-dim); flex-shrink: 0; }
+  .result-val { font-family: 'Courier New', monospace; font-weight: 700; text-align: right; }
+  .result-val.accent { color: var(--accent); }
+
+  .result-conclusion {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .result-conclusion.success { background: var(--success-bg); border: 1px solid var(--success-border); color: var(--success); }
+  .result-conclusion.danger { background: var(--danger-bg); border: 1px solid var(--danger-border); color: var(--danger); }
+
+  .error-msg {
+    display: none;
+    background: var(--danger-bg);
+    border: 1px solid var(--danger-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--danger);
+    margin-top: 12px;
+  }
+
+  .error-msg.show { display: block; }
+
+  /* Cost table */
+  .cost-table-wrap {
+    margin-top: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .cost-table-toggle {
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--surface2);
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+  }
+
+  .cost-table-toggle:hover { color: var(--accent); }
+  .cost-table-toggle .toggle-arrow { font-size: 14px; transition: transform 0.2s; }
+  .cost-table-toggle.open .toggle-arrow { transform: rotate(180deg); }
+
+  .cost-table-body { display: none; overflow-x: auto; }
+  .cost-table-body.open { display: block; }
+
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .cost-table thead th {
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.02);
+    color: var(--text-dim);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+
+  .cost-table tbody td {
+    padding: 7px 14px;
+    border-bottom: 1px solid rgba(42,47,69,0.35);
+    font-family: 'Courier New', monospace;
+  }
+
+  .cost-table tbody tr:last-child td { border-bottom: none; }
+  .cost-table tbody tr:hover td { background: rgba(255,255,255,0.015); }
+
+  .td-bt { color: var(--accent); font-weight: 700; }
+  .td-copies { color: var(--text-dim); }
+  .td-cost { color: var(--text); }
+  .td-total { color: var(--text); }
+  .td-cumulative { color: var(--text-dim); }
+
+  @media (max-width: 480px) {
+    .input-row, .key-input-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="guide-header">
+    <div class="game-label">Tool</div>
+    <h1>Guardian Calculator</h1>
+    <div class="guide-subtitle">Soul Hunter Idle AFK RPG · Plan your breakthrough path</div>
+  </div>
+
+  <div class="calc-card">
+    <div class="calc-header">
+      <div class="calc-header-icon">🛡️</div>
+      <div class="calc-header-title">Guardian Breakthrough Calculator</div>
+    </div>
+    <div class="calc-body">
+
+      <div class="input-group">
+        <label class="input-label">Breakthrough Level</label>
+        <div class="input-row">
+          <div>
+            <input type="number" id="g-current" placeholder="Current (0–9)" min="0" max="9">
+            <div class="input-sublabel">Current breakthrough (B0–B9)</div>
+          </div>
+          <div>
+            <input type="number" id="g-target" placeholder="Target (1–10)" min="1" max="10">
+            <div class="input-sublabel">Target breakthrough (B1–B10)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Reserved Material</label>
+        <input type="number" id="g-material" placeholder="e.g. 50000" min="0">
+        <div class="input-sublabel">Guardian upgrade material you already have</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="input-group">
+        <label class="input-label">Keys</label>
+        <div class="key-input-group">
+          <div class="key-input-name">Guardian Key</div>
+          <div class="key-input-row">
+            <div>
+              <input type="number" id="g-key-count" placeholder="Keys owned" min="0">
+              <div class="key-input-sub">How many keys you have</div>
+            </div>
+            <div>
+              <input type="number" id="g-key-yield" placeholder="Material per key" min="0">
+              <div class="key-input-sub">Material gained per key</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calculate()">Calculate</button>
+      <div class="error-msg" id="g-error"></div>
+    </div>
+  </div>
+
+  <div class="result-panel" id="g-result">
+    <div class="result-header">Result</div>
+    <div class="result-body" id="g-result-body"></div>
+  </div>
+
+  <div class="cost-table-wrap">
+    <button class="cost-table-toggle" onclick="toggleTable()">
+      <span>Guardian Breakthrough Cost Table</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="cost-table-body" id="g-table">
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Breakthrough</th>
+            <th>Copies</th>
+            <th>Cost per Copy</th>
+            <th>Total Cost</th>
+            <th>Cumulative</th>
+          </tr>
+        </thead>
+        <tbody id="g-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────────
+// GUARDIAN_DATA[i] = { copies, costPerCopy, total } to reach breakthrough i (from i-1)
+const GUARDIAN_DATA = [
+  null,                                      // index 0 placeholder
+  { copies: 2, costPerCopy: 5000,  total: 10000  },  // B0 → B1
+  { copies: 2, costPerCopy: 6000,  total: 12000  },  // B1 → B2
+  { copies: 3, costPerCopy: 6500,  total: 19500  },  // B2 → B3
+  { copies: 3, costPerCopy: 7000,  total: 21000  },  // B3 → B4
+  { copies: 4, costPerCopy: 8000,  total: 32000  },  // B4 → B5
+  { copies: 4, costPerCopy: 9000,  total: 36000  },  // B5 → B6
+  { copies: 5, costPerCopy: 10000, total: 50000  },  // B6 → B7
+  { copies: 5, costPerCopy: 15000, total: 75000  },  // B7 → B8
+  { copies: 6, costPerCopy: 20000, total: 120000 },  // B8 → B9
+  { copies: 6, costPerCopy: 25000, total: 150000 },  // B9 → B10
+];
+
+function fmt(n) { return Math.round(n).toLocaleString(); }
+
+function totalCost(from, to) {
+  let total = 0;
+  for (let i = from + 1; i <= to; i++) total += GUARDIAN_DATA[i].total;
+  return total;
+}
+
+// ── Toggle ────────────────────────────────────────────────────────────────────
+
+function toggleTable() {
+  const body = document.getElementById('g-table');
+  const btn = document.querySelector('.cost-table-toggle');
+  body.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+// ── Build cost table ──────────────────────────────────────────────────────────
+
+function buildTable() {
+  const tbody = document.getElementById('g-table-body');
+  let cumulative = 0;
+  for (let i = 1; i <= 10; i++) {
+    const d = GUARDIAN_DATA[i];
+    cumulative += d.total;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="td-bt">B${i-1} → B${i}</td>
+      <td class="td-copies">${d.copies}×</td>
+      <td class="td-cost">${fmt(d.costPerCopy)}</td>
+      <td class="td-total">${fmt(d.total)}</td>
+      <td class="td-cumulative">${fmt(cumulative)}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+}
+
+buildTable();
+
+// ── Calculator ────────────────────────────────────────────────────────────────
+
+function calculate() {
+  const errEl = document.getElementById('g-error');
+  const resultPanel = document.getElementById('g-result');
+  const resultBody = document.getElementById('g-result-body');
+
+  errEl.classList.remove('show');
+  resultPanel.classList.remove('show');
+
+  const current  = parseInt(document.getElementById('g-current').value);
+  const target   = parseInt(document.getElementById('g-target').value);
+  const material = parseFloat(document.getElementById('g-material').value) || 0;
+  const keyCount = parseFloat(document.getElementById('g-key-count').value) || 0;
+  const keyYield = parseFloat(document.getElementById('g-key-yield').value) || 0;
+
+  // Validate
+  if (isNaN(current) || isNaN(target)) {
+    errEl.textContent = 'Please enter current and target breakthrough level.';
+    errEl.classList.add('show'); return;
+  }
+  if (current < 0 || current > 9) {
+    errEl.textContent = 'Current breakthrough must be between 0 and 9.';
+    errEl.classList.add('show'); return;
+  }
+  if (target < 1 || target > 10) {
+    errEl.textContent = 'Target breakthrough must be between 1 and 10.';
+    errEl.classList.add('show'); return;
+  }
+  if (target <= current) {
+    errEl.textContent = 'Target breakthrough must be higher than current.';
+    errEl.classList.add('show'); return;
+  }
+
+  // Calculation
+  const needed = totalCost(current, target);
+  const reservedUsed = Math.min(material, needed);
+  const afterReserved = Math.max(0, needed - material);
+  const keyGain = keyCount * keyYield;
+  const totalAvailable = material + keyGain;
+  const canUpgrade = totalAvailable >= needed;
+  const surplus = totalAvailable - needed;
+  const deficit = needed - totalAvailable;
+
+  // Build step breakdown per BT
+  let stepsHtml = '';
+  for (let i = current + 1; i <= target; i++) {
+    const d = GUARDIAN_DATA[i];
+    stepsHtml += `<div class="result-row">
+      <span class="result-label">B${i-1} → B${i} (${d.copies}× @ ${fmt(d.costPerCopy)})</span>
+      <span class="result-val">${fmt(d.total)}</span>
+    </div>`;
+  }
+
+  let html = stepsHtml;
+  html += `<div class="result-row"><span class="result-label">Total material needed (B${current} → B${target})</span><span class="result-val accent">${fmt(needed)}</span></div>`;
+  html += `<div class="result-row"><span class="result-label">Reserved material used</span><span class="result-val">${fmt(reservedUsed)}</span></div>`;
+  html += `<div class="result-row"><span class="result-label">Still needed after reserved</span><span class="result-val">${fmt(afterReserved)}</span></div>`;
+  html += `<div class="result-row"><span class="result-label">From Guardian keys (${fmt(keyCount)} × ${fmt(keyYield)})</span><span class="result-val">${fmt(keyGain)}</span></div>`;
+  html += `<div class="result-row"><span class="result-label">Total material available</span><span class="result-val accent">${fmt(totalAvailable)}</span></div>`;
+
+  if (canUpgrade) {
+    const remainingKeys = keyYield > 0 ? Math.floor(surplus / keyYield) : 0;
+    const leftoverMat = keyYield > 0 ? surplus % keyYield : surplus;
+    html += `<div class="result-row"><span class="result-label">Surplus material</span><span class="result-val">${fmt(surplus)}</span></div>`;
+    if (keyYield > 0) {
+      html += `<div class="result-row"><span class="result-label">Guardian keys remaining</span><span class="result-val accent">${fmt(remainingKeys)} keys</span></div>`;
+    }
+    html += `<div class="result-conclusion success"><strong>✓ You can reach B${target}!</strong><br>
+    ${keyYield > 0
+      ? `After upgrading you'll have <strong>${fmt(remainingKeys)} Guardian keys</strong> remaining (${fmt(surplus)} surplus ÷ ${fmt(keyYield)} per key).${leftoverMat > 0 ? ` Plus ${fmt(leftoverMat)} leftover material.` : ''}`
+      : `You'll have <strong>${fmt(surplus)} material</strong> left over after upgrading.`
+    }</div>`;
+  } else {
+    const keysNeeded = keyYield > 0 ? Math.ceil(deficit / keyYield) : null;
+    html += `<div class="result-row"><span class="result-label">Material still needed</span><span class="result-val">${fmt(deficit)}</span></div>`;
+    if (keysNeeded !== null) {
+      html += `<div class="result-row"><span class="result-label">Extra Guardian keys needed</span><span class="result-val">${fmt(keysNeeded)} more keys</span></div>`;
+    }
+    html += `<div class="result-conclusion danger"><strong>✗ Not enough material.</strong><br>
+    You're short by <strong>${fmt(deficit)}</strong>.${keysNeeded !== null ? ` You need <strong>${fmt(keysNeeded)} more Guardian keys</strong> to cover the gap.` : ' Enter your key yield to see how many more you need.'}</div>`;
+  }
+
+  resultBody.innerHTML = html;
+  resultPanel.classList.add('show');
+}
+</script>
+</body>
+</html>
